@@ -1,0 +1,84 @@
+- id: evening_lights
+  alias: Turn on lights in the evening
+  trigger:
+  - event: sunset
+    offset: -01:00:00
+    platform: sun
+  - entity_id: group.family
+    platform: state
+    to: home
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: home
+    - after: sunset
+      after_offset: -01:00:00
+      condition: sun
+    - after: '16:00:00'
+      before: '22:00:00'
+      condition: time
+  action:
+  - service: scene.turn_on
+    entity_id: scene.kitchen_blues, scene.red_stairwell, scene.red_turntable
+  - service: switch.turn_on
+    entity_id: switch.couch_ge_12721_switch, switch.office_ge_12721_switch
+  - service: notify.facebook
+    data:
+      message: Evening lights activated
+      target: !secret notify_phone_number
+
+- id: bedtime_lights
+  alias: Turn on bedroom lights before bed
+  trigger:
+  - platform: time
+    at: '21:00:00'
+  action:
+  - service: light.turn_on
+    entity_id: group.bedroom
+    data:
+      brightness: 144
+      profile: relax
+  - service: notify.facebook
+    data:
+      message: Bedtime lights activated
+      target: !secret notify_phone_number 
+
+- id: away_from_home
+  alias: Everyone is away from home
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  action:
+    service: notify.facebook
+    data:
+      message: Everyone has left the house
+      target: !secret notify_phone_number
+
+- id: someone_home
+  alias: Someone is home
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  action:
+    service: notify.facebook
+    data:
+      message: Someone is home
+      target: !secret notify_phone_number
+
+- id: test_action
+  alias: Test
+  trigger:
+  - platform: time
+    at: '15:07:00'
+  action:
+    - service: notify.facebook
+      data:
+        message: 'Testicles, 1, 2'
+        target:
+          - !secret notify_phone_number

@@ -1,0 +1,215 @@
+homeassistant:
+  name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: 869
+  unit_system: imperial
+  time_zone: America/Chicago
+
+  customize:
+    cover.garage_door_opener:
+      friendly_name: Garage door
+    light.ge_45602_lamp_dimmer_module_level:
+      friendly_name: Lamp dimmer
+    media_player.samsung_tv_un60ks8000:
+      friendly_name: Samsung TV
+      initial_state: off
+      start_off: true
+      # hidden: true
+    media_player.kitchen_home:
+      friendly_name: Google Home
+      icon: mdi:google-assistant
+    sensor.entryway_thermostat_temperature:
+      friendly_name: Entryway temp
+    sensor.entryway_thermostat_humidity:
+      friendly_name: Entryway humidity
+    sensor.dark_sky_apparent_temperature:
+      friendly_name: Feels like
+    sensor.dark_sky_cloud_coverage:
+      friendly_name: Cloud coverage
+    sensor.dark_sky_summary:
+      friendly_name: Conditions
+    sensor.dark_sky_temperature:
+      friendly_name: Current temp
+    switch.couch_ge_12721_switch:
+      friendly_name: Couch lamp
+      icon: mdi:lightbulb
+    switch.office_ge_12721_switch:
+      friendly_name: Miffy
+      icon: mdi:lightbulb
+    zwave.couch_ge_12721:
+      friendly_name: Couch outlet
+    zwave.office_ge_12721:
+      friendly_name: Office outlet
+
+zone:
+  name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  radius: 150
+  icon: mdi:home
+ 
+zone 2:
+  name: Gravitate
+  latitude: !secret gravitate_latitude
+  longitude: !secret gravitate_longitude
+  icon: mdi:laptop
+  radius: 100  # meters
+
+zone 3:
+  name: Carver
+  latitude: !secret carver_latitude
+  longitude: !secret carver_longitude
+  icon: mdi:school
+  radius: 200  # meters
+
+zone 4:
+  name: Stowe
+  latitude: !secret stowe_latitude
+  longitude: !secret stowe_longitude
+  icon: mdi:school
+  radius: 300  # meters
+
+zone 5:
+  name: YMCA
+  latitude: !secret ymca_latitude
+  longitude: !secret ymca_longitude
+  radius: 120  # meters
+  icon: mdi:dumbbell
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  # api_password: PASSWORD
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+  ignore:
+    - apple_tv # home assistant wakes up the apple tv when it connects... causing the TV to turn on
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+device_tracker:
+  # - platform: automatic
+  #   client_id: !secret automatic_client_id
+  #   secret: !secret automatic_secret
+  #   current_location: false
+  - platform: owntracks
+    max_gps_accuracy: 200
+
+# Track the sun
+sun:
+
+sensor:
+  - platform: arlo
+    monitored_conditions:
+      - captured_today
+      - last_capture
+      - total_cameras
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    monitored_conditions:
+      - summary
+      - icon
+      - apparent_temperature
+      - apparent_temperature_max
+      - apparent_temperature_min
+      - cloud_cover
+      - humidity
+      - nearest_storm_distance
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - temperature_max
+      - temperature_min
+      - wind_speed
+      - wind_bearing
+  - platform: ring
+    monitored_conditions:
+      - battery
+      - last_activity
+      - last_ding
+      - last_motion
+      - volume
+
+# Text to speech
+tts:
+  - platform: google
+
+arlo:
+  username: !secret arlo_username
+  password: !secret arlo_password
+
+camera:
+  - platform: arlo
+
+cover:
+  - platform: myq
+    type: liftmaster
+    username: !secret myq_username
+    password: !secret myq_password
+
+# Presence / CloudMQTT / Owntracks
+mqtt:
+  broker: m12.cloudmqtt.com
+  port: 27170
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_secret
+
+ring:
+  username: !secret ring_username
+  password: !secret ring_password
+
+zwave:
+  usb_path: /dev/cu.usbmodem431
+  #device_config:
+  #  light.ge_45602_lamp_dimmer_module_level:
+  #    # polling_intensity: 1
+  #    refresh_value: true
+  #    delay: 3
+
+binary_sensor:
+  - platform: ring
+    monitored_conditions:
+      - ding
+      - motion
+
+notify:
+  - name: facebook
+    platform: facebook
+    page_access_token: !secret facebook_token
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml

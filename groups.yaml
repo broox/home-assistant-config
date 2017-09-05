@@ -1,0 +1,91 @@
+family:
+  name: Family
+  view: no
+  entities:
+    - device_tracker.kbroox_e6321ce91f884aa898e39a9f62e008e4 # owntracks / mqtt
+    - device_tracker.broox_broox # owntracks / mqtt
+
+cameras:
+  name: Cameras
+  view: yes
+  entities:
+    - camera.dining_room
+    - camera.dining_room_2
+    - camera.front
+    - camera.garage
+    - camera.patio
+
+interior_climate:
+  name: Inside climate
+  view: no
+  entities:
+  - sensor.entryway_thermostat_temperature
+  - sensor.entryway_thermostat_humidity
+
+exterior_climate:
+  name: Weather
+  entities:
+  - sensor.dark_sky_summary
+  - sensor.dark_sky_temperature
+  - sensor.dark_sky_apparent_temperature
+  - sensor.dark_sky_cloud_coverage
+
+living_room:
+  name: Living room
+  entities:
+  - switch.couch_ge_12721_switch
+  - light.turntable_1
+  - light.turntable_2
+
+kitchen:
+  name: Kitchen
+  entities:
+  - light.cabinets
+  - light.fridge_lights
+  - light.island
+  - light.island_2
+
+stairwell:
+  name: Stairwell
+  entities:
+  - light.stairwell_1
+  - light.stairwell_2
+  - light.stairwell_3
+
+office:
+  name: Office
+  entities:
+  - light.office_lamp
+  - switch.office_ge_12721_switch
+
+karis_lamp:
+  name: Kari's lamp
+  icon: mdi:lightbulb
+  entities:
+  - light.karis_top_bed_lamp
+  - light.karis_bottom_bed_lamp
+  
+bedroom:
+  name: Master bedroom
+  entities:
+  - light.dereks_lamp
+  - group.karis_lamp
+  - light.dresser_lamp
+
+default_view:
+  view: yes
+  entities:
+  - device_tracker.broox_broox
+  - device_tracker.kbroox_e6321ce91f884aa898e39a9f62e008e4
+  - sensor.entryway_thermostat_temperature
+  - sensor.entryway_thermostat_humidity
+  - cover.garage_door_opener
+  - group.climate
+  - group.kitchen
+  - group.living_room
+  - group.stairwell
+  - group.office
+  - group.bedroom
+  - scene.red_turntable
+  - scene.bedtime
+  - group.exterior_climate

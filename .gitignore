@@ -1,0 +1,16 @@
+.*
+*.conf
+*.db
+*.json
+*.log
+*.sqlite
+*.xml
+
+known_devices.yaml
+OZW_Log.txt
+secrets.yaml
+
+deps
+tts
+
+!/.gitignore

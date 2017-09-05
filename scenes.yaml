@@ -1,0 +1,53 @@
+- name: Red stairwell
+  entities:
+    light.stairwell_1:
+      state: on
+      xy_color: [0.6421,0.3335]
+      brightness: 188
+    light.stairwell_2:
+      state: on
+      xy_color: [0.5385,0.3836]
+      brightness: 188
+    light.stairwell_3:
+      state: on
+      xy_color: [0.6375,0.3362]
+      brightness: 188
+
+- name: Kitchen blues
+  entities:
+    light.cabinets:
+      state: on
+      xy_color: [0.1567,0.1846]
+      brightness: 241
+    light.fridge_lights:
+      state: on
+      xy_color: [0.1714,0.3539]
+      brightness: 241
+    light.island:
+      state: on
+      xy_color: [0.5017,0.4152]
+      brightness: 241
+    light.island_2:
+      state: on
+      xy_color: [0.5017,0.4152]
+      brightness: 241
+
+- name: Red turntable
+  entities:
+    light.turntable_1:
+      state: on
+      xy_color: [0.6576,0.3278]
+      brightness: 182
+    light.turntable_2:
+      state: on
+      xy_color: [0.6618,0.3216]
+      brightness: 182
+
+- name: Bedtime
+  entities:
+    group.living_room: off
+    group.kitchen: off
+    group.stairwell: off
+    group.office: off
+    light.bar_lamp: off
+  
