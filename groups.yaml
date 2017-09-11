@@ -69,8 +69,18 @@ bedroom:
   name: Master bedroom
   entities:
   - light.dereks_lamp
-  - group.karis_lamp
+  - light.karis_top_bed_lamp
+  - light.karis_bottom_bed_lamp
   - light.dresser_lamp
+
+non_bedroom_lights:
+  name: Non Bedroom lights
+  entities:
+  - group.kitchen
+  - group.living_room
+  - group.office
+  - group.stairwell
+  - light.bar_lamp
 
 default_view:
   view: yes

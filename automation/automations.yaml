@@ -21,7 +21,12 @@
       condition: time
   action:
   - service: scene.turn_on
-    entity_id: scene.kitchen_blues, scene.red_stairwell, scene.red_turntable
+    entity_id: scene.kitchen_blues, scene.red_turntable
+  - service: light.turn_on
+    entity_id: group.stairwell
+    data:
+      brightness: 144
+      profile: relax
   - service: switch.turn_on
     entity_id: switch.couch_ge_12721_switch, switch.office_ge_12721_switch
   - service: notify.facebook
@@ -35,11 +40,8 @@
   - platform: time
     at: '21:00:00'
   action:
-  - service: light.turn_on
-    entity_id: group.bedroom
-    data:
-      brightness: 144
-      profile: relax
+  - service: scene.turn_on
+    entity_id: scene.relaxed_bedroom
   - service: notify.facebook
     data:
       message: Bedtime lights activated
@@ -70,15 +72,3 @@
     data:
       message: Someone is home
       target: !secret notify_phone_number
-
-- id: test_action
-  alias: Test
-  trigger:
-  - platform: time
-    at: '15:07:00'
-  action:
-    - service: notify.facebook
-      data:
-        message: 'Testicles, 1, 2'
-        target:
-          - !secret notify_phone_number
