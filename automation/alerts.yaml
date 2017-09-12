@@ -24,6 +24,17 @@
       message: Someone is home
       target: !secret notify_phone_number
 
+- id: hass_update
+  alias: Home assistant updated
+  trigger:
+  - platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.facebook
+    data:
+      message: "Home Assistant {{ states.updater.updater.state }} is now available"
+      target: !secret notify_phone_number
+
 - id: garage_door_open_while_away
   alias: Garage door open while away
   trigger:
