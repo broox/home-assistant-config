@@ -175,6 +175,11 @@ cover:
     username: !secret myq_username
     password: !secret myq_password
 
+emulated_hue:
+  host_ip: !secret hass_host_ip
+  listen_port: 8300
+  expose_by_default: true
+
 # Presence / CloudMQTT / Owntracks
 mqtt:
   broker: m12.cloudmqtt.com
