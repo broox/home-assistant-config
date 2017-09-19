@@ -1,11 +1,12 @@
 - id: evening_lights
   alias: Turn on lights in the evening
   trigger:
-  - event: sunset
+  - platform: sun
+    event: sunset
     offset: -01:00:00
-    platform: sun
-  - entity_id: group.family
-    platform: state
+  - platform: state
+    entity_id: group.family
+    from: not_home
     to: home
   condition:
   - condition: and
@@ -13,12 +14,13 @@
     - condition: state
       entity_id: group.family
       state: home
-    - after: sunset
-      after_offset: -01:00:00
-      condition: sun
-    - after: '16:00:00'
-      before: '22:00:00'
-      condition: time
+    - condition: or
+      conditions:
+      - condition: sun
+        after: sunset
+        after_offset: -01:00:00
+      - condition: sun
+        before: sunrise
   action:
   - service: scene.turn_on
     entity_id: scene.kitchen_blues, scene.red_turntable
@@ -39,6 +41,22 @@
   trigger:
   - platform: time
     at: '21:00:00'
+  - platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: home
+    - condition: or
+      conditions:
+      - condition: time
+        after: '20:59:00'
+      - condition: sun
+        before: sunrise
   action:
   - service: scene.turn_on
     entity_id: scene.relaxed_bedroom
