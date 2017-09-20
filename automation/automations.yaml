@@ -1,5 +1,5 @@
 - id: evening_lights
-  alias: Turn on lights in the evening
+  alias: Turn on lights in the evening when home
   trigger:
   - platform: sun
     event: sunset
@@ -23,21 +23,27 @@
         before: sunrise
   action:
   - service: scene.turn_on
-    entity_id: scene.kitchen_blues, scene.red_turntable
+    entity_id:
+    - scene.kitchen_blues
+    - scene.red_turntable
   - service: light.turn_on
-    entity_id: group.stairwell
+    entity_id:
+    - group.stairwell
+    - light.office_lamp
     data:
       brightness: 144
       profile: relax
   - service: switch.turn_on
-    entity_id: switch.couch_ge_12721_switch, switch.office_ge_12721_switch
+    entity_id:
+    - switch.couch_ge_12721_switch
+    - switch.office_ge_12721_switch
   - service: notify.facebook
     data:
       message: Evening lights activated
       target: !secret notify_phone_number
 
 - id: bedtime_lights
-  alias: Turn on bedroom lights before bed
+  alias: Turn on bedroom lights before bed when home
   trigger:
   - platform: time
     at: '21:00:00'
@@ -64,3 +70,62 @@
     data:
       message: Bedtime lights activated
       target: !secret notify_phone_number 
+
+- id: lights_off_when_leaving
+  alias: Turn off lights when leaving
+  trigger:
+  - platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  condition:
+    condition: state
+    entity_id: group.all_lights
+    state: 'on'
+  action:
+  - service: light.turn_off
+    entity_id:
+    - group.all_lights
+    # Leaves on the switches (Miffy and Living Room Edison Lamp)
+  - service: notify.facebook
+    data:
+      message: Turning off all the lights
+      target: !secret notify_phone_number
+
+- id: lamps_on_while_away_in_the_evening
+  alias: Turn on a couple lamps while we're away in the evening  # for the dog
+  trigger:
+  - platform: sun
+    event: sunset
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: not_home
+    - condition: state
+      entity_id: group.all_switches
+      state: 'off'
+  action:
+  - service: switch.turn_on
+    entity_id:
+    - group.all_switches
+  - service: notify.facebook
+    data:
+      message: Turning on a couple lamps
+      target: !secret notify_phone_number
+
+- id: lights_off_while_away_at_night
+  alias: Turn off any lights if we're still away late at night
+  trigger:
+  - platform: time
+    at: '23:00:00'
+  action:
+  - service: homeassistant.turn_off
+    entity_id:
+    - group.all_lights
+    - group.all_switches
+  - service: notify.facebook
+    data:
+      message: Turning off all lights
+      target: !secret notify_phone_number

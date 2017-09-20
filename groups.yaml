@@ -64,7 +64,12 @@ karis_lamp:
   entities:
   - light.karis_top_bed_lamp
   - light.karis_bottom_bed_lamp
-  
+
+basement:
+  name: basement
+  entities:
+  - light.bar_lamp
+
 bedroom:
   name: Master bedroom
   entities:
