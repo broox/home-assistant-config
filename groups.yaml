@@ -30,6 +30,12 @@ exterior_climate:
   - sensor.dark_sky_apparent_temperature
   - sensor.dark_sky_cloud_coverage
 
+all_lights_and_switches:
+  name: Switchables
+  entities:
+  - group.all_lights
+  - group.all_switches
+
 living_room:
   name: Living room
   entities:

@@ -120,11 +120,18 @@
   trigger:
   - platform: time
     at: '23:00:00'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: not_home
+    - condition: state
+      entity_id: group.all_lights_and_switches
+      state: 'on'
   action:
   - service: homeassistant.turn_off
-    entity_id:
-    - group.all_lights
-    - group.all_switches
+    entity_id: group.all_lights_and_switches
   - service: notify.facebook
     data:
       message: Turning off all lights
