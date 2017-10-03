@@ -31,12 +31,18 @@
     - group.stairwell
     - light.office_lamp
     data:
-      brightness: 144
+      brightness: 200
+      profile: relax
+  - service: light.turn_on
+    entity_id:
+    - light.lamp_dimmer_one_level  # Blinky
+    data:
+      brightness: 75
       profile: relax
   - service: switch.turn_on
     entity_id:
     - switch.couch_ge_12721_switch
-    - switch.office_ge_12721_switch
+    - switch.office_ge_12721_switch  # Miffy
   - service: notify.facebook
     data:
       message: Evening lights activated

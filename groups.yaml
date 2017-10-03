@@ -2,7 +2,7 @@ family:
   name: Family
   view: no
   entities:
-    - device_tracker.kbroox_e6321ce91f884aa898e39a9f62e008e4 # owntracks / mqtt
+    - device_tracker.kbroox_98bf406fe12e44d494a59f1192f4f580 # owntracks / mqtt
     - device_tracker.broox_broox # owntracks / mqtt
 
 cameras:
@@ -62,6 +62,7 @@ office:
   name: Office
   entities:
   - light.office_lamp
+  - light.lamp_dimmer_one_level
   - switch.office_ge_12721_switch
 
 karis_lamp:
@@ -97,7 +98,7 @@ default_view:
   view: yes
   entities:
   - device_tracker.broox_broox
-  - device_tracker.kbroox_e6321ce91f884aa898e39a9f62e008e4
+  - device_tracker.kbroox_98bf406fe12e44d494a59f1192f4f580
   - sensor.entryway_thermostat_temperature
   - sensor.entryway_thermostat_humidity
   - cover.garage_door_opener

@@ -9,8 +9,9 @@ homeassistant:
   customize:
     cover.garage_door_opener:
       friendly_name: Garage door
-    light.ge_45602_lamp_dimmer_module_level:
-      friendly_name: Lamp dimmer
+    light.lamp_dimmer_one_level:
+      friendly_name: Blinky
+      icon: mdi:ghost
     media_player.samsung_tv_un60ks8000:
       friendly_name: Samsung TV
       initial_state: off
@@ -197,6 +198,7 @@ ring:
 
 zwave:
   usb_path: /dev/cu.usbmodem431
+  config_path: /usr/local/lib/python3.6/site-packages/python_openzwave/ozw_config
   #device_config:
   #  light.ge_45602_lamp_dimmer_module_level:
   #    # polling_intensity: 1
