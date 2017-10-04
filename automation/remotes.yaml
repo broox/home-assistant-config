@@ -59,6 +59,8 @@
     entity_id: group.all_lights
   - service: switch.turn_off
     entity_id: group.all_switches
+  - service: media_player.turn_off
+    entity_id: group.sonos
 
 # Turn the bedroom lights on if they're off
 - id: minimote_3_on

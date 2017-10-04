@@ -98,6 +98,17 @@
       message: Turning off all the lights
       target: !secret notify_phone_number
 
+- id: music_off_when_leaving
+  alias: Turn off music when leaving
+  trigger:
+  - platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  action:
+    service: media_player.turn_off
+    entity_id: group.sonos
+
 - id: lamps_on_while_away_in_the_evening
   alias: Turn on a couple lamps while we're away in the evening  # for the dog
   trigger:
