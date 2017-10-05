@@ -72,11 +72,6 @@ karis_lamp:
   - light.karis_top_bed_lamp
   - light.karis_bottom_bed_lamp
 
-basement:
-  name: basement
-  entities:
-  - light.bar_lamp
-
 bedroom:
   name: Master bedroom
   entities:
@@ -93,6 +88,20 @@ non_bedroom_lights:
   - group.office
   - group.stairwell
   - light.bar_lamp
+
+basement:
+  name: basement
+  entities:
+  - light.bar_lamp
+
+upstairs:
+  name: upstairs
+  entities:
+  - group.bedroom
+  - group.kitchen
+  - group.living_room
+  - group.office
+  - group.stairwell
 
 sonos:
   name: Sonos Speakers
