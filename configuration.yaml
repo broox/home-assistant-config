@@ -180,6 +180,10 @@ emulated_hue:
   host_ip: !secret hass_host_ip
   listen_port: 8300
   expose_by_default: true
+  exposed_domains:
+  - switch
+  - light
+  - group
 
 # Presence / CloudMQTT / Owntracks
 mqtt:
