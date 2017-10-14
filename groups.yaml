@@ -36,6 +36,12 @@ all_lights_and_switches:
   - group.all_lights
   - group.all_switches
 
+turntable_lights:
+  name: Turntable lights
+  entities:
+  - light.turntable_1
+  - light.turntable_2
+
 living_room:
   name: Living room
   entities:

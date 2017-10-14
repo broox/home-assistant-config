@@ -9,6 +9,8 @@ homeassistant:
   customize:
     cover.garage_door_opener:
       friendly_name: Garage door
+    group.kitchen:
+      emulated_hue_name: Kitchen lights
     light.lamp_dimmer_one_level:
       friendly_name: Blinky
       icon: mdi:ghost
