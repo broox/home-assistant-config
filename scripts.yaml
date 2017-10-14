@@ -1,0 +1,32 @@
+turn_on_upstairs:
+  sequence:
+  - service: scene.turn_on
+    entity_id:
+    - scene.kitchen_blues
+    - scene.red_turntable
+  - service: light.turn_on
+    entity_id:
+    - group.stairwell
+    - light.office_lamp
+    data:
+      brightness: 200
+      profile: relax
+  - service: light.turn_on
+    entity_id:
+    - light.lamp_dimmer_one_level  # Blinky
+    data:
+      brightness: 75
+      profile: relax
+  - service: switch.turn_on
+    entity_id:
+    - switch.couch_ge_12721_switch
+    - switch.office_ge_12721_switch  # Miffy
+
+turn_off_house:
+  sequence:
+  - service: light.turn_off
+    entity_id: group.all_lights
+  - service: switch.turn_off
+    entity_id: group.all_switches
+  - service: media_player.turn_off
+    entity_id: group.sonos
