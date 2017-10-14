@@ -51,3 +51,11 @@ prepare_bedtime_lights:
     data:
       message: Bedtime lights activated
       target: !secret notify_phone_number
+
+bedtime:
+  sequence:
+  - service: scene.turn_on
+    entity_id: scene.relaxed_bedroom
+  - delay: 00:01:00  # minute
+  - service: homeassistant.turn_off
+    entity_id: group.non_bedroom_lights
