@@ -22,27 +22,7 @@
       - condition: sun
         before: sunrise
   action:
-  - service: scene.turn_on
-    entity_id:
-    - scene.kitchen_blues
-    - scene.red_turntable
-  - service: light.turn_on
-    entity_id:
-    - group.stairwell
-    - light.office_lamp
-    data:
-      brightness: 200
-      profile: relax
-  - service: light.turn_on
-    entity_id:
-    - light.lamp_dimmer_one_level  # Blinky
-    data:
-      brightness: 75
-      profile: relax
-  - service: switch.turn_on
-    entity_id:
-    - switch.couch_ge_12721_switch
-    - switch.office_ge_12721_switch  # Miffy
+  - service: script.turn_on_upstairs
   - service: notify.facebook
     data:
       message: Evening lights activated
@@ -78,7 +58,7 @@
       target: !secret notify_phone_number 
 
 - id: lights_off_when_leaving
-  alias: Turn off lights when leaving
+  alias: Turn off most lights when leaving
   trigger:
   - platform: state
     entity_id: group.family
@@ -95,7 +75,7 @@
     # Leaves on the switches (Miffy and Living Room Edison Lamp)
   - service: notify.facebook
     data:
-      message: Turning off all the lights
+      message: Turning off most of the lights
       target: !secret notify_phone_number
 
 - id: music_off_when_leaving
@@ -147,8 +127,7 @@
       entity_id: group.all_lights_and_switches
       state: 'on'
   action:
-  - service: homeassistant.turn_off
-    entity_id: group.all_lights_and_switches
+  - service: script.turn_off_house
   - service: notify.facebook
     data:
       message: Turning off all lights

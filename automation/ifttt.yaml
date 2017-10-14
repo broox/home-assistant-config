@@ -1,0 +1,15 @@
+- id: goodnight
+  alias: Turn house off at night
+  trigger:
+    platform: mqtt
+    topic: ifttt/goodnight
+  action:
+  - service: script.turn_off_house
+
+- id: home
+  alias: Turn the house on when home
+  trigger:
+    platform: mqtt
+    topic: ifttt/home
+  action:
+  - service: script.turn_on_upstairs
