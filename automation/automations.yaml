@@ -39,10 +39,6 @@
     to: home
   action:
   - service: script.prepare_bedtime_lights
-  - service: notify.facebook
-    data:
-      message: Bedtime lights activated
-      target: !secret notify_phone_number 
 
 - id: lights_off_when_leaving
   alias: Turn off most lights when leaving
