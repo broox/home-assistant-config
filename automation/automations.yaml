@@ -132,3 +132,15 @@
     data:
       message: Turning off all lights
       target: !secret notify_phone_number
+
+- id: check_garage_door_at_bedtime
+  alias: Check whether the garage door is open when the bedroom lights turn off at night
+  trigger:
+    platform: state
+    entity_id: group.bedroom
+    to: 'off'
+  condition:
+    condition: time
+    after: '21:00:00'  # TODO: double check this syntax
+  action:
+  - service: script.check_garage_door

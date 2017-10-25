@@ -1,4 +1,5 @@
 turn_on_upstairs:
+  # Everything but the bedroom
   sequence:
   - service: scene.turn_on
     entity_id:
@@ -30,3 +31,13 @@ turn_off_house:
     entity_id: group.all_switches
   - service: media_player.turn_off
     entity_id: group.sonos
+
+check_garage_door:
+  sequence:
+  - condition: state
+    entity_id: cover.garage_door_opener
+    state: open
+  - service: notify.facebook
+    data:
+      message: Garage door is open
+      target: !secret notify_phone_number
