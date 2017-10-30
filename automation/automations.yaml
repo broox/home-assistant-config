@@ -124,6 +124,6 @@
     to: 'off'
   condition:
     condition: time
-    after: '21:00:00'  # TODO: double check this syntax
+    after: '21:00:00'
   action:
   - service: script.check_garage_door
