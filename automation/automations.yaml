@@ -128,6 +128,9 @@
     - condition: state
       entity_id: group.family
       state: home
+    - condition: state
+      entity_id: group.non_bedroom_lights
+      state: 'off'
     - condition: time
       after: '10:00:00'
       before: '21:00:00'
