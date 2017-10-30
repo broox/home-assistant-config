@@ -59,3 +59,13 @@ bedtime:
   - delay: 00:01:00  # minute
   - service: homeassistant.turn_off
     entity_id: group.non_bedroom_lights
+
+check_garage_door:
+  sequence:
+  - condition: state
+    entity_id: cover.garage_door_opener
+    state: open
+  - service: notify.facebook
+    data:
+      message: Garage door is open
+      target: !secret notify_phone_number
