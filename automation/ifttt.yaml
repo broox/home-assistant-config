@@ -13,3 +13,12 @@
     topic: ifttt/home
   action:
   - service: script.turn_on_upstairs
+  - service: script.prepare_bedtime_lights
+
+- id: bedtime
+  alias: Turn on bedroom lights, turn off the rest of the house a minute later
+  trigger:
+    platform: mqtt
+    topic: ifttt/bedtime
+  action:
+  - service: script.bedtime

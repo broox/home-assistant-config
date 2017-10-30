@@ -41,7 +41,7 @@
 #       entity_id: zwave.aeotec_minimote_1
 #       scene_id: 2
 
-# Turn the bedroom lights (and everything else) off if any are on
+# Turn the bedroom lights off if any are on
 - id: minimote_3_off
   alias: Minimote Button 2 Pressed
   trigger:
@@ -55,7 +55,8 @@
     entity_id: group.bedroom
     state: 'on'
   action:
-  - service: script.turn_off_house
+  - service: light.turn_off
+    entity_id: group.bedroom
 
 # Turn the bedroom lights on if they're off
 - id: minimote_3_on

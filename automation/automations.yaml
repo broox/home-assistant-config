@@ -37,25 +37,8 @@
     entity_id: group.family
     from: not_home
     to: home
-  condition:
-  - condition: and
-    conditions:
-    - condition: state
-      entity_id: group.family
-      state: home
-    - condition: or
-      conditions:
-      - condition: time
-        after: '20:59:00'
-      - condition: sun
-        before: sunrise
   action:
-  - service: scene.turn_on
-    entity_id: scene.relaxed_bedroom
-  - service: notify.facebook
-    data:
-      message: Bedtime lights activated
-      target: !secret notify_phone_number 
+  - service: script.prepare_bedtime_lights
 
 - id: lights_off_when_leaving
   alias: Turn off most lights when leaving
