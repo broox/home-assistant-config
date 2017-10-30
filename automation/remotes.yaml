@@ -75,14 +75,18 @@
   - service: light.turn_on  # resume last scene/states...
     entity_id: group.bedroom
 
-# - id: minimote_4
-#   alias: Minimote Button 2 Held
-#   trigger:
-#     platform: event
-#     event_type: zwave.scene_activated
-#     event_data:
-#       entity_id: zwave.aeotec_minimote_1
-#       scene_id: 4
+# Dim the bedroom lights
+- id: minimote_4_held
+  alias: Minimote Button 2 Held
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.aeotec_minimote_1
+      scene_id: 4
+  action:
+    service: scene.turn_on
+    entity_id: scene.dim_bedroom
 
 # - id: minimote_5
 #   alias: Minimote Button 3 Pressed
