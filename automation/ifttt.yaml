@@ -17,8 +17,8 @@
 
 - id: bedtime
   alias: Turn on bedroom lights, turn off the rest of the house a minute later
-  - service: scene.turn_on
-    entity_id: scene.relaxed_bedroom
-  - delay: 00:01:00  # minute
-  - service: homeassistant.turn_off
-    entity_id: group.non_bedroom_lights
+  trigger:
+    platform: mqtt
+    topic: ifttt/bedtime
+  action:
+  - service: script.bedtime
