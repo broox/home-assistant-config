@@ -6,10 +6,11 @@
     from: home
     to: not_home
   action:
-    service: notify.facebook
+  - service: notify.facebook
     data:
       message: Everyone has left the house
       target: !secret notify_phone_number
+  - service: script.check_garage_door
 
 - id: someone_home
   alias: Someone is home
@@ -35,26 +36,23 @@
       message: "Home Assistant {{ states.updater.updater.state }} is now available"
       target: !secret notify_phone_number
 
-- id: garage_door_open_while_away
-  alias: Garage door open while away
+- id: garage_door_closed_while_away
+  alias: Garage door closed while away
   trigger:
-  - platform: state
-    entity_id: group.family
-    to: not_home
-  - platform: state
+    platform: state
     entity_id: cover.garage_door_opener
-    to: open
+    to: closed
   condition:
     condition: and
     conditions:
     - condition: state
       entity_id: cover.garage_door_opener
-      state: open
+      state: closed
     - condition: state
       entity_id: group.family
       state: not_home
   action:
-    - service: notify.facebook
-      data:
-        message: Garage door is open
-        target: !secret notify_phone_number
+    service: notify.facebook
+    data:
+      message: Garage door has closed
+      target: !secret notify_phone_number

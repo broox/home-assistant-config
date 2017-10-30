@@ -1,4 +1,5 @@
 turn_on_upstairs:
+  # Everything but the bedroom
   sequence:
   - service: scene.turn_on
     entity_id:
@@ -30,3 +31,41 @@ turn_off_house:
     entity_id: group.all_switches
   - service: media_player.turn_off
     entity_id: group.sonos
+
+prepare_bedtime_lights:
+  sequence:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: home
+    - condition: or
+      conditions:
+      - condition: time
+        after: '20:59:00'
+      - condition: sun
+        before: sunrise
+  - service: scene.turn_on
+    entity_id: scene.relaxed_bedroom
+  - service: notify.facebook
+    data:
+      message: Bedtime lights activated
+      target: !secret notify_phone_number
+
+bedtime:
+  sequence:
+  - service: scene.turn_on
+    entity_id: scene.relaxed_bedroom
+  - delay: 00:01:00  # minute
+  - service: homeassistant.turn_off
+    entity_id: group.non_bedroom_lights
+
+check_garage_door:
+  sequence:
+  - condition: state
+    entity_id: cover.garage_door_opener
+    state: open
+  - service: notify.facebook
+    data:
+      message: Garage door is open
+      target: !secret notify_phone_number
