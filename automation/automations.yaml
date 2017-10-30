@@ -116,6 +116,31 @@
       message: Turning off all lights
       target: !secret notify_phone_number
 
+- id: lights_on_when_cloudy
+  alias: Turn on lights when it's cloudy
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.dark_sky_cloud_coverage
+    above: "90"
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: home
+    - condition: state
+      entity_id: group.non_bedroom_lights
+      state: 'off'
+    - condition: time
+      after: '10:00:00'
+      before: '21:00:00'
+  action:
+  - service: script.turn_on_upstairs
+  - service: notify.facebook
+    data:
+      message: Turning on some lights because it's cloudy
+      target: !secret notify_phone_number
+
 - id: check_garage_door_at_bedtime
   alias: Check whether the garage door is open when the bedroom lights turn off at night
   trigger:
