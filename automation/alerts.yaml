@@ -56,3 +56,41 @@
     data:
       message: Garage door has closed
       target: !secret notify_phone_number
+
+- id: doorbell_rang
+  alias: doorbell button was pushed
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+  action:
+  - service: shell_command.take_snapshot
+    data_template:
+      url: 'http://localhost:8123{{ states.camera.ring_front_door.attributes.entity_picture }}'
+      filename: '/tmp/doorbell_ring.jpg'
+  - service: notify.facebook
+    data:
+      message: Doorbell rang
+      target: !secret notify_phone_number
+
+- id: front_motion
+  alias: motion at front door
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.ring_front_door_motion
+    from: 'off'
+    to: 'on'
+  action:
+  - service: shell_command.take_snapshot
+    data_template:
+      url: 'http://localhost:8123{{ states.camera.front.attributes.entity_picture }}'
+      filename: '/tmp/front.jpg'
+  - service: shell_command.take_snapshot
+    data_template:
+      url: 'http://localhost:8123{{ states.camera.ring_front_door.attributes.entity_picture }}'
+      filename: '/tmp/doorbell_motion.jpg'
+  - service: notify.facebook
+    data:
+      message: Motion at front door
+      target: !secret notify_phone_number
