@@ -165,6 +165,9 @@ sensor:
 tts:
   - platform: google
 
+alarm_control_panel:
+  - platform: arlo
+
 arlo:
   username: !secret arlo_username
   password: !secret arlo_password
