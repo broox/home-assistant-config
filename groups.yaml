@@ -11,6 +11,7 @@ cameras:
   entities:
     - camera.dining_room
     - camera.dining_room_2
+    - camera.front_door
     - camera.front
     - camera.garage
     - camera.patio

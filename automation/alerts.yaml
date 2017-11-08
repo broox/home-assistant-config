@@ -67,12 +67,21 @@
   action:
   - service: shell_command.take_snapshot
     data_template:
-      url: 'http://localhost:8123{{ states.camera.ring_front_door.attributes.entity_picture }}'
+      url: 'http://localhost:8123{{ states.camera.front_door.attributes.entity_picture }}'
       filename: '/tmp/doorbell_ring.jpg'
   - service: notify.facebook
     data:
       message: Doorbell rang
       target: !secret notify_phone_number
+  - service: shell_command.send_image
+    data:
+      filename: '/tmp/doorbell_ring.jpg'
+      target: !secret notify_phone_number
+      token: !secret facebook_token
+  # - service: shell_command.take_snapshot
+  #   data_template:
+  #     url: 'http://localhost:8123{{ states.camera.front.attributes.entity_picture }}'
+  #     filename: '/tmp/front.jpg'
 
 - id: front_motion
   alias: motion at front door
@@ -82,14 +91,6 @@
     from: 'off'
     to: 'on'
   action:
-  - service: shell_command.take_snapshot
-    data_template:
-      url: 'http://localhost:8123{{ states.camera.front.attributes.entity_picture }}'
-      filename: '/tmp/front.jpg'
-  - service: shell_command.take_snapshot
-    data_template:
-      url: 'http://localhost:8123{{ states.camera.ring_front_door.attributes.entity_picture }}'
-      filename: '/tmp/doorbell_motion.jpg'
   - service: notify.facebook
     data:
       message: Motion at front door

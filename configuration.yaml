@@ -172,6 +172,9 @@ arlo:
 camera:
   - platform: arlo
   - platform: ring
+  - platform: local_file
+    file_path: /tmp/doorbell_motion.jpg
+    name: "Doorbell (motion)"
 
 cover:
   - platform: myq
@@ -232,4 +235,5 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 
 shell_command:
-  take_snapshot: 'curl {{ url }} > {{ filename }}'
+  take_snapshot: 'curl "{{ url }}" --output {{ filename }} --silent'
+  send_image: 'curl -F ''recipient={"phone_number":"{{ target }}"}'' -F ''message={"attachment":{"type":"image", "payload":{}}}'' -F ''filedata=@{{ filename }};type=image/jpeg'' "https://graph.facebook.com/v2.6/me/messages?access_token={{ token }}"'
