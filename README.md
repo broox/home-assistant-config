@@ -16,10 +16,12 @@ My goals:
 * GE Z-Wave dimmer modules
 * GE Z-Wave wall outlets
 * Google Home
+* Google Pixel 2
+* iPhone 7
 * Liftmaster MyQ Garage Door opener
 * Nest thermostat, protects, cameras
 * Old Mac Mini to run [Home Assistant](https://home-assistant.io/)
-* OwnTracks (mobile device tracking)
+* Life360 (mobile device tracking)
 * Philips Hue bulbs
 * Ring Pro Doorbell
 * Smartthings door sensors
