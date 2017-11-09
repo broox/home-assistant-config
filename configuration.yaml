@@ -81,6 +81,13 @@ zone 5:
   radius: 120  # meters
   icon: mdi:dumbbell
 
+zone 6:
+  name: Yoga
+  latitude: !secret powerlife_latitude
+  longitude: !secret powerlife_longitude
+  radius: 120
+  icon: mdi:dumbbell
+
 # Show links to resources in log and frontend
 #introduction:
 
@@ -172,6 +179,14 @@ arlo:
 
 camera:
   - platform: arlo
+  - platform: generic
+    name: Derek's Location
+    still_image_url: !secret derek_map_url
+    limit_refetch_to_url_change: true
+  - platform: generic
+    name: Kari's Location
+    still_image_url: !secret kari_map_url
+    limit_refetch_to_url_change: true
 
 cover:
   - platform: myq
@@ -187,6 +202,8 @@ emulated_hue:
   - switch
   - light
   - group
+
+map:
 
 # Presence / CloudMQTT / Owntracks
 mqtt:
