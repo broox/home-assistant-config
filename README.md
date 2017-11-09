@@ -3,7 +3,7 @@ These are the config files for my personal [Home Assistant](https://home-assista
 
 My goals:
 
-1. Ditch SmartThings due to instability, confusing UIs/setup procedures, and their lack of official support for all of my devices.
+1. Ditch SmartThings due to instability, confusing UIs/setup procedures, not a lot of local network processing, and their lack of official support for all of my devices.
 2. Make all of my various hardware and services able to interact with each other.
 3. Require no (or extremely minimal) use of a software based user interface.
 
