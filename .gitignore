@@ -4,6 +4,7 @@
 *.json
 *.log
 *.sqlite
+*.pyc
 *.xml
 
 known_devices.yaml

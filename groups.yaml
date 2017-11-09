@@ -2,8 +2,8 @@ family:
   name: Family
   view: no
   entities:
-    - device_tracker.kbroox_98bf406fe12e44d494a59f1192f4f580 # owntracks / mqtt
-    - device_tracker.broox_broox # owntracks / mqtt
+    - device_tracker.kari_kari # life360 / owntracks / mqtt
+    - device_tracker.derek_derek # life360 / owntracks / mqtt
 
 cameras:
   name: Cameras
@@ -49,6 +49,15 @@ living_room:
   - switch.couch_ge_12721_switch
   - light.turntable_1
   - light.turntable_2
+
+maps:
+  name: Maps
+  view: yes
+  entities:
+    - device_tracker.kari_kari # life360 / owntracks / mqtt
+    - device_tracker.derek_derek # life360 / owntracks / mqtt
+    - camera.dereks_location
+    - camera.karis_location
 
 kitchen:
   name: Kitchen
@@ -126,8 +135,8 @@ sonos:
 default_view:
   view: yes
   entities:
-  - device_tracker.broox_broox
-  - device_tracker.kbroox_98bf406fe12e44d494a59f1192f4f580
+  - device_tracker.derek_derek
+  - device_tracker.kari_kari
   - sensor.entryway_thermostat_temperature
   - sensor.entryway_thermostat_humidity
   - cover.garage_door_opener

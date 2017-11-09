@@ -6,6 +6,7 @@ homeassistant:
   unit_system: imperial
   time_zone: America/Chicago
 
+  packages: !include_dir_named packages
   customize:
     cover.garage_door_opener:
       friendly_name: Garage door
@@ -80,6 +81,13 @@ zone 5:
   radius: 120  # meters
   icon: mdi:dumbbell
 
+zone 6:
+  name: Yoga
+  latitude: !secret powerlife_latitude
+  longitude: !secret powerlife_longitude
+  radius: 120
+  icon: mdi:dumbbell
+
 # Show links to resources in log and frontend
 #introduction:
 
@@ -117,6 +125,14 @@ history:
 
 # View all events in a logbook
 logbook:
+
+# Make sure to purge the history to keep the DB reasonably sized.
+recorder:
+  purge_interval: 1
+  purge_keep_days: 14
+  exclude:
+    domains:
+      - automation
 
 device_tracker:
   # - platform: automatic
@@ -175,6 +191,14 @@ camera:
   - platform: local_file
     file_path: /tmp/doorbell_motion.jpg
     name: "Doorbell (motion)"
+  - platform: generic
+    name: Derek's Location
+    still_image_url: !secret derek_map_url
+    limit_refetch_to_url_change: true
+  - platform: generic
+    name: Kari's Location
+    still_image_url: !secret kari_map_url
+    limit_refetch_to_url_change: true
 
 cover:
   - platform: myq
@@ -193,6 +217,8 @@ emulated_hue:
 
 # Needed for ring
 ffmpeg:
+
+map:
 
 # Presence / CloudMQTT / Owntracks
 mqtt:
