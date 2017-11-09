@@ -6,6 +6,7 @@ homeassistant:
   unit_system: imperial
   time_zone: America/Chicago
 
+  packages: !include_dir_named packages
   customize:
     cover.garage_door_opener:
       friendly_name: Garage door
