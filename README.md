@@ -19,6 +19,7 @@ My goals:
 * Google Pixel 2
 * iPhone 7
 * Liftmaster MyQ Garage Door opener
+* Lutron Caséta dimmers and Pico remotes
 * Nest thermostat, protects, cameras
 * Old Mac Mini to run [Home Assistant](https://home-assistant.io/)
 * Life360 (mobile device tracking)

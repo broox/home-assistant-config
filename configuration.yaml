@@ -196,6 +196,17 @@ camera:
     still_image_url: !secret kari_map_url
     limit_refetch_to_url_change: true
 
+# These IDs come from the JSON file that the Lutron app's "Send Integration Report"
+# option delivers. That file needs to be saved as ./caseta_[lutron_host_ip].json
+caseta:
+  bridges:
+  - host: !secret lutron_host_ip
+    devices:
+      - id: 2
+        type: dimmer
+      - id: 3
+        type: remote
+
 cover:
   - platform: myq
     type: liftmaster

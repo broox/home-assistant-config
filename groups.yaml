@@ -65,6 +65,7 @@ kitchen:
   - light.fridge_lights
   - light.island
   - light.island_2
+  - light.table_lights
 
 stairwell:
   name: Stairwell
