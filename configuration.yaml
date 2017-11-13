@@ -235,6 +235,11 @@ nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_secret
 
+nuheat:
+  username: !secret nuheat_username
+  password: !secret nuheat_password
+  devices: !secret nuheat_thermostat
+
 ring:
   username: !secret ring_username
   password: !secret ring_password
