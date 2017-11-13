@@ -85,6 +85,7 @@ karis_lamp:
   icon: mdi:lightbulb
   entities:
   - light.karis_top_bed_lamp
+  - light.karis_middle_bed_lamp
   - light.karis_bottom_bed_lamp
 
 bedroom:
@@ -92,6 +93,7 @@ bedroom:
   entities:
   - light.dereks_lamp
   - light.karis_top_bed_lamp
+  - light.karis_middle_bed_lamp
   - light.karis_bottom_bed_lamp
   - light.dresser_lamp
 
