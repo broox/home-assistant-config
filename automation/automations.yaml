@@ -72,6 +72,32 @@
     service: media_player.turn_off
     entity_id: group.sonos
 
+- id: floor_off_when_leaving
+  alias: Turn off heated floor when leaving
+  trigger:
+  - platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  action:
+    service: climate.set_away_mode
+    data:
+      entity_id: climate.master_bath
+      away_mode: true
+
+- id: floor_resume_when_arriving
+  alias: Resume heated floor schedule when arriving
+  trigger:
+  - platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  action:
+    service: climate.set_away_mode
+    data:
+      entity_id: climate.master_bath
+      away_mode: false
+
 - id: lamps_on_while_away_in_the_evening
   alias: Turn on a couple lamps while we're away in the evening  # for the dog
   trigger:

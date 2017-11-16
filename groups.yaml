@@ -98,6 +98,11 @@ bedroom:
   - light.karis_bottom_bed_lamp
   - light.dresser_lamp
 
+bathroom:
+  name: Master bathroom
+  entities:
+  - climate.master_bath
+
 non_bedroom_lights:
   name: Non Bedroom lights
   entities:
@@ -142,12 +147,13 @@ default_view:
   - sensor.entryway_thermostat_temperature
   - sensor.entryway_thermostat_humidity
   - cover.garage_door_opener
+  - group.bathroom
+  - group.bedroom
   - group.climate
   - group.kitchen
   - group.living_room
-  - group.stairwell
   - group.office
-  - group.bedroom
+  - group.stairwell
   - scene.red_turntable
   - scene.bedtime
   - group.exterior_climate
