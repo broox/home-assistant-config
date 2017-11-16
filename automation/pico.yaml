@@ -18,7 +18,7 @@
     entity_id: group.non_bedroom_lights
     state: 'off'
   action:
-  - service: homeassistant.turn_on
+    service: homeassistant.turn_on
     entity_id: group.non_bedroom_lights
 
 # Turn off the lights outside of the bedroom if any are on
@@ -34,7 +34,7 @@
     entity_id: group.non_bedroom_lights
     state: 'on'
   action:
-  - service: homeassistant.turn_off
+    service: homeassistant.turn_off
     entity_id: group.non_bedroom_lights
 
 # Turn on the bedroom lights
@@ -50,7 +50,7 @@
     entity_id: group.bedroom
     state: 'off'
   action:
-  - service: light.turn_on
+    service: light.turn_on
     entity_id: group.bedroom
 
 # Turn off the bedroom lights
@@ -66,7 +66,7 @@
     entity_id: group.bedroom
     state: 'on'
   action:
-  - service: light.turn_off
+    service: light.turn_off
     entity_id: group.bedroom
 
 # Brighten the bedroom lights
