@@ -6,7 +6,7 @@ homeassistant:
   unit_system: imperial
   time_zone: America/Chicago
   whitelist_external_dirs:
-  - '/tmp'
+    - /tmp
 
   packages: !include_dir_named packages
   customize:
