@@ -70,3 +70,30 @@ check_garage_door:
     data:
       message: Garage door is open
       target: !secret notify_phone_number
+
+test_telegram_message:
+  sequence:
+    service: notify.telegram
+    data:
+      title: Testing telegram message
+      message: Testicles, one, two
+
+test_telegram_image:
+  sequence:
+    service: notify.telegram
+    data:
+      title: Testing local telegram image
+      message: Look at this capture
+      data:
+        photo:
+          file: '/Users/broox/.homeassistant/www/test.jpg'  # for some reason /tmp doesn't work, even when whitelisted
+
+test_telegram_url:
+  sequence:
+  - service: notify.telegram
+    data:
+      title: Testing remote telegram image
+      message: Look at this photo
+      data:
+        photo:
+          url: 'http://derek.broox.com/photo/brooxmobile/32740/got-this-skull-on-my-arm-.jpg'

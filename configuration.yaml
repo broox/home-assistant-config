@@ -5,6 +5,8 @@ homeassistant:
   elevation: 869
   unit_system: imperial
   time_zone: America/Chicago
+  whitelist_external_dirs:
+    - /tmp
 
   packages: !include_dir_named packages
   customize:
@@ -239,6 +241,12 @@ ring:
   username: !secret ring_username
   password: !secret ring_password
 
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_key
+    allowed_chat_ids:
+      - !secret telegram_chat_id
+
 zwave:
   usb_path: /dev/cu.usbmodem431
   config_path: /usr/local/lib/python3.6/site-packages/python_openzwave/ozw_config
@@ -255,9 +263,9 @@ binary_sensor:
       - motion
 
 notify:
-  - name: facebook
-    platform: facebook
-    page_access_token: !secret facebook_token
+  - name: telegram
+    platform: telegram
+    chat_id: !secret telegram_chat_id
 
 group: !include groups.yaml
 automation: !include_dir_merge_list automation/
