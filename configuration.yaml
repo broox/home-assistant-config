@@ -5,6 +5,8 @@ homeassistant:
   elevation: 869
   unit_system: imperial
   time_zone: America/Chicago
+  whitelist_external_dirs:
+  - '/tmp'
 
   packages: !include_dir_named packages
   customize:
@@ -258,6 +260,9 @@ notify:
   - name: facebook
     platform: facebook
     page_access_token: !secret facebook_token
+  - name: pushbullet
+    platform: pushbullet
+    api_key: !secret pushbullet_key
 
 group: !include groups.yaml
 automation: !include_dir_merge_list automation/
