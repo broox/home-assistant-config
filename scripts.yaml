@@ -48,10 +48,10 @@ prepare_bedtime_lights:
         before: sunrise
   - service: scene.turn_on
     entity_id: scene.relaxed_bedroom
-  - service: notify.facebook
+  - service: notify.pushbullet
     data:
+      title: Lights
       message: Bedtime lights activated
-      target: !secret notify_phone_number
 
 bedtime:
   sequence:
@@ -66,10 +66,10 @@ check_garage_door:
   - condition: state
     entity_id: cover.garage_door_opener
     state: open
-  - service: notify.facebook
+  - service: notify.pushbullet
     data:
+      title: Warning
       message: Garage door is open
-      target: !secret notify_phone_number
 
 test_pushbullet:
   sequence:
@@ -85,7 +85,7 @@ test_pushbullet_image:
       title: Test local image
       message: 'this is a local image'
       data:
-        file: '/tmp/test.jpg'
+        file: '/Users/broox/.homeassistant/www/test.jpg'
 
 test_pushbullet_url:
   sequence:

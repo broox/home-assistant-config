@@ -6,10 +6,10 @@
     from: home
     to: not_home
   action:
-  - service: notify.facebook
+  - service: notify.pushbullet
     data:
+      title: Presence
       message: Everyone has left the house
-      target: !secret notify_phone_number
   - service: script.check_garage_door
 
 - id: someone_home
@@ -20,10 +20,10 @@
     from: not_home
     to: home
   action:
-    service: notify.facebook
+    service: notify.pushbullet
     data:
+      title: Presence
       message: Someone is home
-      target: !secret notify_phone_number
 
 - id: hass_update
   alias: Home assistant updated
@@ -31,10 +31,10 @@
   - platform: state
     entity_id: updater.updater
   action:
-    service: notify.facebook
+    service: notify.pushbullet
     data:
+      title: "Upgrade alert!"
       message: "Home Assistant {{ states.updater.updater.state }} is now available"
-      target: !secret notify_phone_number
 
 - id: garage_door_closed_while_away
   alias: Garage door closed while away
@@ -52,7 +52,7 @@
       entity_id: group.family
       state: not_home
   action:
-    service: notify.facebook
+    service: notify.pushbullet
     data:
+      title: Door
       message: Garage door has closed
-      target: !secret notify_phone_number
