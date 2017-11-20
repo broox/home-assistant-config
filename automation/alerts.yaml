@@ -56,3 +56,32 @@
     data:
       title: Door
       message: Garage door has closed
+
+- id: front_motion
+  alias: motion at front door
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.ring_front_door_motion
+    from: 'off'
+    to: 'on'
+  action:
+  - service: shell_command.take_snapshot
+    data_template:
+      url: 'http://localhost:8123{{ states.camera.front.attributes.entity_picture }}'
+      filename: '/Users/broox/.homeassistant/www/front_motion.jpg'
+  - service: notify.pushbullet
+    data:
+      title: Motion alert
+      message: Motion at front door
+      data:
+        file: '/Users/broox/.homeassistant/www/front_motion.jpg'
+  - service: shell_command.take_snapshot
+    data_template:
+      url: 'http://localhost:8123{{ states.camera.front_door.attributes.entity_picture }}'
+      filename: '/Users/broox/.homeassistant/www/doorbell_motion.jpg'
+  - service: notify.pushbullet
+    data:
+      title: Motion alert
+      message: Motion at front door
+      data:
+        file: '/Users/broox/.homeassistant/www/doorbell_motion.jpg'

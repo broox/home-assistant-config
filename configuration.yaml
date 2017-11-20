@@ -189,6 +189,7 @@ arlo:
 
 camera:
   - platform: arlo
+  - platform: ring
   - platform: generic
     name: Derek's Location
     still_image_url: !secret derek_map_url
@@ -223,6 +224,9 @@ emulated_hue:
   - switch
   - light
   - group
+
+# Needed for ring
+ffmpeg:
 
 map:
 
@@ -268,3 +272,6 @@ group: !include groups.yaml
 automation: !include_dir_merge_list automation/
 script: !include scripts.yaml
 scene: !include scenes.yaml
+
+shell_command:
+  take_snapshot: 'curl "{{ url }}" --output {{ filename }} --silent'

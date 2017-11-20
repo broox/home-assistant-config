@@ -12,6 +12,7 @@ cameras:
     - camera.dining_room
     - camera.dining_room_2
     - camera.front
+    - camera.front_door
     - camera.garage
     - camera.patio
 
