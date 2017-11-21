@@ -20,10 +20,13 @@
     from: not_home
     to: home
   action:
-    service: notify.pushbullet
+  - service: notify.pushbullet
     data:
       title: Presence
       message: Someone is home
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.guest_mode
 
 - id: kari_heading_home
   alias: Kari is heading home from work

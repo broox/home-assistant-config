@@ -98,6 +98,11 @@ bedroom:
   - light.karis_bottom_bed_lamp
   - light.dresser_lamp
 
+modes:
+  name: Modes
+  entities:
+  - input_boolean.guest_mode
+
 non_bedroom_lights:
   name: Non Bedroom lights
   entities:
@@ -125,6 +130,12 @@ upstairs:
   - group.living_room
   - group.office
   - group.stairwell
+
+scenes:
+  name: Scenes
+  entities:
+  - scene.red_turntable
+  - scene.bedtime
 
 sonos:
   name: Sonos Speakers
@@ -155,5 +166,5 @@ default_view:
   - group.bedroom
   - group.basement
   - group.garage
-  - scene.red_turntable
-  - scene.bedtime
+  - group.modes
+  - group.scenes

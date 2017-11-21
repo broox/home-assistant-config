@@ -224,6 +224,14 @@ emulated_hue:
   - light
   - group
 
+input_boolean:
+  guest_mode:
+    # This prevents certain automations from executing.
+    # e.g. turning everything off on our guests if we leave
+    name: Guest mode
+    initial: off
+    icon: mdi:nature-people
+
 map:
 
 # Presence / CloudMQTT / Owntracks

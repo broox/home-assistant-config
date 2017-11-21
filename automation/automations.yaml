@@ -48,9 +48,12 @@
     from: home
     to: not_home
   condition:
-    condition: state
+  - condition: state
     entity_id: group.all_lights
     state: 'on'
+  - condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
   action:
   - service: light.turn_off
     entity_id:
@@ -68,6 +71,10 @@
     entity_id: group.family
     from: home
     to: not_home
+  condition:
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
   action:
     service: media_player.turn_off
     entity_id: group.sonos
