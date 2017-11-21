@@ -25,6 +25,23 @@
       title: Presence
       message: Someone is home
 
+- id: kari_heading_home
+  alias: Kari is heading home from work
+  trigger:
+  - platform: state
+    entity_id: device_tracker.kari_kari
+    from: 'Carver'
+    to: 'not_home'
+  - platform: state
+    entity_id: device_tracker.kari_kari
+    from: 'Stowe'
+    to: 'not_home'
+  action:
+    service: notify.pushbullet
+    data:
+      title: Presence
+      message: Kari has left work
+
 - id: hass_update
   alias: Home assistant updated
   trigger:
