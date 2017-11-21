@@ -20,10 +20,35 @@
     from: not_home
     to: home
   action:
+  - service: notify.pushbullet
+    data_template:
+      title: Presence
+      message: >
+        {%- if is_state("input_boolean.guest_mode", "off") -%}
+        Someone is home.
+        {%- else -%}
+        Someone is home, turning off guest mode.
+        {%- endif %}
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.guest_mode
+
+- id: kari_heading_home
+  alias: Kari is heading home from work
+  trigger:
+  - platform: state
+    entity_id: device_tracker.kari_kari
+    from: 'Carver'
+    to: 'not_home'
+  - platform: state
+    entity_id: device_tracker.kari_kari
+    from: 'Stowe'
+    to: 'not_home'
+  action:
     service: notify.pushbullet
     data:
       title: Presence
-      message: Someone is home
+      message: Kari has left work
 
 - id: hass_update
   alias: Home assistant updated

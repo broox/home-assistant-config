@@ -150,9 +150,11 @@ sun:
 sensor:
   - platform: arlo
     monitored_conditions:
+      - battery_level
       - captured_today
       - last_capture
       - total_cameras
+      - signal_strength
   - platform: darksky
     api_key: !secret darksky_api_key
     monitored_conditions:
@@ -227,6 +229,14 @@ emulated_hue:
 
 # Needed for ring
 ffmpeg:
+
+input_boolean:
+  guest_mode:
+    # This prevents certain automations from executing.
+    # e.g. turning everything off on our guests if we leave
+    name: Guest mode
+    initial: off
+    icon: mdi:nature-people
 
 map:
 
