@@ -108,9 +108,14 @@ non_bedroom_lights:
   - light.bar_lamp
 
 basement:
-  name: basement
+  name: Basement
   entities:
   - light.bar_lamp
+
+garage:
+  name: Garage
+  entities:
+  - cover.garage_door_opener
 
 upstairs:
   name: upstairs
@@ -141,13 +146,14 @@ default_view:
   - device_tracker.kari_kari
   - sensor.entryway_thermostat_temperature
   - sensor.entryway_thermostat_humidity
-  - cover.garage_door_opener
-  - group.climate
+  - group.interior_climate
+  - group.exterior_climate
   - group.kitchen
   - group.living_room
   - group.stairwell
   - group.office
   - group.bedroom
+  - group.basement
+  - group.garage
   - scene.red_turntable
   - scene.bedtime
-  - group.exterior_climate
