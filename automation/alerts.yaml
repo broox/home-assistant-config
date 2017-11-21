@@ -21,9 +21,14 @@
     to: home
   action:
   - service: notify.pushbullet
-    data:
+    data_template:
       title: Presence
-      message: Someone is home
+      message: >
+        {%- if is_state("input_boolean.guest_mode", "off") -%}
+        Someone is home.
+        {%- else -%}
+        Someone is home, turning off guest mode.
+        {%- endif %}
   - service: input_boolean.turn_off
     data:
       entity_id: input_boolean.guest_mode
