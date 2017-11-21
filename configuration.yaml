@@ -150,9 +150,11 @@ sun:
 sensor:
   - platform: arlo
     monitored_conditions:
+      - battery_level
       - captured_today
       - last_capture
       - total_cameras
+      - signal_strength
   - platform: darksky
     api_key: !secret darksky_api_key
     monitored_conditions:
