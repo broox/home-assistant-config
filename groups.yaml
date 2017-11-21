@@ -79,6 +79,11 @@ karis_lamp:
   - light.karis_middle_bed_lamp
   - light.karis_bottom_bed_lamp
 
+bathroom:
+  name: Master bathroom
+  entities:
+  - climate.master_bath
+
 bedroom:
   name: Master bedroom
   entities:
@@ -88,17 +93,10 @@ bedroom:
   - light.karis_bottom_bed_lamp
   - light.dresser_lamp
 
-<<<<<<< HEAD
-bathroom:
-  name: Master bathroom
-  entities:
-  - climate.master_bath
-=======
 modes:
   name: Modes
   entities:
   - input_boolean.guest_mode
->>>>>>> master
 
 non_bedroom_lights:
   name: Non Bedroom lights
