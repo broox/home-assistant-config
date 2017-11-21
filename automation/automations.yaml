@@ -23,10 +23,10 @@
         before: sunrise
   action:
   - service: script.turn_on_upstairs
-  - service: notify.facebook
+  - service: notify.pushbullet
     data:
+      title: Lights
       message: Evening lights activated
-      target: !secret notify_phone_number
 
 - id: bedtime_lights
   alias: Turn on bedroom lights before bed when home
@@ -48,18 +48,21 @@
     from: home
     to: not_home
   condition:
-    condition: state
+  - condition: state
     entity_id: group.all_lights
     state: 'on'
+  - condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
   action:
   - service: light.turn_off
     entity_id:
     - group.all_lights
     # Leaves on the switches (Miffy and Living Room Edison Lamp)
-  - service: notify.facebook
+  - service: notify.pushbullet
     data:
+      title: Lights
       message: Turning off most of the lights
-      target: !secret notify_phone_number
 
 - id: music_off_when_leaving
   alias: Turn off music when leaving
@@ -68,6 +71,10 @@
     entity_id: group.family
     from: home
     to: not_home
+  condition:
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
   action:
     service: media_player.turn_off
     entity_id: group.sonos
@@ -90,10 +97,10 @@
   - service: switch.turn_on
     entity_id:
     - group.all_switches
-  - service: notify.facebook
+  - service: notify.pushbullet
     data:
+      title: Lights
       message: Turning on a couple lamps
-      target: !secret notify_phone_number
 
 - id: lights_off_while_away_at_night
   alias: Turn off any lights if we're still away late at night
@@ -111,10 +118,10 @@
       state: 'on'
   action:
   - service: script.turn_off_house
-  - service: notify.facebook
+  - service: notify.pushbullet
     data:
+      title: Lights
       message: Turning off all lights
-      target: !secret notify_phone_number
 
 - id: lights_on_when_cloudy
   alias: Turn on lights when it's cloudy
@@ -136,10 +143,10 @@
       before: '21:00:00'
   action:
   - service: script.turn_on_upstairs
-  - service: notify.facebook
+  - service: notify.pushbullet
     data:
+      title: Lights
       message: Turning on some lights because it's cloudy
-      target: !secret notify_phone_number
 
 - id: check_garage_door_at_bedtime
   alias: Check whether the garage door is open when the bedroom lights turn off at night

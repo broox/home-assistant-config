@@ -1,0 +1,118 @@
+# Pico state codes
+# - On: 1
+# - Up: 8
+# - Fav: 2
+# - Down: 16
+# - Off: 4
+
+# Turn on the lights outside of the bedroom if they're all off
+- id: br_pico_fav_on
+  alias: BR Pico fav button pressed
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.pico
+      to: '2'
+  condition:
+    condition: state
+    entity_id: group.non_bedroom_lights
+    state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.non_bedroom_lights
+
+# Turn off the lights outside of the bedroom if any are on
+- id: br_pico_fav_on
+  alias: BR Pico fav button pressed
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.pico
+      to: '2'
+  condition:
+    condition: state
+    entity_id: group.non_bedroom_lights
+    state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.non_bedroom_lights
+
+# Turn on the bedroom lights
+- id: br_pico_on
+  alias: BR Pico on
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.pico
+      to: '1'
+  condition:
+    condition: state
+    entity_id: group.bedroom
+    state: 'off'
+  action:
+    service: light.turn_on
+    entity_id: group.bedroom
+
+# Turn off the bedroom lights
+- id: br_pico_off
+  alias: BR Pico off
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.pico
+      to: '4'
+  condition:
+    condition: state
+    entity_id: group.bedroom
+    state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: group.bedroom
+
+# Brighten the bedroom lights
+- id: br_pico_up
+  alias: BR Pico up
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.pico
+      to: '8'
+  action:
+    service: light.turn_on
+    entity_id: group.bedroom
+    data_template:
+      brightness: >
+        {% if is_state('group.bedroom', 'off') %}
+        51
+        {% else %}
+        {% set suggested = states.light.dereks_lamp.attributes.brightness + 51 %}
+        {% if suggested < 256 %}
+        {{ suggested }}
+        {% else %}
+        255
+        {% endif %}
+        {% endif %}
+
+# Dim the bedroom lights
+- id: br_pico_down
+  alias: BR Pico down
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.pico
+      to: '16'
+  action:
+    service: light.turn_on
+    entity_id: group.bedroom
+    data_template:
+      brightness: >
+        {% if is_state('group.bedroom', 'off') %}
+        0
+        {% else %}
+        {% set suggested = states.light.dereks_lamp.attributes.brightness - 51 %}
+        {% if suggested < 0 %}
+        {{ suggested }}
+        {% else %}
+        0
+        {% endif %}
+        {% endif %}

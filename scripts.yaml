@@ -15,6 +15,7 @@ turn_on_upstairs:
   - service: light.turn_on
     entity_id:
     - light.lamp_dimmer_one_level  # Blinky
+    - light.table_lights  # Dining room table
     data:
       brightness: 75
       profile: relax
@@ -47,10 +48,10 @@ prepare_bedtime_lights:
         before: sunrise
   - service: scene.turn_on
     entity_id: scene.relaxed_bedroom
-  - service: notify.facebook
+  - service: notify.pushbullet
     data:
+      title: Lights
       message: Bedtime lights activated
-      target: !secret notify_phone_number
 
 bedtime:
   sequence:
@@ -65,7 +66,32 @@ check_garage_door:
   - condition: state
     entity_id: cover.garage_door_opener
     state: open
-  - service: notify.facebook
+  - service: notify.pushbullet
     data:
+      title: Warning
       message: Garage door is open
-      target: !secret notify_phone_number
+
+test_pushbullet:
+  sequence:
+    service: notify.pushbullet
+    data:
+      title: Test message
+      message: This is a message
+
+test_pushbullet_image:
+  sequence:
+    service: notify.pushbullet
+    data:
+      title: Test local image
+      message: 'this is a local image'
+      data:
+        file: '/Users/broox/.homeassistant/www/test.jpg'
+
+test_pushbullet_url:
+  sequence:
+    service: notify.pushbullet
+    data:
+      title: Test remote image
+      message: 'this is a remote image'
+      data:
+        file_url: 'http://derek.broox.com/photo/brooxmobile/32740/got-this-skull-on-my-arm-.jpg'

@@ -5,7 +5,10 @@ homeassistant:
   elevation: 869
   unit_system: imperial
   time_zone: America/Chicago
+  whitelist_external_dirs:
+    - /tmp
 
+  packages: !include_dir_named packages
   customize:
     cover.garage_door_opener:
       friendly_name: Garage door
@@ -80,6 +83,13 @@ zone 5:
   radius: 120  # meters
   icon: mdi:dumbbell
 
+zone 6:
+  name: Yoga
+  latitude: !secret powerlife_latitude
+  longitude: !secret powerlife_longitude
+  radius: 120
+  icon: mdi:dumbbell
+
 # Show links to resources in log and frontend
 #introduction:
 
@@ -118,6 +128,14 @@ history:
 # View all events in a logbook
 logbook:
 
+# Make sure to purge the history to keep the DB reasonably sized.
+recorder:
+  purge_interval: 1
+  purge_keep_days: 14
+  exclude:
+    domains:
+      - automation
+
 device_tracker:
   # - platform: automatic
   #   client_id: !secret automatic_client_id
@@ -132,9 +150,11 @@ sun:
 sensor:
   - platform: arlo
     monitored_conditions:
+      - battery_level
       - captured_today
       - last_capture
       - total_cameras
+      - signal_strength
   - platform: darksky
     api_key: !secret darksky_api_key
     monitored_conditions:
@@ -174,6 +194,25 @@ arlo:
 
 camera:
   - platform: arlo
+  - platform: generic
+    name: Derek's Location
+    still_image_url: !secret derek_map_url
+    limit_refetch_to_url_change: true
+  - platform: generic
+    name: Kari's Location
+    still_image_url: !secret kari_map_url
+    limit_refetch_to_url_change: true
+
+# These IDs come from the JSON file that the Lutron app's "Send Integration Report"
+# option delivers. That file needs to be saved as ./caseta_[lutron_host_ip].json
+caseta:
+  bridges:
+  - host: !secret lutron_host_ip
+    devices:
+      - id: 2
+        type: dimmer
+      - id: 3
+        type: remote
 
 cover:
   - platform: myq
@@ -189,6 +228,16 @@ emulated_hue:
   - switch
   - light
   - group
+
+input_boolean:
+  guest_mode:
+    # This prevents certain automations from executing.
+    # e.g. turning everything off on our guests if we leave
+    name: Guest mode
+    initial: off
+    icon: mdi:nature-people
+
+map:
 
 # Presence / CloudMQTT / Owntracks
 mqtt:
@@ -224,6 +273,9 @@ notify:
   - name: facebook
     platform: facebook
     page_access_token: !secret facebook_token
+  - name: pushbullet
+    platform: pushbullet
+    api_key: !secret pushbullet_key
 
 group: !include groups.yaml
 automation: !include_dir_merge_list automation/
