@@ -187,6 +187,7 @@ tts:
 
 alarm_control_panel:
   - platform: arlo
+    home_mode_name: 'Home'
 
 arlo:
   username: !secret arlo_username

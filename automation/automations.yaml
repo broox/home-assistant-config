@@ -67,7 +67,7 @@
 - id: music_off_when_leaving
   alias: Turn off music when leaving
   trigger:
-  - platform: state
+    platform: state
     entity_id: group.family
     from: home
     to: not_home
@@ -78,6 +78,32 @@
   action:
     service: media_player.turn_off
     entity_id: group.sonos
+
+- id: arm_arlo_when_leaving
+  alias: Arm Arlo cameras when leaving
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  condition:
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
+  action:
+    service: alarm_control_panel.alarm_arm_away
+    entity_id: alarm_control_panel.living_room
+
+- id: disarm_arlo_when_arriving
+  alias: Set Arlo cameras to Home mode when arriving
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  action:
+    service: alarm_control_panel.alarm_arm_home
+    entity_id: alarm_control_panel.living_room
 
 - id: lamps_on_while_away_in_the_evening
   alias: Turn on a couple lamps while we're away in the evening  # for the dog
