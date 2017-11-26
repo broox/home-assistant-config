@@ -17,6 +17,9 @@ homeassistant:
     light.lamp_dimmer_one_level:
       friendly_name: Blinky
       icon: mdi:ghost
+    light.lamp_dimmer_two_level:
+      friendly_name: Christmas tree
+      icon: mdi:pine-tree
     media_player.samsung_tv_un60ks8000:
       friendly_name: Samsung TV
       initial_state: off
