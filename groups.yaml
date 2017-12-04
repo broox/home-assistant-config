@@ -127,6 +127,7 @@ scenes:
   entities:
   - scene.red_turntable
   - scene.bedtime
+  - scene.christmas_kitchen
 
 signal:
   name: Signal Strength

@@ -37,6 +37,49 @@ turn_off_house:
   - service: media_player.turn_off
     entity_id: group.sonos
 
+party_christmas:
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.cabinets
+        rgb_color: [255,43,21]  # red
+        transition: 3
+    - service: light.turn_on
+      data:
+        entity_id: light.fridge_lights
+        rgb_color: [81,255,79]  # green
+        transition: 3
+    - delay: 00:10:00  # minute
+    - service: light.turn_on
+      data:
+        entity_id: light.cabinets
+        rgb_color: [81,255,79]
+        transition: 3
+    - service: light.turn_on
+      data:
+        entity_id: light.fridge_lights
+        rgb_color: [255,43,21]
+        transition: 3
+    - service: script.turn_on
+      data:
+        entity_id: script.restart_party_christmas
+
+restart_party_christmas:
+  sequence:
+    - delay: 00:10:00  # minute
+    - service: script.turn_on
+      data:
+        entity_id: script.party_christmas
+
+stop_party_christmas:
+  sequence:
+    - service: script.turn_off
+      data:
+        entity_id: script.party_christmas
+    - service: script.turn_off
+      data:
+        entity_id: script.restart_party_christmas
+
 prepare_bedtime_lights:
   sequence:
   - condition: and
