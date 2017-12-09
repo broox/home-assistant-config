@@ -1,25 +1,3 @@
-family:
-  name: Family
-  view: no
-  entities:
-    - device_tracker.kari_kari # life360 / owntracks / mqtt
-    - device_tracker.derek_derek # life360 / owntracks / mqtt
-
-interior_climate:
-  name: Inside climate
-  view: no
-  entities:
-  - sensor.entryway_thermostat_temperature
-  - sensor.entryway_thermostat_humidity
-
-exterior_climate:
-  name: Weather
-  entities:
-  - sensor.dark_sky_summary
-  - sensor.dark_sky_temperature
-  - sensor.dark_sky_apparent_temperature
-  - sensor.dark_sky_cloud_coverage
-
 all_lights_and_switches:
   name: Switchables
   entities:
@@ -42,51 +20,6 @@ batteries:
     - sensor.battery_level_garage
     - sensor.battery_level_patio
 
-turntable_lights:
-  name: Turntable lights
-  entities:
-  - light.turntable_1
-  - light.turntable_2
-
-living_room:
-  name: Living room
-  entities:
-  - switch.couch_ge_12721_switch
-  - light.lamp_dimmer_two_level
-  - light.turntable_1
-  - light.turntable_2
-
-kitchen:
-  name: Kitchen
-  entities:
-  - light.cabinets
-  - light.fridge_lights
-  - light.island
-  - light.island_2
-  - light.table_lights
-
-stairwell:
-  name: Stairwell
-  entities:
-  - light.stairwell_1
-  - light.stairwell_2
-  - light.stairwell_3
-
-office:
-  name: Office
-  entities:
-  - light.office_lamp
-  - light.lamp_dimmer_one_level
-  - switch.office_ge_12721_switch
-
-karis_lamp:
-  name: Kari's lamp
-  icon: mdi:lightbulb
-  entities:
-  - light.karis_top_bed_lamp
-  - light.karis_middle_bed_lamp
-  - light.karis_bottom_bed_lamp
-
 bedroom:
   name: Master bedroom
   entities:
@@ -95,6 +28,26 @@ bedroom:
   - light.karis_middle_bed_lamp
   - light.karis_bottom_bed_lamp
   - light.dresser_lamp
+
+exterior_climate:
+  name: Weather
+  entities:
+  - sensor.dark_sky_summary
+  - sensor.dark_sky_temperature
+  - sensor.dark_sky_apparent_temperature
+  - sensor.dark_sky_cloud_coverage
+
+family:
+  name: Family
+  view: no
+  entities:
+    - device_tracker.kari_kari # life360 / owntracks / mqtt
+    - device_tracker.derek_derek # life360 / owntracks / mqtt
+
+garage:
+  name: Garage
+  entities:
+  - cover.garage_door_opener
 
 guest_bedroom:
   name: Guest bedroom
@@ -106,6 +59,38 @@ guest_office:
   name: Guest office
   entities:
     - light.guest_futon
+
+interior_climate:
+  name: Inside climate
+  view: no
+  entities:
+  - sensor.entryway_thermostat_temperature
+  - sensor.entryway_thermostat_humidity
+
+karis_lamp:
+  name: Kari's lamp
+  icon: mdi:lightbulb
+  entities:
+  - light.karis_top_bed_lamp
+  - light.karis_middle_bed_lamp
+  - light.karis_bottom_bed_lamp
+
+kitchen:
+  name: Kitchen
+  entities:
+  - light.cabinets
+  - light.fridge_lights
+  - light.island
+  - light.island_2
+  - light.table_lights
+
+living_room:
+  name: Living room
+  entities:
+  - switch.couch_ge_12721_switch
+  - light.lamp_dimmer_two_level
+  - light.turntable_1
+  - light.turntable_2
 
 modes:
   name: Modes
@@ -122,19 +107,12 @@ non_bedroom_lights:
   - light.bar_lamp
   # basement stuff?
 
-garage:
-  name: Garage
+office:
+  name: Office
   entities:
-  - cover.garage_door_opener
-
-upstairs:
-  name: upstairs
-  entities:
-  - group.bedroom
-  - group.kitchen
-  - group.living_room
-  - group.office
-  - group.stairwell
+  - light.office_lamp
+  - light.lamp_dimmer_one_level
+  - switch.office_ge_12721_switch
 
 rec_room:
   name: Rec room
@@ -177,6 +155,29 @@ sonos:
   - media_player.patio
   - media_player.rec_room
   - media_player.workshop
+
+stairwell:
+  name: Stairwell
+  entities:
+  - light.stairwell_1
+  - light.stairwell_2
+  - light.stairwell_3
+
+turntable_lights:
+  name: Turntable lights
+  entities:
+  - light.turntable_1
+  - light.turntable_2
+
+upstairs:
+  name: upstairs
+  entities:
+  - group.bedroom
+  - group.kitchen
+  - group.living_room
+  - group.office
+  - group.stairwell
+
 
 default_view:
   view: yes
