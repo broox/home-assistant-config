@@ -1,0 +1,134 @@
+- id: evening_lights
+  alias: Turn on lights in the evening when home
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -01:00:00
+  - platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: home
+    - condition: or
+      conditions:
+      - condition: sun
+        after: sunset
+        after_offset: -01:00:00
+      - condition: sun
+        before: sunrise
+  action:
+  - service: script.turn_on_upstairs
+  - service: notify.pushbullet
+    data:
+      title: Lights
+      message: Evening lights activated
+
+- id: bedtime_lights
+  alias: Turn on bedroom lights before bed when home
+  trigger:
+  - platform: time
+    at: '21:00:00'
+  - platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  action:
+  - service: script.prepare_bedtime_lights
+
+- id: lights_off_when_leaving
+  alias: Turn off most lights when leaving
+  trigger:
+  - platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  condition:
+  - condition: state
+    entity_id: group.all_lights
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
+  action:
+  - service: light.turn_off
+    entity_id:
+    - group.all_lights
+    # Leaves on the switches (Miffy and Living Room Edison Lamp)
+  - service: notify.pushbullet
+    data:
+      title: Lights
+      message: Turning off most of the lights
+
+- id: lamps_on_while_away_in_the_evening
+  alias: Turn on a couple lamps while we're away in the evening  # for the dog
+  trigger:
+  - platform: sun
+    event: sunset
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: not_home
+    - condition: state
+      entity_id: group.all_switches
+      state: 'off'
+  action:
+  - service: switch.turn_on
+    entity_id:
+    - group.all_switches
+  - service: notify.pushbullet
+    data:
+      title: Lights
+      message: Turning on a couple lamps
+
+- id: lights_off_while_away_at_night
+  alias: Turn off any lights if we're still away late at night
+  trigger:
+  - platform: time
+    at: '23:00:00'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: not_home
+    - condition: state
+      entity_id: group.all_lights_and_switches
+      state: 'on'
+  action:
+  - service: script.turn_off_house
+  - service: notify.pushbullet
+    data:
+      title: Lights
+      message: Turning off all lights
+
+- id: lights_on_when_cloudy
+  alias: Turn on lights when it's cloudy
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.dark_sky_cloud_coverage
+    above: "90"
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: home
+    - condition: state
+      entity_id: group.non_bedroom_lights
+      state: 'off'
+    - condition: time
+      after: '10:00:00'
+      before: '21:00:00'
+  action:
+  - service: script.turn_on_upstairs
+  - service: notify.pushbullet
+    data:
+      title: Lights
+      message: Turning on some lights because it's cloudy
