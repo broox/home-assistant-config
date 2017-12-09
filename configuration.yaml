@@ -301,7 +301,7 @@ notify:
     platform: pushbullet
     api_key: !secret pushbullet_key
 
-group: !include_dir_merge_named groups
 automation: !include_dir_merge_list automation
+group: !include_dir_merge_named groups
+scene: !include_dir_merge_list scenes
 script: !include_dir_merge_named scripts
-scene: !include scenes.yaml
