@@ -11,11 +11,11 @@ My goals:
 
 * Aeotec Minimote
 * Aeotec Z-Stick Gen 5
-* Amazon Echo
+* Amazon Echo Dots
 * Arlo Pro cameras
 * GE Z-Wave dimmer modules
 * GE Z-Wave wall outlets
-* Google Home
+* Google Home and Home Mini
 * Google Pixel 2
 * iPhone 7
 * Liftmaster MyQ Garage Door opener
