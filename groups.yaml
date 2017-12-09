@@ -152,6 +152,7 @@ scenes:
   - scene.red_turntable
   - scene.bedtime
   - scene.christmas_kitchen
+  - switch.party_christmas
 
 signal:
   name: Signal Strength
