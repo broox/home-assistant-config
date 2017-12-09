@@ -1,0 +1,19 @@
+batteries:
+  name: Batteries
+  entities:
+    - sensor.entryway_nest_protect_battery_health
+    - sensor.battery_level_dining_room
+    - sensor.battery_level_front
+    - sensor.battery_level_garage
+    - sensor.battery_level_patio
+
+signal:
+  name: Signal Strength
+  entities:
+    - sensor.signal_strength_dining_room
+    - sensor.signal_strength_front
+    - sensor.signal_strength_garage
+    - sensor.signal_strength_patio
+    - binary_sensor.basement_nest_protect_online
+    - binary_sensor.entryway_nest_protect_online
+    - binary_sensor.entryway_thermostat_online
