@@ -23,6 +23,10 @@ turn_on_upstairs:
     entity_id:
     - switch.couch_ge_12721_switch
     - switch.office_ge_12721_switch  # Miffy
+  - service: light.turn_on
+    entity_id: light.lamp_dimmer_two_level  # Christmas tree
+    data:
+      brightness: 255
 
 turn_off_house:
   sequence:
@@ -32,6 +36,53 @@ turn_off_house:
     entity_id: group.all_switches
   - service: media_player.turn_off
     entity_id: group.sonos
+
+party_christmas:
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.cabinets
+        rgb_color: [255,43,21]  # red
+        brightness: 178
+        transition: 3
+    - service: light.turn_on
+      data:
+        entity_id: light.fridge_lights
+        rgb_color: [81,255,79]  # green
+        brightness: 178
+        transition: 3
+    - delay: 00:10:00  # minute
+    - service: light.turn_on
+      data:
+        entity_id: light.cabinets
+        rgb_color: [81,255,79]
+        brightness: 178
+        transition: 3
+    - service: light.turn_on
+      data:
+        entity_id: light.fridge_lights
+        rgb_color: [255,43,21]
+        brightness: 178
+        transition: 3
+    - service: script.turn_on
+      data:
+        entity_id: script.restart_party_christmas
+
+restart_party_christmas:
+  sequence:
+    - delay: 00:10:00  # minute
+    - service: script.turn_on
+      data:
+        entity_id: script.party_christmas
+
+stop_party_christmas:
+  sequence:
+    - service: script.turn_off
+      data:
+        entity_id: script.party_christmas
+    - service: script.turn_off
+      data:
+        entity_id: script.restart_party_christmas
 
 prepare_bedtime_lights:
   sequence:

@@ -52,6 +52,7 @@ living_room:
   name: Living room
   entities:
   - switch.couch_ge_12721_switch
+  - light.lamp_dimmer_two_level
   - light.turntable_1
   - light.turntable_2
 
@@ -150,6 +151,8 @@ scenes:
   entities:
   - scene.red_turntable
   - scene.bedtime
+  - scene.christmas_kitchen
+  - switch.party_christmas
 
 signal:
   name: Signal Strength
