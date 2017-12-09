@@ -1,0 +1,9 @@
+check_garage_door:
+  sequence:
+  - condition: state
+    entity_id: cover.garage_door_opener
+    state: open
+  - service: notify.pushbullet
+    data:
+      title: Warning
+      message: Garage door is open

@@ -1,0 +1,66 @@
+turn_on_upstairs:
+  # Everything but the bedroom
+  sequence:
+  - service: scene.turn_on
+    entity_id:
+    - scene.kitchen_blues
+    - scene.red_turntable
+  - service: light.turn_on
+    entity_id:
+    - group.stairwell
+    - light.office_lamp
+    data:
+      brightness: 200
+      profile: relax
+  - service: light.turn_on
+    entity_id:
+    - light.lamp_dimmer_one_level  # Blinky
+    - light.table_lights  # Dining room table
+    data:
+      brightness: 75
+      profile: relax
+  - service: switch.turn_on
+    entity_id:
+    - switch.couch_ge_12721_switch
+    - switch.office_ge_12721_switch  # Miffy
+  - service: light.turn_on
+    entity_id: light.lamp_dimmer_two_level  # Christmas tree
+    data:
+      brightness: 255
+
+turn_off_house:
+  sequence:
+  - service: light.turn_off
+    entity_id: group.all_lights
+  - service: switch.turn_off
+    entity_id: group.all_switches
+  - service: media_player.turn_off
+    entity_id: group.sonos
+
+prepare_bedtime_lights:
+  sequence:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: home
+    - condition: or
+      conditions:
+      - condition: time
+        after: '20:59:00'
+      - condition: sun
+        before: sunrise
+  - service: scene.turn_on
+    entity_id: scene.relaxed_bedroom
+  - service: notify.pushbullet
+    data:
+      title: Lights
+      message: Bedtime lights activated
+
+bedtime:
+  sequence:
+  - service: scene.turn_on
+    entity_id: scene.relaxed_bedroom
+  - delay: 00:01:00  # minute
+  - service: homeassistant.turn_off
+    entity_id: group.non_bedroom_lights

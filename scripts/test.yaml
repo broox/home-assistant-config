@@ -1,0 +1,24 @@
+test_pushbullet:
+  sequence:
+    service: notify.pushbullet
+    data:
+      title: Test message
+      message: This is a message
+
+test_pushbullet_image:
+  sequence:
+    service: notify.pushbullet
+    data:
+      title: Test local image
+      message: 'this is a local image'
+      data:
+        file: '/Users/broox/.homeassistant/www/test.jpg'
+
+test_pushbullet_url:
+  sequence:
+    service: notify.pushbullet
+    data:
+      title: Test remote image
+      message: 'this is a remote image'
+      data:
+        file_url: 'http://derek.broox.com/photo/brooxmobile/32740/got-this-skull-on-my-arm-.jpg'
