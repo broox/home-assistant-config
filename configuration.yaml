@@ -153,6 +153,10 @@ input_boolean:
 # Show links to resources in log and frontend
 # introduction:
 
+light:
+  - platform: hue
+    host: !secret hue_host_ip
+
 # View all events in a logbook
 logbook:
 
