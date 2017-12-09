@@ -1,0 +1,6 @@
+family:
+  name: Family
+  view: no
+  entities:
+    - device_tracker.kari_kari # life360 / owntracks / mqtt
+    - device_tracker.derek_derek # life360 / owntracks / mqtt

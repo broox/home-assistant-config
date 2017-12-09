@@ -1,0 +1,106 @@
+all_lights_and_switches:
+  name: Switchables
+  entities:
+  - group.all_lights
+  - group.all_switches
+
+basement:
+  name: Basement
+  entities:
+  - group.guest_bedroom
+  - group.guest_office
+  - group.rec_room
+
+bedroom:
+  name: Master bedroom
+  entities:
+  - light.dereks_lamp
+  - light.karis_top_bed_lamp
+  - light.karis_middle_bed_lamp
+  - light.karis_bottom_bed_lamp
+  - light.dresser_lamp
+
+guest_bedroom:
+  name: Guest bedroom
+  entities:
+    - light.guest_dresser
+    - light.guest_night_stand
+
+guest_office:
+  name: Guest office
+  entities:
+    - light.guest_futon
+
+karis_lamp:
+  name: Kari's lamp
+  icon: mdi:lightbulb
+  entities:
+  - light.karis_top_bed_lamp
+  - light.karis_middle_bed_lamp
+  - light.karis_bottom_bed_lamp
+
+kitchen:
+  name: Kitchen
+  entities:
+  - light.cabinets
+  - light.fridge_lights
+  - light.island
+  - light.island_2
+  - light.table_lights
+
+living_room:
+  name: Living room
+  entities:
+  - switch.couch_ge_12721_switch
+  - light.lamp_dimmer_two_level
+  - light.turntable_1
+  - light.turntable_2
+
+non_bedroom_lights:
+  name: Non Bedroom lights
+  entities:
+  - group.kitchen
+  - group.living_room
+  - group.office
+  - group.stairwell
+  - light.bar_lamp
+  # basement stuff?
+
+office:
+  name: Office
+  entities:
+  - light.office_lamp
+  - light.lamp_dimmer_one_level
+  - switch.office_ge_12721_switch
+
+rec_room:
+  name: Rec room
+  entities:
+    - light.bar_table
+    - light.basement_coffee_table
+    - light.basement_couch_lamp
+    - light.deer_head
+    - light.foosball_table
+    - light.rec_room_entry
+
+stairwell:
+  name: Stairwell
+  entities:
+  - light.stairwell_1
+  - light.stairwell_2
+  - light.stairwell_3
+
+turntable_lights:
+  name: Turntable lights
+  entities:
+  - light.turntable_1
+  - light.turntable_2
+
+upstairs:
+  name: upstairs
+  entities:
+  - group.bedroom
+  - group.kitchen
+  - group.living_room
+  - group.office
+  - group.stairwell

@@ -1,0 +1,14 @@
+exterior_climate:
+  name: Weather
+  entities:
+  - sensor.dark_sky_summary
+  - sensor.dark_sky_temperature
+  - sensor.dark_sky_apparent_temperature
+  - sensor.dark_sky_cloud_coverage
+
+interior_climate:
+  name: Inside climate
+  view: no
+  entities:
+  - sensor.entryway_thermostat_temperature
+  - sensor.entryway_thermostat_humidity
