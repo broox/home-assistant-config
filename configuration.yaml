@@ -16,9 +16,17 @@ homeassistant:
       friendly_name: Garage door
     group.kitchen:
       emulated_hue_name: Kitchen lights
+    light.cabinets:
+      friendly_name: Cabinet accents
+    light.fridge_lights:
+      friendly_name: Fridge accents
     light.lamp_dimmer_one_level:
       friendly_name: Blinky
       icon: mdi:ghost
+    light.lamp_dimmer_two_level:
+      emulated_hue_name: Christmas tree
+      friendly_name: Christmas tree
+      icon: mdi:pine-tree
     media_player.samsung_tv_un60ks8000:
       friendly_name: Samsung TV
       initial_state: off
@@ -50,93 +58,55 @@ homeassistant:
     zwave.office_ge_12721:
       friendly_name: Office outlet
 
-zone:
-  name: Home
-  latitude: !secret home_latitude
-  longitude: !secret home_longitude
-  radius: 150
-  icon: mdi:home
- 
-zone 2:
-  name: Gravitate
-  latitude: !secret gravitate_latitude
-  longitude: !secret gravitate_longitude
-  icon: mdi:laptop
-  radius: 100  # meters
+alarm_control_panel:
+  - platform: arlo
+    home_mode_name: 'Home'
 
-zone 3:
-  name: Carver
-  latitude: !secret carver_latitude
-  longitude: !secret carver_longitude
-  icon: mdi:school
-  radius: 200  # meters
+arlo:
+  username: !secret arlo_username
+  password: !secret arlo_password
 
-zone 4:
-  name: Stowe
-  latitude: !secret stowe_latitude
-  longitude: !secret stowe_longitude
-  icon: mdi:school
-  radius: 300  # meters
+automation: !include_dir_merge_list automation
 
-zone 5:
-  name: YMCA
-  latitude: !secret ymca_latitude
-  longitude: !secret ymca_longitude
-  radius: 120  # meters
-  icon: mdi:dumbbell
+binary_sensor:
+  - platform: ring
+    monitored_conditions:
+      - ding
+      - motion
 
-zone 6:
-  name: Yoga
-  latitude: !secret powerlife_latitude
-  longitude: !secret powerlife_longitude
-  radius: 120
-  icon: mdi:dumbbell
+camera:
+  - platform: arlo
+  - platform: generic
+    name: Derek's Location
+    still_image_url: !secret derek_map_url
+    limit_refetch_to_url_change: true
+  - platform: generic
+    name: Kari's Location
+    still_image_url: !secret kari_map_url
+    limit_refetch_to_url_change: true
 
-# Show links to resources in log and frontend
-#introduction:
-
-# Enables the frontend
-frontend:
+# These IDs come from the JSON file that the Lutron app's "Send Integration Report"
+# option delivers. That file needs to be saved as ./caseta_[lutron_host_ip].json
+caseta:
+  bridges:
+  - host: !secret lutron_host_ip
+    devices:
+      - id: 2
+        type: dimmer
+      - id: 3
+        type: remote
 
 # Enables configuration UI
 config:
 
-http:
-  # Uncomment this to add a password (recommended!)
-  # api_password: PASSWORD
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: example.duckdns.org:8123
-
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
-
-# Discover some devices automatically
-discovery:
-  ignore:
-    - apple_tv # home assistant wakes up the apple tv when it connects... causing the TV to turn on
+cover:
+  - platform: myq
+    type: liftmaster
+    username: !secret myq_username
+    password: !secret myq_password
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
-
-# Enables support for tracking state changes over time
-history:
-
-# View all events in a logbook
-logbook:
-
-# Make sure to purge the history to keep the DB reasonably sized.
-recorder:
-  purge_interval: 1
-  purge_keep_days: 14
-  exclude:
-    domains:
-      - automation
 
 device_tracker:
   # - platform: automatic
@@ -146,8 +116,94 @@ device_tracker:
   - platform: owntracks
     max_gps_accuracy: 200
 
-# Track the sun
-sun:
+# Discover some devices automatically
+discovery:
+  ignore:
+    - apple_tv # home assistant wakes up the apple tv when it connects... causing the TV to turn on
+
+emulated_hue:
+  host_ip: !secret hass_host_ip
+  listen_port: 8300
+  expose_by_default: true
+  exposed_domains:
+  - switch
+  - light
+  - group
+
+# Enables the frontend
+frontend:
+
+group: !include_dir_merge_named groups
+
+# Enables support for tracking state changes over time
+history:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  # api_password: PASSWORD
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+input_boolean:
+  guest_mode:
+    # This prevents certain automations from executing.
+    # e.g. turning everything off on our guests if we leave
+    name: Guest mode
+    initial: off
+    icon: mdi:nature-people
+
+# Show links to resources in log and frontend
+# introduction:
+
+light:
+  - platform: hue
+    host: !secret hue_host_ip
+
+# View all events in a logbook
+logbook:
+
+# Display a map on the frontend
+map:
+
+# Presence / CloudMQTT / Owntracks
+mqtt:
+  broker: m12.cloudmqtt.com
+  port: 27170
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_secret
+
+notify:
+  - name: facebook
+    platform: facebook
+    page_access_token: !secret facebook_token
+  - name: pushbullet
+    platform: pushbullet
+    api_key: !secret pushbullet_key
+
+nuheat:
+  username: !secret nuheat_username
+  password: !secret nuheat_password
+  devices: !secret nuheat_thermostat
+
+# Make sure to purge the history to keep the DB reasonably sized.
+recorder:
+  purge_interval: 1
+  purge_keep_days: 14
+  exclude:
+    domains:
+      - automation
+
+ring:
+  username: !secret ring_username
+  password: !secret ring_password
+
+scene: !include_dir_merge_list scenes
+
+script: !include_dir_merge_named scripts
 
 sensor:
   - platform: arlo
@@ -183,86 +239,36 @@ sensor:
       - last_motion
       - volume
 
+switch:
+  - platform: template
+    switches:
+      party_christmas:
+        friendly_name: Party christmas
+        value_template: "{{ is_state('script.party_christmas', 'on') or is_state('script.restart_party_christmas', 'on') }}"
+        turn_on:
+          service: script.turn_on
+          data:
+            entity_id: script.party_christmas
+        turn_off:
+          service: script.turn_on
+          data:
+            entity_id: script.stop_party_christmas
+
+# Track the sun
+sun:
+
 # Text to speech
 tts:
   - platform: google
 
-alarm_control_panel:
-  - platform: arlo
-    home_mode_name: 'Home'
-
-arlo:
-  username: !secret arlo_username
-  password: !secret arlo_password
-
-camera:
-  - platform: arlo
-  - platform: generic
-    name: Derek's Location
-    still_image_url: !secret derek_map_url
-    limit_refetch_to_url_change: true
-  - platform: generic
-    name: Kari's Location
-    still_image_url: !secret kari_map_url
-    limit_refetch_to_url_change: true
-
-# These IDs come from the JSON file that the Lutron app's "Send Integration Report"
-# option delivers. That file needs to be saved as ./caseta_[lutron_host_ip].json
-caseta:
-  bridges:
-  - host: !secret lutron_host_ip
-    devices:
-      - id: 2
-        type: dimmer
-      - id: 3
-        type: remote
-
-cover:
-  - platform: myq
-    type: liftmaster
-    username: !secret myq_username
-    password: !secret myq_password
-
-emulated_hue:
-  host_ip: !secret hass_host_ip
-  listen_port: 8300
-  expose_by_default: true
-  exposed_domains:
-  - switch
-  - light
-  - group
-
-input_boolean:
-  guest_mode:
-    # This prevents certain automations from executing.
-    # e.g. turning everything off on our guests if we leave
-    name: Guest mode
-    initial: off
-    icon: mdi:nature-people
-
-map:
-
-# Presence / CloudMQTT / Owntracks
-mqtt:
-  broker: m12.cloudmqtt.com
-  port: 27170
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_secret
-
-nuheat:
-  username: !secret nuheat_username
-  password: !secret nuheat_password
-  devices: !secret nuheat_thermostat
-  min_away_temp: 60
-
-
-ring:
-  username: !secret ring_username
-  password: !secret ring_password
+# Check for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: tru
 
 zwave:
   usb_path: /dev/cu.usbmodem431
@@ -273,21 +279,44 @@ zwave:
   #    refresh_value: true
   #    delay: 3
 
-binary_sensor:
-  - platform: ring
-    monitored_conditions:
-      - ding
-      - motion
+zone:
+  name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  radius: 150
+  icon: mdi:home
 
-notify:
-  - name: facebook
-    platform: facebook
-    page_access_token: !secret facebook_token
-  - name: pushbullet
-    platform: pushbullet
-    api_key: !secret pushbullet_key
+zone 2:
+  name: Gravitate
+  latitude: !secret gravitate_latitude
+  longitude: !secret gravitate_longitude
+  icon: mdi:laptop
+  radius: 100  # meters
 
-group: !include groups.yaml
-automation: !include_dir_merge_list automation/
-script: !include scripts.yaml
-scene: !include scenes.yaml
+zone 3:
+  name: Carver
+  latitude: !secret carver_latitude
+  longitude: !secret carver_longitude
+  icon: mdi:school
+  radius: 200  # meters
+
+zone 4:
+  name: Stowe
+  latitude: !secret stowe_latitude
+  longitude: !secret stowe_longitude
+  icon: mdi:school
+  radius: 300  # meters
+
+zone 5:
+  name: YMCA
+  latitude: !secret ymca_latitude
+  longitude: !secret ymca_longitude
+  radius: 120  # meters
+  icon: mdi:dumbbell
+
+zone 6:
+  name: Yoga
+  latitude: !secret powerlife_latitude
+  longitude: !secret powerlife_longitude
+  radius: 120
+  icon: mdi:dumbbell

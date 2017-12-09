@@ -1,0 +1,12 @@
+modes:
+  name: Modes
+  entities:
+  - input_boolean.guest_mode
+
+scenes:
+  name: Scenes
+  entities:
+  - scene.red_turntable
+  - scene.bedtime
+  - scene.christmas_kitchen
+  - switch.party_christmas

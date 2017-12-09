@@ -23,6 +23,10 @@ turn_on_upstairs:
     entity_id:
     - switch.couch_ge_12721_switch
     - switch.office_ge_12721_switch  # Miffy
+  - service: light.turn_on
+    entity_id: light.lamp_dimmer_two_level  # Christmas tree
+    data:
+      brightness: 255
 
 turn_off_house:
   sequence:
@@ -60,38 +64,3 @@ bedtime:
   - delay: 00:01:00  # minute
   - service: homeassistant.turn_off
     entity_id: group.non_bedroom_lights
-
-check_garage_door:
-  sequence:
-  - condition: state
-    entity_id: cover.garage_door_opener
-    state: open
-  - service: notify.pushbullet
-    data:
-      title: Warning
-      message: Garage door is open
-
-test_pushbullet:
-  sequence:
-    service: notify.pushbullet
-    data:
-      title: Test message
-      message: This is a message
-
-test_pushbullet_image:
-  sequence:
-    service: notify.pushbullet
-    data:
-      title: Test local image
-      message: 'this is a local image'
-      data:
-        file: '/Users/broox/.homeassistant/www/test.jpg'
-
-test_pushbullet_url:
-  sequence:
-    service: notify.pushbullet
-    data:
-      title: Test remote image
-      message: 'this is a remote image'
-      data:
-        file_url: 'http://derek.broox.com/photo/brooxmobile/32740/got-this-skull-on-my-arm-.jpg'

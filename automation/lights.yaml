@@ -64,73 +64,6 @@
       title: Lights
       message: Turning off most of the lights
 
-- id: music_off_when_leaving
-  alias: Turn off music when leaving
-  trigger:
-    platform: state
-    entity_id: group.family
-    from: home
-    to: not_home
-  condition:
-    condition: state
-    entity_id: input_boolean.guest_mode
-    state: 'off'
-  action:
-    service: media_player.turn_off
-    entity_id: group.sonos
-
-- id: floor_off_when_leaving
-  alias: Turn off heated floor when leaving
-  trigger:
-    platform: state
-    entity_id: group.family
-    from: home
-    to: not_home
-  action:
-    service: climate.set_away_mode
-    data:
-      entity_id: climate.master_bath
-      away_mode: true
-
-- id: floor_resume_when_arriving
-  alias: Resume heated floor schedule when arriving
-  trigger:
-    platform: state
-    entity_id: group.family
-    from: home
-    to: not_home
-  action:
-    service: climate.set_away_mode
-    data:
-      entity_id: climate.master_bath
-      away_mode: false
-
-- id: arm_arlo_when_leaving
-  alias: Arm Arlo cameras when leaving
-  trigger:
-    platform: state
-    entity_id: group.family
-    from: home
-    to: not_home
-  condition:
-    condition: state
-    entity_id: input_boolean.guest_mode
-    state: 'off'
-  action:
-    service: alarm_control_panel.alarm_arm_away
-    entity_id: alarm_control_panel.living_room
-
-- id: disarm_arlo_when_arriving
-  alias: Set Arlo cameras to Home mode when arriving
-  trigger:
-    platform: state
-    entity_id: group.family
-    from: not_home
-    to: home
-  action:
-    service: alarm_control_panel.alarm_arm_home
-    entity_id: alarm_control_panel.living_room
-
 - id: lamps_on_while_away_in_the_evening
   alias: Turn on a couple lamps while we're away in the evening  # for the dog
   trigger:
@@ -199,15 +132,3 @@
     data:
       title: Lights
       message: Turning on some lights because it's cloudy
-
-- id: check_garage_door_at_bedtime
-  alias: Check whether the garage door is open when the bedroom lights turn off at night
-  trigger:
-    platform: state
-    entity_id: group.bedroom
-    to: 'off'
-  condition:
-    condition: time
-    after: '21:00:00'
-  action:
-  - service: script.check_garage_door

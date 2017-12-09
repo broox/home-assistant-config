@@ -1,0 +1,47 @@
+default_view:
+  view: yes
+  entities:
+  - device_tracker.derek_derek
+  - device_tracker.kari_kari
+  - sensor.entryway_thermostat_temperature
+  - sensor.entryway_thermostat_humidity
+  - group.interior_climate
+  - group.exterior_climate
+  - group.kitchen
+  - group.living_room
+  - group.stairwell
+  - group.office
+  - group.bedroom
+  - group.bathroom
+  - group.rec_room
+  - group.guest_bedroom
+  - group.guest_office
+  - group.garage
+  - group.modes
+  - group.scenes
+
+cameras:
+  name: Cameras
+  view: yes
+  entities:
+    - camera.dining_room
+    - camera.dining_room_2
+    - camera.front
+    - camera.garage
+    - camera.patio
+
+maps:
+  name: Maps
+  view: yes
+  entities:
+    - device_tracker.kari_kari # life360 / owntracks / mqtt
+    - device_tracker.derek_derek # life360 / owntracks / mqtt
+    - camera.dereks_location
+    - camera.karis_location
+
+status:
+  name: Status
+  view: yes
+  entities:
+    - group.batteries
+    - group.signal

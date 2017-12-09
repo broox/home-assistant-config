@@ -42,21 +42,3 @@
       state: on
       xy_color: [0.6618,0.3216]
       brightness: 182
-
-- name: Relaxed bedroom
-  entities:
-    group.bedroom:
-      state: on
-      xy_color: [0.5119, 0.4147]
-      brightness: 144
-
-- name: Dim bedroom
-  entities:
-    group.bedroom:
-      state: on
-      xy_color: [0.5119, 0.4147]
-      brightness: 10
-
-- name: Bedtime
-  entities:
-    group.non_bedroom_lights: off

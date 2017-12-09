@@ -1,0 +1,18 @@
+- name: Christmas kitchen
+  entities:
+    light.cabinets:
+      state: on
+      rgb_color: [255,43,21]
+      brightness: 241
+    light.fridge_lights:
+      state: on
+      rgb_color: [81,255,79]
+      brightness: 241
+    light.island:
+      state: on
+      xy_color: [0.5017,0.4152]
+      brightness: 241
+    light.island_2:
+      state: on
+      xy_color: [0.5017,0.4152]
+      brightness: 241

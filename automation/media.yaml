@@ -1,0 +1,14 @@
+- id: music_off_when_leaving
+  alias: Turn off music when leaving
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  condition:
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
+  action:
+    service: media_player.turn_off
+    entity_id: group.sonos
