@@ -185,6 +185,10 @@ sensor:
 tts:
   - platform: google
 
+alarm_control_panel:
+  - platform: arlo
+    home_mode_name: 'Home'
+
 arlo:
   username: !secret arlo_username
   password: !secret arlo_password

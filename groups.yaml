@@ -26,6 +26,13 @@ all_lights_and_switches:
   - group.all_lights
   - group.all_switches
 
+basement:
+  name: Basement
+  entities:
+  - group.guest_bedroom
+  - group.guest_office
+  - group.rec_room
+
 batteries:
   name: Batteries
   entities:
@@ -88,6 +95,17 @@ bedroom:
   - light.karis_bottom_bed_lamp
   - light.dresser_lamp
 
+guest_bedroom:
+  name: Guest bedroom
+  entities:
+    - light.guest_dresser
+    - light.guest_night_stand
+
+guest_office:
+  name: Guest office
+  entities:
+    - light.guest_futon
+
 modes:
   name: Modes
   entities:
@@ -101,11 +119,7 @@ non_bedroom_lights:
   - group.office
   - group.stairwell
   - light.bar_lamp
-
-basement:
-  name: Basement
-  entities:
-  - light.bar_lamp
+  # basement stuff?
 
 garage:
   name: Garage
@@ -120,6 +134,16 @@ upstairs:
   - group.living_room
   - group.office
   - group.stairwell
+
+rec_room:
+  name: Rec room
+  entities:
+    - light.bar_table
+    - light.basement_coffee_table
+    - light.basement_couch_lamp
+    - light.deer_head
+    - light.foosball_table
+    - light.rec_room_entry
 
 scenes:
   name: Scenes
@@ -165,7 +189,9 @@ default_view:
   - group.stairwell
   - group.office
   - group.bedroom
-  - group.basement
+  - group.rec_room
+  - group.guest_bedroom
+  - group.guest_office
   - group.garage
   - group.modes
   - group.scenes
