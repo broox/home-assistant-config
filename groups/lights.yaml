@@ -23,13 +23,16 @@ bedroom:
 guest_bedroom:
   name: Guest bedroom
   entities:
-    - light.guest_dresser
     - light.guest_night_stand
+    - light.guest_dresser
+    - light.guest_dresser_lamp_2
+    - light.guest_dresser_lamp_3
 
 guest_office:
   name: Guest office
   entities:
     - light.guest_futon
+    - light.guest_desk
 
 karis_lamp:
   name: Kari's lamp
