@@ -38,6 +38,13 @@ maps:
     - camera.dereks_location
     - camera.karis_location
 
+media:
+  name: A/V
+  view: yes
+  entities:
+    - media_player.living_room_tv
+    - group.sonos
+
 status:
   name: Status
   view: yes

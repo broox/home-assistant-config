@@ -163,6 +163,15 @@ logbook:
 # Display a map on the frontend
 map:
 
+media_player:
+  - platform: plex
+  - platform: samsungtv
+    host: !secret samsung_tv_host_ip
+    mac: !secret samsung_tv_mac_address
+    port: 8001
+    name: Living Room TV
+  - platform: sonos
+
 # Presence / CloudMQTT / Owntracks
 mqtt:
   broker: m12.cloudmqtt.com
