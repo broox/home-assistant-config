@@ -132,3 +132,54 @@
     data:
       title: Lights
       message: Turning on some lights because it's cloudy
+
+- id: mockupied
+  alias: Turn on some lights randomly
+  trigger:
+    - platform: sun
+      event: sunset
+    - platform: state
+      entity_id: group.family
+      from: home
+      to: not_home
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: group.family
+          state: not_home
+        - condition: sun
+          after: sunset
+        - condition: time
+          before: '23:00:00'
+  action:
+    - delay: '0{{ range(0,1) | random | int }}:{{ range(00,59) | random | int }}:00'
+    - service: light.turn_on
+      entity_id: group.bedroom
+    - delay: '0{{ range(0,1) | random | int }}:{{ range(20,59) | random | int }}:00'
+    - service: light.turn_off
+      entity_id: group.bedroom
+    - delay: '00:00:10'
+    - service: light.turn_on
+      entity_id: group.kitchen
+    - delay: '0{{ range(0,1) | random | int }}:{{ range(20,59) | random | int }}:00'
+    - service: light.turn_off
+      entity_id: group.kitchen
+    - delay: '00:00:10'
+    - service: light.turn_on
+      entity_id: group.stairwell
+    - delay: '00:00:05'
+    - service: light.turn_on
+      entity_id: group.guest_office
+    - delay: '0{{ range(0,1) | random | int }}:{{ range(20,59) | random | int }}:00'
+    - service: light.turn_off
+      entity_id: group.guest_office
+    - delay: '00:00:05'
+    - service: light.turn_off
+      entity_id: group.stairwell
+    - delay: '00:00:05'
+    - service: light.turn_on
+      entity_id: group.guest_bedroom, group.bedroom
+    - delay: '0{{ range(0,1) | random | int }}:{{ range(20,59) | random | int }}:00'
+    - service: light.turn_off
+      entity_id: group.guest_bedroom, group.bedroom
