@@ -9,3 +9,16 @@
     after: '21:00:00'
   action:
   - service: script.check_garage_door
+
+- id: doorbell_pressed
+  alias: Handle doorbell press
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ring_front_door_ding
+    from: 'off'
+    to: 'on'
+  action:
+    service: media_player.play_media
+    entity_id: media_player.kitchen_home
+    media_content_id: http://broox-mini.lan:8123/www/test.mp3
+    media_content_type: 'music'
