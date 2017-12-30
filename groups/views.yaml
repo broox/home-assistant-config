@@ -10,8 +10,10 @@ default_view:
   - group.kitchen
   - group.living_room
   - group.stairwell
+  - group.foyer
   - group.office
   - group.bedroom
+  - group.exterior
   - group.rec_room
   - group.guest_bedroom
   - group.guest_office

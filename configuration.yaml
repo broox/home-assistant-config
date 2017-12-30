@@ -93,6 +93,18 @@ caseta:
         type: dimmer
       - id: 3
         type: remote
+      - id: 4  # BR Pico
+        type: remote
+      - id: 5  # Foyer
+        type: dimmer
+      - id: 6  # Foyer Pico
+        type: remote
+      - id: 7  # LR Ceiling lamp
+        type: dimmer
+      - id: 8  # Front porch
+        type: dimmer
+      - id: 9  # driveway
+        type: switch
 
 # Enables configuration UI
 config:
@@ -322,3 +334,4 @@ zone 6:
   longitude: !secret powerlife_longitude
   radius: 120
   icon: mdi:dumbbell
+

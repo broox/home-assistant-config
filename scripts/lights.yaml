@@ -24,6 +24,12 @@ turn_on_upstairs:
     - switch.couch_ge_12721_switch
     - switch.office_ge_12721_switch  # Miffy
   - service: light.turn_on
+    entity_id:
+      - light.ceiling_lamp
+      - light.foyer_light
+    data:
+      brightness_pct: 50
+  - service: light.turn_on
     entity_id: light.lamp_dimmer_two_level  # Christmas tree
     data:
       brightness: 255

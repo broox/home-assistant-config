@@ -20,6 +20,17 @@ bedroom:
   - light.karis_bottom_bed_lamp
   - light.dresser_lamp
 
+exterior:
+  name: Exterior
+  entities:
+  - light.front_porch
+  - switch.driveway_light
+
+foyer:
+  name: Foyer
+  entities:
+  - light.foyer_light
+
 guest_bedroom:
   name: Guest bedroom
   entities:
@@ -55,6 +66,7 @@ living_room:
   name: Living room
   entities:
   - switch.couch_ge_12721_switch
+  - light.ceiling_lamp
   - light.lamp_dimmer_two_level
   - light.turntable_1
   - light.turntable_2
@@ -73,6 +85,7 @@ office:
   name: Office
   entities:
   - light.office_lamp
+  - light.office_lamp_2
   - light.lamp_dimmer_one_level
   - switch.office_ge_12721_switch
 
