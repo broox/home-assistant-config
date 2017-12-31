@@ -29,10 +29,6 @@ turn_on_upstairs:
       - light.foyer_light
     data:
       brightness_pct: 50
-  - service: light.turn_on
-    entity_id: light.lamp_dimmer_two_level  # Christmas tree
-    data:
-      brightness: 255
 
 turn_off_house:
   sequence:

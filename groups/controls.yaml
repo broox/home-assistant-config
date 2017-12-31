@@ -8,5 +8,3 @@ scenes:
   entities:
   - scene.red_turntable
   - scene.bedtime
-  - scene.christmas_kitchen
-  - switch.party_christmas

@@ -67,7 +67,6 @@ living_room:
   entities:
   - switch.couch_ge_12721_switch
   - light.ceiling_lamp
-  - light.lamp_dimmer_two_level
   - light.turntable_1
   - light.turntable_2
 
