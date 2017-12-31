@@ -84,7 +84,7 @@
     at: '03:00:00'
   action:
   - service: homeassistant.turn_off
-    entity_id: group.exterior_lights
+    entity_id: group.exterior
 
 - id: lamps_on_while_away_in_the_evening
   alias: Turn on a couple lamps while we're away in the evening  # for the dog
@@ -143,7 +143,7 @@
       entity_id: group.family
       state: home
     - condition: state
-      entity_id: group.non_bedroom_lights
+      entity_id: group.upstairs_lights
       state: 'off'
     - condition: time
       after: '10:00:00'

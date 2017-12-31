@@ -74,12 +74,12 @@ living_room:
 non_bedroom_lights:
   name: Non Bedroom lights
   entities:
+  - group.basement
+  - group.foyer
   - group.kitchen
   - group.living_room
   - group.office
   - group.stairwell
-  - light.bar_lamp
-  # basement stuff?
 
 office:
   name: Office
@@ -116,6 +116,7 @@ upstairs:
   name: upstairs
   entities:
   - group.bedroom
+  - group.foyer
   - group.kitchen
   - group.living_room
   - group.office
