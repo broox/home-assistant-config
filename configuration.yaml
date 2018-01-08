@@ -48,6 +48,8 @@ homeassistant:
     switch.couch_ge_12721_switch:
       friendly_name: Couch lamp
       icon: mdi:lightbulb
+    switch.driveway_light:
+      icon: mdi:lightbulb
     switch.office_ge_12721_switch:
       friendly_name: Miffy
       icon: mdi:lightbulb
@@ -105,7 +107,12 @@ caseta:
         type: dimmer
       - id: 9  # driveway
         type: switch
-
+      - id: 10  # lounge
+        type: dimmer
+      - id: 11  # lounge pico
+        type: remote
+      - id: 12  # mudroom lounge pico
+        type: remote
 # Enables configuration UI
 config:
 
@@ -334,4 +341,3 @@ zone 6:
   longitude: !secret powerlife_longitude
   radius: 120
   icon: mdi:dumbbell
-

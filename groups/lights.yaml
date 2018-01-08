@@ -69,6 +69,7 @@ living_room:
   - light.ceiling_lamp
   - light.turntable_1
   - light.turntable_2
+  - light.lounge_lights
 
 non_bedroom_lights:
   name: Non Bedroom lights

@@ -3,6 +3,7 @@
     light.table_lights: off
     light.island: off
     light.island_2: off
+    light.lounge_lights: off
     switch.couch_ge_12721_switch: off
     light.ceiling_lamp:
       state: on
