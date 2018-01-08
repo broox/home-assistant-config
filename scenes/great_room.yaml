@@ -1,3 +1,48 @@
+- name: Movie time
+  entities:
+    light.table_lights: off
+    light.island: off
+    light.island_2: off
+    switch.couch_ge_12721_switch: off
+    light.ceiling_lamp:
+      state: on
+      brightness_pct: 10
+    light.foyer_light:
+      state: on
+      brightness_pct: 10
+    group.stairwell:
+      state: on
+      rgb_color: [255,82,27]
+      brightness_pct: 5
+    group.turntable_lights:
+      state: on
+      rgb_color: [255,82,27]
+      brightness_pct: 5
+
+- name: Relaxed dining room
+  entities:
+    light.table_lights:
+      state: on
+      brightness_pct: 30
+
+- name: Relaxed living room
+  entities:
+    light.ceiling_lamp:
+      state: on
+      brightness_pct: 50
+    light.foyer_light:
+      state: on
+      brightness_pct: 50
+    switch.couch_ge_12721_switch:
+      state: on
+
+- name: Relaxed stairwell
+  entities:
+    group.stairwell:
+      state: on
+      brightness_pct: 78
+      profile: relax
+
 - name: Red stairwell
   entities:
     light.stairwell_1:
