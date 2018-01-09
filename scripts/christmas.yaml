@@ -1,46 +1,46 @@
-party_christmas:
-  sequence:
-    - service: light.turn_on
-      data:
-        entity_id: light.cabinets
-        rgb_color: [255,43,21]  # red
-        brightness: 178
-        transition: 3
-    - service: light.turn_on
-      data:
-        entity_id: light.fridge_lights
-        rgb_color: [81,255,79]  # green
-        brightness: 178
-        transition: 3
-    - delay: 00:10:00  # minute
-    - service: light.turn_on
-      data:
-        entity_id: light.cabinets
-        rgb_color: [81,255,79]
-        brightness: 178
-        transition: 3
-    - service: light.turn_on
-      data:
-        entity_id: light.fridge_lights
-        rgb_color: [255,43,21]
-        brightness: 178
-        transition: 3
-    - service: script.turn_on
-      data:
-        entity_id: script.restart_party_christmas
+# party_christmas:
+#   sequence:
+#     - service: light.turn_on
+#       data:
+#         entity_id: light.cabinets
+#         rgb_color: [255,43,21]  # red
+#         brightness: 178
+#         transition: 3
+#     - service: light.turn_on
+#       data:
+#         entity_id: light.fridge_lights
+#         rgb_color: [81,255,79]  # green
+#         brightness: 178
+#         transition: 3
+#     - delay: 00:10:00  # minute
+#     - service: light.turn_on
+#       data:
+#         entity_id: light.cabinets
+#         rgb_color: [81,255,79]
+#         brightness: 178
+#         transition: 3
+#     - service: light.turn_on
+#       data:
+#         entity_id: light.fridge_lights
+#         rgb_color: [255,43,21]
+#         brightness: 178
+#         transition: 3
+#     - service: script.turn_on
+#       data:
+#         entity_id: script.restart_party_christmas
 
-restart_party_christmas:
-  sequence:
-    - delay: 00:10:00  # minute
-    - service: script.turn_on
-      data:
-        entity_id: script.party_christmas
+# restart_party_christmas:
+#   sequence:
+#     - delay: 00:10:00  # minute
+#     - service: script.turn_on
+#       data:
+#         entity_id: script.party_christmas
 
-stop_party_christmas:
-  sequence:
-    - service: script.turn_off
-      data:
-        entity_id: script.party_christmas
-    - service: script.turn_off
-      data:
-        entity_id: script.restart_party_christmas
+# stop_party_christmas:
+#   sequence:
+#     - service: script.turn_off
+#       data:
+#         entity_id: script.party_christmas
+#     - service: script.turn_off
+#       data:
+#         entity_id: script.restart_party_christmas
