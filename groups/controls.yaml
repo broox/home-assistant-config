@@ -6,7 +6,11 @@ modes:
 scenes:
   name: Scenes
   entities:
-  - scene.relaxed_living_room
+  - scene.bright_kitchen
+  - scene.relaxed_kitchen
+  - scene.bright_great_room
+  - scene.bright_upstairs
+  - scene.relaxed_great_room
+  - scene.relaxed_upstairs
   - scene.movie_time
-  - scene.red_turntable
   - scene.bedtime

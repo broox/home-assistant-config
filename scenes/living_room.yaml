@@ -1,0 +1,34 @@
+- name: Bright living room
+  entities:
+    light.ceiling_lamp:
+      state: on
+      brightness_pct: 100
+    light.foyer_light:
+      state: on
+      brightness_pct: 100
+    group.turntable_lights:
+      state: on
+      brightness_pct: 100
+      color_temp: 325  # matches osrams at 100% brightness
+    switch.couch_ge_12721_switch:
+      state: on
+
+- name: Relaxed living room
+  entities:
+    light.ceiling_lamp:
+      state: on
+      brightness_pct: 50
+    light.foyer_light:
+      state: on
+      brightness_pct: 30
+    scene.red_turntable:
+      state: on
+    switch.couch_ge_12721_switch:
+      state: on
+
+- name: Red turntable
+  entities:
+    group.turntable_lights:
+      state: on
+      rgb_color: [255,63,0]
+      brightness_pct: 70

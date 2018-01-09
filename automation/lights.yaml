@@ -22,7 +22,8 @@
       - condition: sun
         before: sunrise
   action:
-  - service: script.turn_on_upstairs
+  - service: scene.turn_on
+    entity_id: scene.relaxed_upstairs
   - service: notify.pushbullet
     data:
       title: Lights
@@ -149,7 +150,8 @@
       after: '10:00:00'
       before: '21:00:00'
   action:
-  - service: script.turn_on_upstairs
+  - service: scene.turn_on
+    entity_id: scene.relaxed_upstairs
   - service: notify.pushbullet
     data:
       title: Lights

@@ -1,90 +1,74 @@
+# TODO: on weekdays, move from bright to dim after 9pm
+
+- name: Bright great room
+  entities:
+    scene.bright_dining_room:
+      state: on
+    scene.bright_kitchen:
+      state: on
+    scene.bright_living_room:
+      state: on
+    scene.bright_lounge:
+      state: on
+    scene.bright_stairwell:
+      state: on
+
+- name: Relaxed great room
+  entities:
+    scene.relaxed_dining_room:
+      state: on
+    scene.relaxed_kitchen:
+      state: on
+    scene.relaxed_living_room:
+      state: on
+    scene.relaxed_lounge:
+      state: on
+    scene.relaxed_stairwell:
+      state: on
+
+- name: Bright upstairs
+  entities:
+    scene.bright_great_room:
+      state: on
+    scene.bright_bedroom:
+      state: on
+    scene.bright_office:
+      state: on
+
+- name: Relaxed upstairs
+  entities:
+    scene.relaxed_great_room:
+      state: on
+    scene.relaxed_bedroom:
+      state: on
+    scene.relaxed_office:
+      state: on
+
 - name: Movie time
   entities:
-    light.table_lights: off
-    light.island: off
-    light.island_2: off
+    group.island_lights: off
     light.lounge_lights: off
+    light.table_lights: off
     switch.couch_ge_12721_switch: off
     light.ceiling_lamp:
       state: on
       brightness_pct: 10
+    light.cabinets:
+      state: on
+      rgb_color: [255,63,0]
+      brightness_pct: 70
+    light.fridge_lights:
+      state: on
+      rgb_color: [255,63,0]
+      brightness_pct: 70
     light.foyer_light:
       state: on
       brightness_pct: 10
     group.stairwell:
       state: on
-      rgb_color: [255,82,27]
+      rgb_color: [255,63,0]  # red
       brightness_pct: 5
     group.turntable_lights:
       state: on
-      rgb_color: [255,82,27]
+      rgb_color: [255,63,0]  # red
       brightness_pct: 5
-
-- name: Relaxed dining room
-  entities:
-    light.table_lights:
-      state: on
-      brightness_pct: 30
-
-- name: Relaxed living room
-  entities:
-    light.ceiling_lamp:
-      state: on
-      brightness_pct: 50
-    light.foyer_light:
-      state: on
-      brightness_pct: 50
-    switch.couch_ge_12721_switch:
-      state: on
-
-- name: Relaxed stairwell
-  entities:
-    group.stairwell:
-      state: on
-      brightness_pct: 78
-      profile: relax
-
-- name: Red stairwell
-  entities:
-    light.stairwell_1:
-      state: on
-      xy_color: [0.6421,0.3335]
-      brightness: 188
-    light.stairwell_2:
-      state: on
-      xy_color: [0.5385,0.3836]
-      brightness: 188
-    light.stairwell_3:
-      state: on
-      xy_color: [0.6375,0.3362]
-      brightness: 188
-
-- name: Kitchen blues
-  entities:
-    light.cabinets:
-      state: on
-      xy_color: [0.1567,0.1846]
-      brightness: 241
-    light.fridge_lights:
-      state: on
-      xy_color: [0.1714,0.3539]
-      brightness: 241
-    light.island:
-      state: on
-      xy_color: [0.5017,0.4152]
-      brightness: 241
-    light.island_2:
-      state: on
-      xy_color: [0.5017,0.4152]
-      brightness: 241
-
-- name: Red turntable
-  entities:
-    light.turntable_1:
-      state: on
-      xy_color: [0.6576,0.3278]
-      brightness: 182
-    light.turntable_2:
-      state: on
-      xy_color: [0.6618,0.3216]
-      brightness: 182

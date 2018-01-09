@@ -1,15 +1,13 @@
 default_view:
   view: yes
   entities:
+  - sensor.entryway_thermostat_temperature
   - device_tracker.derek_derek
   - device_tracker.kari_kari
-  - sensor.entryway_thermostat_temperature
-  - sensor.entryway_thermostat_humidity
-  - group.interior_climate
-  - group.exterior_climate
+  - sensor.dark_sky_temperature
   - group.kitchen
   - group.living_room
-  - group.stairwell
+  - group.lounge
   - group.foyer
   - group.office
   - group.bedroom

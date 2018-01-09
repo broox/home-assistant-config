@@ -14,6 +14,10 @@ homeassistant:
       friendly_name: Garage door
     group.kitchen:
       emulated_hue_name: Kitchen lights
+    group.stairwell:
+      icon: mdi:stairs
+    group.turntable_lights:
+      icon: mdi:album
     light.cabinets:
       friendly_name: Cabinet accents
     light.fridge_lights:
@@ -34,9 +38,9 @@ homeassistant:
       friendly_name: Google Home
       icon: mdi:google-assistant
     sensor.entryway_thermostat_temperature:
-      friendly_name: Entryway temp
+      friendly_name: Inside temp
     sensor.entryway_thermostat_humidity:
-      friendly_name: Entryway humidity
+      friendly_name: Inside humidity
     sensor.dark_sky_apparent_temperature:
       friendly_name: Feels like
     sensor.dark_sky_cloud_coverage:
@@ -44,7 +48,7 @@ homeassistant:
     sensor.dark_sky_summary:
       friendly_name: Conditions
     sensor.dark_sky_temperature:
-      friendly_name: Current temp
+      friendly_name: Outside temp
     switch.couch_ge_12721_switch:
       friendly_name: Couch lamp
       icon: mdi:lightbulb

@@ -45,6 +45,13 @@ guest_office:
     - light.guest_futon
     - light.guest_desk
 
+island_lights:
+  name: Island lights
+  icon: mdi:lightbulb
+  entities:
+    - light.island
+    - light.island_2
+
 karis_lamp:
   name: Kari's lamp
   icon: mdi:lightbulb
@@ -56,20 +63,23 @@ karis_lamp:
 kitchen:
   name: Kitchen
   entities:
-  - light.cabinets
-  - light.fridge_lights
-  - light.island
-  - light.island_2
-  - light.table_lights
+    - light.cabinets
+    - light.fridge_lights
+    - group.island_lights
+    - light.table_lights
 
 living_room:
   name: Living room
   entities:
-  - switch.couch_ge_12721_switch
-  - light.ceiling_lamp
-  - light.turntable_1
-  - light.turntable_2
-  - light.lounge_lights
+    - switch.couch_ge_12721_switch
+    - light.ceiling_lamp
+    - group.turntable_lights
+
+lounge:
+  name: Lounge
+  entities:
+    - light.lounge_lights
+    - group.stairwell
 
 non_bedroom_lights:
   name: Non Bedroom lights
