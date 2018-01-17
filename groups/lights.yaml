@@ -63,10 +63,11 @@ karis_lamp:
 kitchen:
   name: Kitchen
   entities:
-    - light.cabinets
-    - light.fridge_lights
+    - light.cooking_lights
     - group.island_lights
     - light.table_lights
+    - light.cabinets
+    - light.fridge_lights
 
 living_room:
   name: Living room

@@ -117,6 +117,11 @@ caseta:
         type: remote
       - id: 12  # mudroom lounge pico
         type: remote
+      - id: 13  # kitchen dimmer
+        type: dimmer
+      - id: 14  # kitchen pico
+        type: remote
+
 # Enables configuration UI
 config:
 

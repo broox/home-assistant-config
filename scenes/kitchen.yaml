@@ -30,6 +30,9 @@
       state: on
     scene.bright_island:
       state: on
+    light.cooking_lights:
+      state: on
+      brightness_pct: 100
 
 - name: Bright lounge
   entities:
@@ -54,6 +57,7 @@
       state: on
     scene.relaxed_island:
       state: on
+    light.cooking_lights: off
 
 - name: Relaxed dining room
   entities:

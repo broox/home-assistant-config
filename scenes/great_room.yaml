@@ -21,8 +21,7 @@
       state: on
     scene.relaxed_living_room:
       state: on
-    scene.relaxed_lounge:
-      state: on
+    light.lounge_lights: off
     scene.relaxed_stairwell:
       state: on
 
