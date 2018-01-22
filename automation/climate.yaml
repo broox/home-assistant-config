@@ -6,10 +6,10 @@
     from: home
     to: not_home
   action:
-    service: climate.set_away_mode
+    service: climate.set_temperature
     data:
       entity_id: climate.master_bath
-      away_mode: true
+      temperature: 50
 
 - id: floor_resume_when_arriving
   alias: Resume heated floor schedule when arriving
@@ -19,7 +19,4 @@
     from: home
     to: not_home
   action:
-    service: climate.set_away_mode
-    data:
-      entity_id: climate.master_bath
-      away_mode: false
+    service: climate.nuheat_resume_program
