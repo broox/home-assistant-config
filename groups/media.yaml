@@ -9,4 +9,11 @@ sonos:
   - media_player.office
   - media_player.patio
   - media_player.rec_room
+  - media_player.turntable
   - media_player.workshop
+
+google_homes:
+  name: Google homes
+  entities:
+    - media_player.bedroom_speaker
+    - media_player.kitchen_home

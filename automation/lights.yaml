@@ -22,7 +22,8 @@
       - condition: sun
         before: sunrise
   action:
-  - service: script.turn_on_upstairs
+  - service: scene.turn_on
+    entity_id: scene.relaxed_upstairs
   - service: notify.pushbullet
     data:
       title: Lights
@@ -63,6 +64,28 @@
     data:
       title: Lights
       message: Turning off most of the lights
+
+- id: exterior_lights_on_at_night
+  alias: Turn exterior lights on at night
+  trigger:
+  - platform: sun
+    event: sunset
+  action:
+  - service: switch.turn_on
+    entity_id: switch.driveway_light
+  - service: light.turn_on
+    entity_id: light.front_porch
+    data:
+      brightness_pct: 50
+
+- id: exterior_lights_off_late
+  alias: Turn exterior lights off late at night
+  trigger:
+  - platform: time
+    at: '03:00:00'
+  action:
+  - service: homeassistant.turn_off
+    entity_id: group.exterior
 
 - id: lamps_on_while_away_in_the_evening
   alias: Turn on a couple lamps while we're away in the evening  # for the dog
@@ -121,13 +144,14 @@
       entity_id: group.family
       state: home
     - condition: state
-      entity_id: group.non_bedroom_lights
+      entity_id: group.upstairs_lights
       state: 'off'
     - condition: time
       after: '10:00:00'
       before: '21:00:00'
   action:
-  - service: script.turn_on_upstairs
+  - service: scene.turn_on
+    entity_id: scene.relaxed_upstairs
   - service: notify.pushbullet
     data:
       title: Lights

@@ -16,6 +16,10 @@ homeassistant:
       friendly_name: Garage door
     group.kitchen:
       emulated_hue_name: Kitchen lights
+    group.stairwell:
+      icon: mdi:stairs
+    group.turntable_lights:
+      icon: mdi:album
     light.cabinets:
       friendly_name: Cabinet accents
     light.fridge_lights:
@@ -36,9 +40,9 @@ homeassistant:
       friendly_name: Google Home
       icon: mdi:google-assistant
     sensor.entryway_thermostat_temperature:
-      friendly_name: Entryway temp
+      friendly_name: Inside temp
     sensor.entryway_thermostat_humidity:
-      friendly_name: Entryway humidity
+      friendly_name: Inside humidity
     sensor.dark_sky_apparent_temperature:
       friendly_name: Feels like
     sensor.dark_sky_cloud_coverage:
@@ -46,9 +50,11 @@ homeassistant:
     sensor.dark_sky_summary:
       friendly_name: Conditions
     sensor.dark_sky_temperature:
-      friendly_name: Current temp
+      friendly_name: Outside temp
     switch.couch_ge_12721_switch:
       friendly_name: Couch lamp
+      icon: mdi:lightbulb
+    switch.driveway_light:
       icon: mdi:lightbulb
     switch.office_ge_12721_switch:
       friendly_name: Miffy
@@ -94,6 +100,28 @@ caseta:
       - id: 2
         type: dimmer
       - id: 3
+        type: remote
+      - id: 4  # BR Pico
+        type: remote
+      - id: 5  # Foyer
+        type: dimmer
+      - id: 6  # Foyer Pico
+        type: remote
+      - id: 7  # LR Ceiling lamp
+        type: dimmer
+      - id: 8  # Front porch
+        type: dimmer
+      - id: 9  # driveway
+        type: switch
+      - id: 10  # lounge
+        type: dimmer
+      - id: 11  # lounge pico
+        type: remote
+      - id: 12  # mudroom lounge pico
+        type: remote
+      - id: 13  # kitchen dimmer
+        type: dimmer
+      - id: 14  # kitchen pico
         type: remote
 
 # Enables configuration UI
@@ -144,6 +172,10 @@ http:
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   # base_url: example.duckdns.org:8123
 
+hue:
+  bridges:
+    - host: !secret hue_host_ip
+
 input_boolean:
   guest_mode:
     # This prevents certain automations from executing.
@@ -155,15 +187,20 @@ input_boolean:
 # Show links to resources in log and frontend
 # introduction:
 
-light:
-  - platform: hue
-    host: !secret hue_host_ip
-
 # View all events in a logbook
 logbook:
 
 # Display a map on the frontend
 map:
+
+media_player:
+  - platform: plex
+  - platform: samsungtv
+    host: !secret samsung_tv_host_ip
+    mac: !secret samsung_tv_mac_address
+    port: 8001
+    name: Living Room TV
+  - platform: sonos
 
 # Presence / CloudMQTT / Owntracks
 mqtt:

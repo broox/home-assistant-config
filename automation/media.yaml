@@ -12,3 +12,23 @@
   action:
     service: media_player.turn_off
     entity_id: group.sonos
+
+- id: tv_off_when_leaving
+  alias: Turn off TV when leaving
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.guest_mode
+          state: 'off'
+        - condition: state
+          entity_id: media_player.living_room_tv
+          state: 'on'
+  action:
+    service: media_player.turn_off
+    entity_id: media_player.living_room_tv

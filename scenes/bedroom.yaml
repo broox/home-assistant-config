@@ -1,16 +1,23 @@
-- name: Relaxed bedroom
+- name: Bright bedroom
   entities:
     group.bedroom:
       state: on
-      xy_color: [0.5119, 0.4147]
-      brightness: 144
+      brightness_pct: 100
+      color_temp: 325  # matches osrams at 100% brightness
 
 - name: Dim bedroom
   entities:
     group.bedroom:
       state: on
-      xy_color: [0.5119, 0.4147]
-      brightness: 10
+      brightness_pct: 4
+      color_temp: 446
+
+- name: Relaxed bedroom
+  entities:
+    group.bedroom:
+      state: on
+      brightness_pct: 50
+      color_temp: 446
 
 - name: Bedtime
   entities:

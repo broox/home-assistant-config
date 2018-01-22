@@ -11,11 +11,13 @@ My goals:
 
 * Aeotec Minimote
 * Aeotec Z-Stick Gen 5
-* Amazon Echo
+* Amazon Echo Dots
+* Apple TV
 * Arlo Pro cameras
 * GE Z-Wave dimmer modules
 * GE Z-Wave wall outlets
-* Google Home
+* Google Chromecast Ultra
+* Google Home and Home Mini
 * Google Pixel 2
 * iPhone 7
 * Life360 (mobile device tracking)
@@ -26,5 +28,11 @@ My goals:
 * Old Mac Mini to run [Home Assistant](https://home-assistant.io/)
 * Philips Hue bulbs
 * Ring Pro Doorbell
+* Samsung KS8000 TV
 * Smartthings door sensors
 * Sonos speakers
+
+# Supplemental software I'm using
+
+* Life360 (mobile device tracking)
+* Plex

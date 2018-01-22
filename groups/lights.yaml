@@ -20,16 +20,37 @@ bedroom:
   - light.karis_bottom_bed_lamp
   - light.dresser_lamp
 
+exterior:
+  name: Exterior
+  entities:
+  - light.front_porch
+  - switch.driveway_light
+
+foyer:
+  name: Foyer
+  entities:
+  - light.foyer_light
+
 guest_bedroom:
   name: Guest bedroom
   entities:
-    - light.guest_dresser
     - light.guest_night_stand
+    - light.guest_dresser
+    - light.guest_dresser_lamp_2
+    - light.guest_dresser_lamp_3
 
 guest_office:
   name: Guest office
   entities:
     - light.guest_futon
+    - light.guest_desk
+
+island_lights:
+  name: Island lights
+  icon: mdi:lightbulb
+  entities:
+    - light.island
+    - light.island_2
 
 karis_lamp:
   name: Kari's lamp
@@ -42,34 +63,40 @@ karis_lamp:
 kitchen:
   name: Kitchen
   entities:
-  - light.cabinets
-  - light.fridge_lights
-  - light.island
-  - light.island_2
-  - light.table_lights
+    - light.cooking_lights
+    - group.island_lights
+    - light.table_lights
+    - light.cabinets
+    - light.fridge_lights
 
 living_room:
   name: Living room
   entities:
-  - switch.couch_ge_12721_switch
-  - light.lamp_dimmer_two_level
-  - light.turntable_1
-  - light.turntable_2
+    - switch.couch_ge_12721_switch
+    - light.ceiling_lamp
+    - group.turntable_lights
+
+lounge:
+  name: Lounge
+  entities:
+    - light.lounge_lights
+    - group.stairwell
 
 non_bedroom_lights:
   name: Non Bedroom lights
   entities:
+  - group.basement
+  - group.foyer
   - group.kitchen
   - group.living_room
   - group.office
   - group.stairwell
-  - light.bar_lamp
-  # basement stuff?
 
 office:
   name: Office
   entities:
   - light.office_lamp
+  - light.office_lamp_2
   - light.lamp_dimmer_one_level
   - switch.office_ge_12721_switch
 
@@ -100,6 +127,7 @@ upstairs:
   name: upstairs
   entities:
   - group.bedroom
+  - group.foyer
   - group.kitchen
   - group.living_room
   - group.office

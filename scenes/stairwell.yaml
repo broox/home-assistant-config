@@ -1,0 +1,28 @@
+- name: Bright stairwell
+  entities:
+    group.stairwell:
+      state: on
+      brightness_pct: 100
+      color_temp: 325  # matches osrams at 100% brightness
+
+- name: Red stairwell
+  entities:
+    light.stairwell_1:
+      state: on
+      xy_color: [0.6421,0.3335]
+      brightness: 188
+    light.stairwell_2:
+      state: on
+      xy_color: [0.5385,0.3836]
+      brightness: 188
+    light.stairwell_3:
+      state: on
+      xy_color: [0.6375,0.3362]
+      brightness: 188
+
+- name: Relaxed stairwell
+  entities:
+    group.stairwell:
+      state: on
+      brightness_pct: 78
+      profile: relax

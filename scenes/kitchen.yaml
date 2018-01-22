@@ -1,0 +1,79 @@
+# TODO: cooking and dining
+
+- name: Blue kitchen accents
+  entities:
+    light.cabinets:
+      state: on
+      xy_color: [0.1567,0.1846]
+      brightness_pct: 95
+    light.fridge_lights:
+      state: on
+      xy_color: [0.1714,0.3539]
+      brightness_pct: 95
+
+- name: Bright dining room
+  entities:
+    light.table_lights:
+      state: on
+      brightness_pct: 100
+
+- name: Bright island
+  entities:
+    group.island_lights:
+      state: on
+      brightness_pct: 100
+      color_temp: 325  # matches osrams at 100% brightness
+
+- name: Bright kitchen
+  entities:
+    scene.blue_kitchen_accents:
+      state: on
+    scene.bright_island:
+      state: on
+    light.cooking_lights:
+      state: on
+      brightness_pct: 100
+
+- name: Bright lounge
+  entities:
+    light.lounge_lights:
+      state: on
+      brightness_pct: 100
+
+- name: Red kitchen accents
+  entities:
+    light.cabinets:
+      state: on
+      rgb_color: [255,63,0]
+      brightness_pct: 95
+    light.fridge_lights:
+      state: on
+      rgb_color: [255,63,0]
+      brightness_pct: 95
+
+- name: Relaxed kitchen
+  entities:
+    scene.blue_kitchen_accents:
+      state: on
+    scene.relaxed_island:
+      state: on
+    light.cooking_lights: off
+
+- name: Relaxed dining room
+  entities:
+    light.table_lights:
+      state: on
+      brightness_pct: 30
+
+- name: Relaxed island
+  entities:
+    group.island_lights:
+      state: on
+      brightness_pct: 85
+      color_temp: 446
+
+- name: Relaxed lounge
+  entities:
+    light.lounge_lights:
+      state: on
+      brightness_pct: 30

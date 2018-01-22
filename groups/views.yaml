@@ -1,18 +1,18 @@
 default_view:
   view: yes
   entities:
+  - sensor.entryway_thermostat_temperature
   - device_tracker.derek_derek
   - device_tracker.kari_kari
-  - sensor.entryway_thermostat_temperature
-  - sensor.entryway_thermostat_humidity
-  - group.interior_climate
-  - group.exterior_climate
+  - sensor.dark_sky_temperature
   - group.kitchen
   - group.living_room
-  - group.stairwell
+  - group.lounge
+  - group.foyer
   - group.office
   - group.bedroom
   - group.bathroom
+  - group.exterior
   - group.rec_room
   - group.guest_bedroom
   - group.guest_office
@@ -38,6 +38,13 @@ maps:
     - device_tracker.derek_derek # life360 / owntracks / mqtt
     - camera.dereks_location
     - camera.karis_location
+
+media:
+  name: A/V
+  view: yes
+  entities:
+    - media_player.living_room_tv
+    - group.sonos
 
 status:
   name: Status
