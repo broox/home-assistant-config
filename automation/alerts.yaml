@@ -1,16 +1,16 @@
-- id: away_from_home
-  alias: Everyone is away from home
-  trigger:
-    platform: state
-    entity_id: group.family
-    from: home
-    to: not_home
-  action:
-  - service: notify.pushbullet
-    data:
-      title: Presence
-      message: Everyone has left the house
-  - service: script.check_garage_door
+# - id: away_from_home
+#   alias: Everyone is away from home
+#   trigger:
+#     platform: state
+#     entity_id: group.family
+#     from: home
+#     to: not_home
+#   action:
+#   - service: notify.pushbullet
+#     data:
+#       title: Presence
+#       message: Everyone has left the house
+#   - service: script.check_garage_door
 
 - id: someone_home
   alias: Someone is home
