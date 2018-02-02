@@ -8,4 +8,15 @@
     condition: time
     after: '21:00:00'
   action:
-  - service: script.check_garage_door
+    service: script.check_garage_door
+
+- id: garage_door_left_open
+  alias: Garage door left open
+  trigger:
+    platform: state
+    entity_id: cover.garage_door_opener
+    to: open
+    for:
+      minutes: 7
+  action:
+    service: script.check_garage_door
