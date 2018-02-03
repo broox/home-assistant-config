@@ -20,9 +20,11 @@ My goals:
 * Google Home and Home Mini
 * Google Pixel 2
 * iPhone 7
+* Life360 (mobile device tracking)
 * Liftmaster MyQ Garage Door opener
 * Lutron Caséta dimmers and Pico remotes
 * Nest thermostat, protects, cameras
+* NuHeat Signature floor heating thermostat
 * Old Mac Mini to run [Home Assistant](https://home-assistant.io/)
 * Philips Hue bulbs
 * Ring Pro Doorbell

@@ -1,3 +1,8 @@
+bathroom:
+  name: Master bathroom
+  entities:
+  - climate.master_bath
+
 exterior_climate:
   name: Weather
   entities:

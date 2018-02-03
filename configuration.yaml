@@ -10,6 +10,8 @@ homeassistant:
 
   packages: !include_dir_named packages
   customize:
+    climate.master_bath:
+      friendly_name: Bathroom floor
     cover.garage_door_opener:
       friendly_name: Garage door
     group.kitchen:
@@ -218,6 +220,11 @@ notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret pushbullet_key
+
+nuheat:
+  username: !secret nuheat_username
+  password: !secret nuheat_password
+  devices: !secret nuheat_thermostat
 
 # Make sure to purge the history to keep the DB reasonably sized.
 recorder:
