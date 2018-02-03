@@ -17,7 +17,7 @@
   entities:
     light.ceiling_lamp:
       state: on
-      brightness_pct: 50
+      brightness_pct: 30
     light.foyer_light:
       state: on
       brightness_pct: 30
