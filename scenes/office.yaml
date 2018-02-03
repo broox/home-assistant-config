@@ -6,7 +6,7 @@
       state: on
     light.lamp_dimmer_one_level:  # Blinky
       state: on
-      brightness_pct: 22
+      brightness_pct: 30
 
 - name: Bright office
   entities:
