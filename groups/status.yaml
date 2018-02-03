@@ -17,3 +17,8 @@ signal:
     - binary_sensor.basement_nest_protect_online
     - binary_sensor.entryway_nest_protect_online
     - binary_sensor.entryway_thermostat_online
+
+hass:
+  name: Home assistant
+  entities:
+    - sensor.uptime

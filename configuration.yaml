@@ -268,6 +268,7 @@ sensor:
       - last_ding
       - last_motion
       - volume
+  - platform: uptime
 
 switch:
   - platform: template
