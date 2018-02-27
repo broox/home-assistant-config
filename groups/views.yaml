@@ -1,4 +1,5 @@
 default_view:
+  name: Home
   view: yes
   entities:
   - sensor.entryway_thermostat_temperature
