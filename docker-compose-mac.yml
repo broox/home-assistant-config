@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    image: homeassistant/home-assistant
+    environment:
+      - TZ=America/Chicago
+    volumes:
+      - ./config:/config
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    restart: always
+    ports:
+      - "8123:8123"
