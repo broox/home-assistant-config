@@ -1,0 +1,12 @@
+# Default / Linux docker-compose file
+version: '3'
+services:
+  web:
+    image: homeassistant/home-assistant
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    restart: always
+    network_mode: host
