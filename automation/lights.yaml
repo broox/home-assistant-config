@@ -41,6 +41,23 @@
   action:
   - service: script.prepare_bedtime_lights
 
+- id: dining_room_off_at_night
+  alias: Turn dining room lights off during the week at night
+  trigger:
+    - platform: time
+      at: '21:00:00'
+  condition:
+    condition: time
+    weekday:
+      - sun
+      - mon
+      - tue
+      - wed
+      - thu
+  action:
+    service: light.turn_off
+    entity_id: light.table_lights
+
 - id: lights_off_when_leaving
   alias: Turn off most lights when leaving
   trigger:
