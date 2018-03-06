@@ -14,8 +14,6 @@ homeassistant:
       friendly_name: Bathroom floor
     cover.garage_door_opener:
       friendly_name: Garage door
-    group.kitchen:
-      emulated_hue_name: Kitchen lights
     group.stairwell:
       icon: mdi:stairs
     group.turntable_lights:
@@ -24,13 +22,30 @@ homeassistant:
       friendly_name: Cabinet accents
     light.fridge_lights:
       friendly_name: Fridge accents
+    light.great_room:
+      friendly_name: Great room Hue bulbs
+    light.guest_bedroom:
+      friendly_name: Guest bedroom Hue bulbs
+    light.guest_office:
+      friendly_name: Guest office Hue bulbs
+    light.kitchen:
+      friendly_name: Kitchen Hue bulbs
     light.lamp_dimmer_one_level:
       friendly_name: Blinky
       icon: mdi:ghost
     light.lamp_dimmer_two_level:
-      emulated_hue_name: Christmas tree
       friendly_name: Christmas tree
       icon: mdi:pine-tree
+    light.master_bedroom:
+      friendly_name: Master bedroom Hue bulbs
+    light.office:
+      friendly_name: Office Hue bulbs
+    light.rec_room:
+      friendly_name: Rec room Hue bulbs
+    light.stairwell:
+      friendly_name: Stairwell Hue bulbs
+    light.turntable:
+      friendly_name: Turntable Hue bulbs
     media_player.samsung_tv_un60ks8000:
       friendly_name: Samsung TV
       initial_state: off
@@ -124,6 +139,33 @@ caseta:
       - id: 14  # kitchen pico
         type: remote
 
+# Enable Home Assistant Cloud
+cloud:
+  alexa:
+    filter:
+      exclude_domains:
+        - alert
+        - automation
+        - lock
+        - media_player
+        - script
+      exclude_entities:
+        - group.all_automations
+        - group.all_devices
+        - group.batteries
+        - group.cameras
+        - group.default_view
+        - group.exterior_climate
+        - group.google_homes
+        - group.hass
+        - group.interior_climate
+        - group.maps
+        - group.modes
+        - group.scenes
+        - group.signal
+        - group.sonos
+        - group.status
+
 # Enables configuration UI
 config:
 
@@ -148,15 +190,6 @@ device_tracker:
 discovery:
   ignore:
     - apple_tv # home assistant wakes up the apple tv when it connects... causing the TV to turn on
-
-emulated_hue:
-  host_ip: !secret hass_host_ip
-  listen_port: 8300
-  expose_by_default: true
-  exposed_domains:
-  - switch
-  - light
-  - group
 
 # Enables the frontend
 frontend:
@@ -195,11 +228,11 @@ map:
 
 media_player:
   - platform: plex
-  - platform: samsungtv
-    host: !secret samsung_tv_host_ip
-    mac: !secret samsung_tv_mac_address
-    port: 8001
-    name: Living Room TV
+  # - platform: samsungtv
+  #   host: !secret samsung_tv_host_ip
+  #   mac: !secret samsung_tv_mac_address
+  #   port: 8001
+  #   name: Living Room TV
   - platform: sonos
 
 # Presence / CloudMQTT / Owntracks
