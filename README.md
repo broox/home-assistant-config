@@ -1,5 +1,6 @@
 # Home Assistant Config
-These are the config files for my personal [Home Assistant](https://home-assistant.io/) setup.
+
+These are the config files for my personal [Home Assistant](https://home-assistant.io/), home automation setup.
 
 My goals:
 
@@ -20,12 +21,11 @@ My goals:
 * Google Home and Home Mini
 * Google Pixel 2
 * iPhone 7
-* Life360 (mobile device tracking)
 * Liftmaster MyQ Garage Door opener
 * Lutron Caséta dimmers and Pico remotes
 * Nest thermostat, protects, cameras
 * NuHeat Signature floor heating thermostat
-* Old Mac Mini to run [Home Assistant](https://home-assistant.io/)
+* Intel NUC to run [Home Assistant](https://home-assistant.io/)
 * Philips Hue bulbs
 * Ring Pro Doorbell
 * Samsung KS8000 TV
@@ -34,5 +34,10 @@ My goals:
 
 # Supplemental software I'm using
 
-* Life360 (mobile device tracking)
-* Plex
+* [Docker](https://www.docker.com/) to run Home Assistant in a container
+* [Life360](https://www.life360.com/) for mobile device tracking
+* [Plex](https://www.plex.tv/) media server
+
+# Installing with Docker
+
+See [my Home Assistant Docker repo](https://github.com/broox/home-assistant-docker)
