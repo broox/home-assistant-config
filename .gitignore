@@ -11,6 +11,7 @@ known_devices.yaml
 OZW_Log.txt
 secrets.yaml
 
+certs
 deps
 tts
 
