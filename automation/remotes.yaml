@@ -1,6 +1,6 @@
 # Turn off the lights outside of the bedroom if any are on
 - id: minimote_1_off
-  alias: Minimote Button 1 Pressed
+  alias: Minimote Button 1 Pressed Off
   trigger:
     platform: event
     event_type: zwave.scene_activated
@@ -17,7 +17,7 @@
 
 # Turn on the lights outside of the bedroom if they're all off
 - id: minimote_1_on
-  alias: Minimote Button 1 Pressed
+  alias: Minimote Button 1 Pressed On
   trigger:
     platform: event
     event_type: zwave.scene_activated
@@ -43,7 +43,7 @@
 
 # Turn the bedroom lights off if any are on
 - id: minimote_3_off
-  alias: Minimote Button 2 Pressed
+  alias: Minimote Button 2 Pressed Off
   trigger:
     platform: event
     event_type: zwave.scene_activated
@@ -60,7 +60,7 @@
 
 # Turn the bedroom lights on if they're off
 - id: minimote_3_on
-  alias: Minimote Button 2 Pressed
+  alias: Minimote Button 2 Pressed On
   trigger:
     platform: event
     event_type: zwave.scene_activated
