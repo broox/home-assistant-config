@@ -107,7 +107,7 @@ camera:
     limit_refetch_to_url_change: true
 
 lutron_caseta:
-    host: 192.168.86.228
+    host: !secret lutron_host_ip
     keyfile: certs/caseta.key
     certfile: certs/caseta.crt
     ca_certs: certs/caseta-bridge.crt
