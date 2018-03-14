@@ -183,6 +183,9 @@ device_tracker:
   #   client_id: !secret automatic_client_id
   #   secret: !secret automatic_secret
   #   current_location: false
+  - platform: nmap_tracker
+    hosts: 192.168.86.0/24
+    exclude: !secret nmap_exclusions
   - platform: owntracks
     max_gps_accuracy: 200
 
