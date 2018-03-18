@@ -106,38 +106,11 @@ camera:
     still_image_url: !secret kari_map_url
     limit_refetch_to_url_change: true
 
-# These IDs come from the JSON file that the Lutron app's "Send Integration Report"
-# option delivers. That file needs to be saved as ./caseta_[lutron_host_ip].json
-caseta:
-  bridges:
-  - host: !secret lutron_host_ip
-    devices:
-      - id: 2
-        type: dimmer
-      - id: 3
-        type: remote
-      - id: 4  # BR Pico
-        type: remote
-      - id: 5  # Foyer
-        type: dimmer
-      - id: 6  # Foyer Pico
-        type: remote
-      - id: 7  # LR Ceiling lamp
-        type: dimmer
-      - id: 8  # Front porch
-        type: dimmer
-      - id: 9  # driveway
-        type: switch
-      - id: 10  # lounge
-        type: dimmer
-      - id: 11  # lounge pico
-        type: remote
-      - id: 12  # mudroom lounge pico
-        type: remote
-      - id: 13  # kitchen dimmer
-        type: dimmer
-      - id: 14  # kitchen pico
-        type: remote
+lutron_caseta:
+    host: !secret lutron_host_ip
+    keyfile: certs/caseta.key
+    certfile: certs/caseta.crt
+    ca_certs: certs/caseta-bridge.crt
 
 # Enable Home Assistant Cloud
 cloud:
