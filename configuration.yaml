@@ -318,7 +318,7 @@ updater:
   # include_used_components: tru
 
 zwave:
-  usb_path: /dev/cu.usbmodem431
+  usb_path: /dev/ttyUSB0
   config_path: /usr/local/lib/python3.6/site-packages/python_openzwave/ozw_config
   #device_config:
   #  light.ge_45602_lamp_dimmer_module_level:
