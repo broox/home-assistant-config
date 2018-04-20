@@ -23,13 +23,13 @@ bedroom:
 exterior:
   name: Exterior
   entities:
-  - light.front_porch
-  - switch.driveway_light
+  - light.exterior_front_porch
+  - switch.exterior_driveway_light
 
 foyer:
   name: Foyer
   entities:
-  - light.foyer_light
+  - light.front_foyer_foyer_light
 
 guest_bedroom:
   name: Guest bedroom
@@ -63,9 +63,9 @@ karis_lamp:
 kitchen:
   name: Kitchen
   entities:
-    - light.cooking_lights
+    - light.kitchen_cooking_lights
     - group.island_lights
-    - light.table_lights
+    - light.dining_room_table_lights
     - light.cabinets
     - light.fridge_lights
 
@@ -73,13 +73,13 @@ living_room:
   name: Living room
   entities:
     - switch.couch_ge_12721_switch
-    - light.ceiling_lamp
+    - light.living_room_ceiling_lamp
     - group.turntable_lights
 
 lounge:
   name: Lounge
   entities:
-    - light.lounge_lights
+    - light.lounge_lounge_lights
     - group.stairwell
 
 non_bedroom_lights:

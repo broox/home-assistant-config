@@ -21,7 +21,7 @@
       state: on
     scene.relaxed_living_room:
       state: on
-    light.lounge_lights: off
+    light.lounge_lounge_lights: off
     scene.relaxed_stairwell:
       state: on
 
@@ -46,10 +46,10 @@
 - name: Movie time
   entities:
     group.island_lights: off
-    light.lounge_lights: off
-    light.table_lights: off
+    light.lounge_lounge_lights: off
+    light.dining_room_table_lights: off
     switch.couch_ge_12721_switch: off
-    light.ceiling_lamp:
+    light.living_room_ceiling_lamp:
       state: on
       brightness_pct: 10
     light.cabinets:
@@ -60,7 +60,7 @@
       state: on
       rgb_color: [255,63,0]
       brightness_pct: 70
-    light.foyer_light:
+    light.front_foyer_foyer_light:
       state: on
       brightness_pct: 10
     group.stairwell:

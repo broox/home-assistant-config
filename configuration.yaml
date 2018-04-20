@@ -69,7 +69,7 @@ homeassistant:
     switch.couch_ge_12721_switch:
       friendly_name: Couch lamp
       icon: mdi:lightbulb
-    switch.driveway_light:
+    switch.exterior_driveway_light:
       icon: mdi:lightbulb
     switch.office_ge_12721_switch:
       friendly_name: Miffy

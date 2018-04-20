@@ -1,9 +1,9 @@
 - name: Bright living room
   entities:
-    light.ceiling_lamp:
+    light.living_room_ceiling_lamp:
       state: on
       brightness_pct: 100
-    light.foyer_light:
+    light.front_foyer_foyer_light:
       state: on
       brightness_pct: 100
     group.turntable_lights:
@@ -15,10 +15,10 @@
 
 - name: Relaxed living room
   entities:
-    light.ceiling_lamp:
+    light.living_room_ceiling_lamp:
       state: on
       brightness_pct: 30
-    light.foyer_light:
+    light.front_foyer_foyer_light:
       state: on
       brightness_pct: 30
     scene.red_turntable:
