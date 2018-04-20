@@ -11,7 +11,7 @@
   initial_state: True
   trigger:
     - platform: state
-      entity_id: sensor.pico
+      entity_id: sensor.master_bedroom_pico
       to: '2'
   condition:
     condition: state
@@ -27,7 +27,7 @@
   initial_state: True
   trigger:
     - platform: state
-      entity_id: sensor.pico
+      entity_id: sensor.master_bedroom_pico
       to: '2'
   condition:
     condition: state
@@ -43,7 +43,7 @@
   initial_state: True
   trigger:
     - platform: state
-      entity_id: sensor.pico
+      entity_id: sensor.master_bedroom_pico
       to: '1'
   condition:
     condition: state
@@ -59,7 +59,7 @@
   initial_state: True
   trigger:
     - platform: state
-      entity_id: sensor.pico
+      entity_id: sensor.master_bedroom_pico
       to: '4'
   condition:
     condition: state
@@ -75,7 +75,7 @@
   initial_state: True
   trigger:
     - platform: state
-      entity_id: sensor.pico
+      entity_id: sensor.master_bedroom_pico
       to: '8'
   action:
     service: light.turn_on
@@ -99,7 +99,7 @@
   initial_state: True
   trigger:
     - platform: state
-      entity_id: sensor.pico
+      entity_id: sensor.master_bedroom_pico
       to: '16'
   action:
     service: light.turn_on
