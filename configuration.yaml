@@ -116,6 +116,7 @@ lutron_caseta_pro:
   bridges:
     - host: !secret lutron_host_ip
       mac: !secret lutron_mac
+      switch: [9]
 
 # Enable Home Assistant Cloud
 cloud:
