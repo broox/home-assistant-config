@@ -56,7 +56,7 @@
       - thu
   action:
     service: light.turn_off
-    entity_id: light.table_lights
+    entity_id: light.dining_room_table_lights
 
 - id: lights_off_when_leaving
   alias: Turn off most lights when leaving
@@ -89,9 +89,9 @@
     event: sunset
   action:
   - service: switch.turn_on
-    entity_id: switch.driveway_light
+    entity_id: switch.exterior_driveway_light
   - service: light.turn_on
-    entity_id: light.front_porch
+    entity_id: light.exterior_front_porch
     data:
       brightness_pct: 50
 

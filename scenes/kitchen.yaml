@@ -13,7 +13,7 @@
 
 - name: Bright dining room
   entities:
-    light.table_lights:
+    light.dining_room_table_lights:
       state: on
       brightness_pct: 100
 
@@ -30,13 +30,13 @@
       state: on
     scene.bright_island:
       state: on
-    light.cooking_lights:
+    light.kitchen_cooking_lights:
       state: on
       brightness_pct: 100
 
 - name: Bright lounge
   entities:
-    light.lounge_lights:
+    light.lounge_lounge_lights:
       state: on
       brightness_pct: 100
 
@@ -57,11 +57,11 @@
       state: on
     scene.relaxed_island:
       state: on
-    light.cooking_lights: off
+    light.kitchen_cooking_lights: off
 
 - name: Relaxed dining room
   entities:
-    light.table_lights:
+    light.dining_room_table_lights:
       state: on
       brightness_pct: 30
 
@@ -74,6 +74,6 @@
 
 - name: Relaxed lounge
   entities:
-    light.lounge_lights:
+    light.lounge_lounge_lights:
       state: on
       brightness_pct: 30

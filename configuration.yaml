@@ -20,8 +20,14 @@ homeassistant:
       icon: mdi:album
     light.cabinets:
       friendly_name: Cabinet accents
+    light.dining_room_table_lights:
+      friendly_name: Table lights
+    light.exterior_front_porch:
+      friendly_name: Front porch
     light.fridge_lights:
       friendly_name: Fridge accents
+    light.front_foyer_foyer_light:
+      friendly_name: Foyer light
     light.great_room:
       friendly_name: Great room Hue bulbs
     light.guest_bedroom:
@@ -30,12 +36,18 @@ homeassistant:
       friendly_name: Guest office Hue bulbs
     light.kitchen:
       friendly_name: Kitchen Hue bulbs
+    light.kitchen_cooking_lights:
+      friendly_name: Cooking lights
     light.lamp_dimmer_one_level:
       friendly_name: Blinky
       icon: mdi:ghost
     light.lamp_dimmer_two_level:
       friendly_name: Christmas tree
       icon: mdi:pine-tree
+    light.living_room_ceiling_lamp:
+      friendly_name: Ceiling lamp
+    light.lounge_lounge_lights:
+      friendly_name: Ceiling lights
     light.master_bedroom:
       friendly_name: Master bedroom Hue bulbs
     light.office:
@@ -69,7 +81,8 @@ homeassistant:
     switch.couch_ge_12721_switch:
       friendly_name: Couch lamp
       icon: mdi:lightbulb
-    switch.driveway_light:
+    switch.exterior_driveway_light:
+      friendly_name: Driveway lights
       icon: mdi:lightbulb
     switch.office_ge_12721_switch:
       friendly_name: Miffy
@@ -106,11 +119,17 @@ camera:
     still_image_url: !secret kari_map_url
     limit_refetch_to_url_change: true
 
-lutron_caseta:
-    host: !secret lutron_host_ip
-    keyfile: certs/caseta.key
-    certfile: certs/caseta.crt
-    ca_certs: certs/caseta-bridge.crt
+# lutron_caseta:
+#     host: !secret lutron_host_ip
+#     keyfile: certs/caseta.key
+#     certfile: certs/caseta.crt
+#     ca_certs: certs/caseta-bridge.crt
+
+lutron_caseta_pro:
+  bridges:
+    - host: !secret lutron_host_ip
+      mac: !secret lutron_mac
+      switch: [9]
 
 # Enable Home Assistant Cloud
 cloud:
