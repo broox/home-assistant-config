@@ -66,6 +66,7 @@ kitchen:
     - light.kitchen_cooking_lights
     - group.island_lights
     - light.dining_room_table_lights
+    - light.sink_lights
     - light.cabinets
     - light.fridge_lights
 
