@@ -34,6 +34,15 @@
     scene.bright_office:
       state: on
 
+- name: Orange great room
+  entities:
+    scene.orange_kitchen_accents:
+      state: on
+    scene.orange_turntable:
+      state: on
+    scene.orange_office:
+      state: on
+
 - name: Relaxed upstairs
   entities:
     scene.relaxed_great_room:

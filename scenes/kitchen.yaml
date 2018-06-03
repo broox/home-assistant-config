@@ -30,6 +30,8 @@
       state: on
     scene.bright_island:
       state: on
+    scene.bright_sink:
+      state: on
     light.kitchen_cooking_lights:
       state: on
       brightness_pct: 100
@@ -38,6 +40,24 @@
   entities:
     light.lounge_lounge_lights:
       state: on
+      brightness_pct: 100
+
+- name: Bright sink
+  entities:
+    light.sink_lights:
+      state: on
+      brightness_pct: 100
+      color_temp: 325
+
+- name: Orange kitchen accents
+  entities:
+    light.cabinets:
+      state: on
+      rgb_color: [255, 95, 0]
+      brightness_pct: 100
+    light.fridge_lights:
+      state: on
+      rgb_color: [255, 95, 0]
       brightness_pct: 100
 
 - name: Red kitchen accents
@@ -56,6 +76,8 @@
     scene.blue_kitchen_accents:
       state: on
     scene.relaxed_island:
+      state: on
+    scene.relaxed_sink:
       state: on
     light.kitchen_cooking_lights: off
 
@@ -77,3 +99,11 @@
     light.lounge_lounge_lights:
       state: on
       brightness_pct: 30
+
+- name: Relaxed sink
+  entities:
+    light.sink_lights:
+      state: on
+      brightness_pct: 85
+      color_temp: 346
+

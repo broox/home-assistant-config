@@ -34,6 +34,15 @@
       brightness_pct: 100
       color_temp: 156
 
+- name: Orange office
+  entities:
+    scene.ambient_office:
+      state: on
+    light.office_lamp:
+      state: on
+      brightness_pct: 100
+      rgb_color: [255, 95, 0]
+
 - name: Relaxed office
   entities:
     scene.ambient_office:

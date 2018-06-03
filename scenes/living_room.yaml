@@ -13,6 +13,13 @@
     switch.couch_ge_12721_switch:
       state: on
 
+- name: Orange turntable
+  entities:
+    group.turntable_lights:
+      state: on
+      rgb_color: [255, 95, 0]
+      brightness_pct: 100
+
 - name: Relaxed living room
   entities:
     light.living_room_ceiling_lamp:
