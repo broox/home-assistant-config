@@ -157,6 +157,30 @@ cloud:
         - group.signal
         - group.sonos
         - group.status
+  google_actions:
+    filter:
+      exclude_domains:
+        - alert
+        - automation
+        - lock
+        - media_player
+        - script
+      exclude_entities:
+        - group.all_automations
+        - group.all_devices
+        - group.batteries
+        - group.cameras
+        - group.default_view
+        - group.exterior_climate
+        - group.google_homes
+        - group.hass
+        - group.interior_climate
+        - group.maps
+        - group.modes
+        - group.scenes
+        - group.signal
+        - group.sonos
+        - group.status
 
 # Enables configuration UI
 config:
