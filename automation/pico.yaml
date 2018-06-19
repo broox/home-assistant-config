@@ -14,12 +14,17 @@
       entity_id: sensor.master_bedroom_pico
       to: '2'
   condition:
-    condition: state
-    entity_id: group.non_bedroom_lights
-    state: 'off'
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: group.non_bedroom_lights
+          state: 'off'
+        - condition: state
+          entity_id: light.exterior_front_porch
+          state: 'off'
   action:
-    service: homeassistant.turn_on
-    entity_id: group.non_bedroom_lights
+    service: scene.turn_on
+    entity_id: scene.bedtime_emergency
 
 # Turn off the lights outside of the bedroom if any are on
 - id: br_pico_fav_on
@@ -30,12 +35,17 @@
       entity_id: sensor.master_bedroom_pico
       to: '2'
   condition:
-    condition: state
-    entity_id: group.non_bedroom_lights
-    state: 'on'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: group.non_bedroom_lights
+          state: 'on'
+        - condition: state
+          entity_id: light.exterior_front_porch
+          state: 'on'
   action:
-    service: homeassistant.turn_off
-    entity_id: group.non_bedroom_lights
+    service: scene.turn_on
+    entity_id: scene.bedtime
 
 # Turn on the bedroom lights
 - id: br_pico_on

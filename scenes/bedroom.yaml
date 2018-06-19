@@ -22,3 +22,9 @@
 - name: Bedtime
   entities:
     group.non_bedroom_lights: off
+    light.exterior_front_porch: off
+
+- name: Bedtime emergency
+  entities:
+    group.non_bedroom_lights: on
+    light.exterior_front_porch: on
