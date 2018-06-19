@@ -55,13 +55,9 @@
     - platform: state
       entity_id: sensor.master_bedroom_pico
       to: '1'
-  condition:
-    condition: state
-    entity_id: group.bedroom
-    state: 'off'
   action:
-    service: light.turn_on
-    entity_id: group.bedroom
+    service: scene.turn_on
+    entity_id: scene.bedroom_reading
 
 # Turn off the bedroom lights
 - id: br_pico_off
@@ -71,13 +67,9 @@
     - platform: state
       entity_id: sensor.master_bedroom_pico
       to: '4'
-  condition:
-    condition: state
-    entity_id: group.bedroom
-    state: 'on'
   action:
     service: light.turn_off
-    entity_id: group.bedroom
+    entity_id: light.master_bedroom  # Hue group
 
 # Brighten the bedroom lights
 - id: br_pico_up
@@ -88,20 +80,8 @@
       entity_id: sensor.master_bedroom_pico
       to: '8'
   action:
-    service: light.turn_on
-    entity_id: group.bedroom
-    data_template:
-      brightness: >
-        {% if is_state('group.bedroom', 'off') %}
-        51
-        {% else %}
-        {% set suggested = states.light.dereks_lamp.attributes.brightness + 51 %}
-        {% if suggested < 256 %}
-        {{ suggested }}
-        {% else %}
-        255
-        {% endif %}
-        {% endif %}
+    service: scene.turn_on
+    entity_id: scene.relaxed_bedroom
 
 # Dim the bedroom lights
 - id: br_pico_down
@@ -112,17 +92,5 @@
       entity_id: sensor.master_bedroom_pico
       to: '16'
   action:
-    service: light.turn_on
-    entity_id: group.bedroom
-    data_template:
-      brightness: >
-        {% if is_state('group.bedroom', 'off') %}
-        0
-        {% else %}
-        {% set suggested = states.light.dereks_lamp.attributes.brightness - 51 %}
-        {% if suggested < 0 %}
-        {{ suggested }}
-        {% else %}
-        0
-        {% endif %}
-        {% endif %}
+    service: scene.turn_on
+    entity_id: scene.dim_bedroom

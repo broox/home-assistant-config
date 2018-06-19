@@ -1,20 +1,27 @@
+- name: Bedroom reading
+  entities:
+    light.master_bedroom:  # Light group from Hue (operates all lights at once)
+      state: on
+      brightness_pct: 99
+      rgb_color: [255,210,129]
+
 - name: Bright bedroom
   entities:
-    group.bedroom:
+    light.master_bedroom:
       state: on
       brightness_pct: 100
       color_temp: 325  # matches osrams at 100% brightness
 
 - name: Dim bedroom
   entities:
-    group.bedroom:
+    light.master_bedroom:
       state: on
-      brightness_pct: 4
-      color_temp: 446
+      brightness: 1
+      rgb_color: [255,161,40]
 
 - name: Relaxed bedroom
   entities:
-    group.bedroom:
+    light.master_bedroom:
       state: on
       brightness_pct: 50
       color_temp: 446
