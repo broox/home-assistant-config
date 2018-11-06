@@ -14,18 +14,14 @@ homeassistant:
       friendly_name: Bathroom floor
     cover.garage_door_opener:
       friendly_name: Garage door
-    group.stairwell:
-      icon: mdi:stairs
-    group.turntable_lights:
-      icon: mdi:album
     light.cabinets:
-      friendly_name: Cabinet accents
+      friendly_name: Cabinet accent
     light.dining_room_table_lights:
       friendly_name: Table lights
     light.exterior_front_porch:
       friendly_name: Front porch
     light.fridge_lights:
-      friendly_name: Fridge accents
+      friendly_name: Fridge accent
     light.front_foyer_foyer_light:
       friendly_name: Foyer light
     light.great_room:
@@ -55,9 +51,9 @@ homeassistant:
     light.rec_room:
       friendly_name: Rec room Hue bulbs
     light.stairwell:
-      friendly_name: Stairwell Hue bulbs
+      icon: mdi:stairs
     light.turntable:
-      friendly_name: Turntable Hue bulbs
+      icon: mdi:album
     media_player.samsung_tv_un60ks8000:
       friendly_name: Samsung TV
       initial_state: off
@@ -157,30 +153,134 @@ cloud:
         - group.signal
         - group.sonos
         - group.status
+
   google_actions:
     filter:
       exclude_domains:
         - alert
         - automation
+        - group
         - lock
         - media_player
         - script
+
       exclude_entities:
-        - group.all_automations
-        - group.all_devices
-        - group.batteries
-        - group.cameras
-        - group.default_view
-        - group.exterior_climate
-        - group.google_homes
-        - group.hass
-        - group.interior_climate
-        - group.maps
-        - group.modes
-        - group.scenes
-        - group.signal
-        - group.sonos
-        - group.status
+        - climate.entryway
+
+        # Lights in Hue Groups
+        - light.island_1
+        - light.island_2
+        - light.stairwell_1
+        - light.stairwell_2
+        - light.stairwell_3
+        - light.turntable_1
+        - light.turntable_2
+
+        # Hue groups that don't make sense
+        - light.great_room
+        - light.group_for_wakeup
+        - light.guest_bedroom
+        - light.guest_office
+        - light.kitchen
+        - light.master_bedroom
+        - light.office
+        - light.rec_room
+
+    entity_config:
+
+      # Bedroom
+      climate.master_bath:
+        room: Bedroom
+      light.dereks_lamp:
+        room: Bedroom
+      light.karis_top_bed_lamp:
+        room: Bedroom
+      light.karis_middle_bed_lamp:
+        room: Bedroom
+      light.karis_bottom_bed_lamp:
+        room: Bedroom
+      light.dresser_lamp:
+        room: Bedroom
+
+      # Entryway
+      light.front_foyer_foyer_light:
+        room: Entryway
+
+      # Guest Bedroom
+      light.guest_night_stand:
+        room: Guest bedroom
+      light.guest_dresser:
+        room: Guest bedroom
+      light.guest_dresser_lamp_2:
+        room: Guest bedroom
+      light.guest_dresser_lamp_3:
+        room: Guest bedroom
+
+      # Guest office
+      light.guest_futon:
+        room: Guest office
+      light.guest_desk:
+        room: Guest office
+
+      # Kitchen
+      light.island:
+        room: Kitchen
+      light.kitchen_cooking_lights:
+        room: Kitchen
+      light.dining_room_table_lights:
+        room: Dining room
+      light.sink_lights:
+        room: Kitchen
+      light.cabinets:
+        room: Kitchen
+      light.fridge_lights:
+        room: Kitchen
+
+      # Living room
+      switch.couch_ge_12721_switch:
+        room: Living room
+      light.living_room_ceiling_lamp:
+        room: Living room
+      light.turntable:
+        name: Turntable
+        room: Living room
+
+      # Lounge:
+      light.lounge_lounge_lights:
+        room: Lounge
+      light.stairwell:
+        name: Stairwell
+        room: Lounge
+
+      # Office
+      light.office_lamp:
+        room: Office
+      light.office_lamp_2:
+        room: Office
+      light.lamp_dimmer_one_level:
+        room: Office
+      switch.office_ge_12721_switch:
+        room: Office
+
+      # Outside
+      light.exterior_front_porch:
+        room: Outside
+      switch.exterior_driveway_light:
+        room: Outside
+
+      # Rec room
+      light.bar_table:
+        room: Rec room
+      light.basement_coffee_table:
+        room: Rec room
+      light.basement_couch_lamp:
+        room: Rec room
+      light.deer_head:
+        room: Rec room
+      light.foosball_table:
+        room: Rec room
+      light.rec_room_entry:
+        room: Rec room
 
 # Enables configuration UI
 config:
@@ -260,6 +360,7 @@ mqtt:
   port: 27170
   username: !secret mqtt_username
   password: !secret mqtt_password
+  certificate: auto
 
 nest:
   client_id: !secret nest_client_id
@@ -391,9 +492,9 @@ zone 3:
   radius: 200  # meters
 
 zone 4:
-  name: Stowe
-  latitude: !secret stowe_latitude
-  longitude: !secret stowe_longitude
+  name: Moulton
+  latitude: !secret moulton_latitude
+  longitude: !secret moulton_longitude
   icon: mdi:school
   radius: 300  # meters
 

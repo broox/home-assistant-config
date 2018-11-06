@@ -54,7 +54,7 @@
 
 - name: Movie time
   entities:
-    group.island_lights: off
+    light.island: off
     light.lounge_lounge_lights: off
     light.dining_room_table_lights: off
     switch.couch_ge_12721_switch: off
@@ -72,11 +72,11 @@
     light.front_foyer_foyer_light:
       state: on
       brightness_pct: 10
-    group.stairwell:
+    light.stairwell:
       state: on
       rgb_color: [255,63,0]  # red
       brightness_pct: 5
-    group.turntable_lights:
+    light.turntable:
       state: on
       rgb_color: [255,63,0]  # red
       brightness_pct: 5

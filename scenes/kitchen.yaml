@@ -19,7 +19,7 @@
 
 - name: Bright island
   entities:
-    group.island_lights:
+    light.island:
       state: on
       brightness_pct: 100
       color_temp: 325  # matches osrams at 100% brightness
@@ -89,7 +89,7 @@
 
 - name: Relaxed island
   entities:
-    group.island_lights:
+    light.island:
       state: on
       brightness_pct: 85
       color_temp: 446

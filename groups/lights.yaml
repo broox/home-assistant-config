@@ -45,13 +45,6 @@ guest_office:
     - light.guest_futon
     - light.guest_desk
 
-island_lights:
-  name: Island lights
-  icon: mdi:lightbulb
-  entities:
-    - light.island
-    - light.island_2
-
 karis_lamp:
   name: Kari's lamp
   icon: mdi:lightbulb
@@ -64,7 +57,7 @@ kitchen:
   name: Kitchen
   entities:
     - light.kitchen_cooking_lights
-    - group.island_lights
+    - light.island  # Hue group
     - light.dining_room_table_lights
     - light.sink_lights
     - light.cabinets
@@ -75,13 +68,13 @@ living_room:
   entities:
     - switch.couch_ge_12721_switch
     - light.living_room_ceiling_lamp
-    - group.turntable_lights
+    - light.turntable  # Hue group
 
 lounge:
   name: Lounge
   entities:
     - light.lounge_lounge_lights
-    - group.stairwell
+    - light.stairwell  # Hue group
 
 non_bedroom_lights:
   name: Non Bedroom lights
@@ -91,7 +84,7 @@ non_bedroom_lights:
   - group.kitchen
   - group.living_room
   - group.office
-  - group.stairwell
+  - group.lounge
 
 office:
   name: Office
@@ -111,19 +104,6 @@ rec_room:
     - light.foosball_table
     - light.rec_room_entry
 
-stairwell:
-  name: Stairwell
-  entities:
-  - light.stairwell_1
-  - light.stairwell_2
-  - light.stairwell_3
-
-turntable_lights:
-  name: Turntable lights
-  entities:
-  - light.turntable_1
-  - light.turntable_2
-
 upstairs:
   name: upstairs
   entities:
@@ -132,4 +112,4 @@ upstairs:
   - group.kitchen
   - group.living_room
   - group.office
-  - group.stairwell
+  - group.lounge
