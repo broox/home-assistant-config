@@ -1,0 +1,13 @@
+switch.couch_ge_12721_switch:
+  friendly_name: Couch lamp
+  icon: mdi:lightbulb
+switch.exterior_driveway_light:
+  friendly_name: Driveway lights
+  icon: mdi:lightbulb
+switch.office_ge_12721_switch:
+  friendly_name: Miffy
+  icon: mdi:lightbulb
+zwave.couch_ge_12721:
+  friendly_name: Couch outlet
+zwave.office_ge_12721:
+  friendly_name: Office outlet

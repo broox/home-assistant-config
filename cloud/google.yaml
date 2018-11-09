@@ -1,0 +1,131 @@
+google_actions:
+  filter:
+    exclude_domains:
+      - alert
+      - automation
+      - group
+      - lock
+      - media_player
+      - script
+
+    exclude_entities:
+      # Nest plays well with Google natively
+      - climate.entryway
+
+      # Redundant lights that are in Hue group lights
+      - light.island_1
+      - light.island_2
+      - light.stairwell_1
+      - light.stairwell_2
+      - light.stairwell_3
+      - light.turntable_1
+      - light.turntable_2
+
+      # Hue group lights that don't make sense
+      - light.great_room
+      - light.group_for_wakeup
+      - light.guest_bedroom
+      - light.guest_office
+      - light.kitchen
+      - light.master_bedroom
+      - light.office
+      - light.rec_room
+
+  entity_config:
+    # Defining these entities isn't required, but it makes removing and
+    # re-adding hass.io to Google Assistant much quicker since the entities
+    # will be auto-grouped into rooms.
+
+    # Bedroom
+    climate.master_bath:
+      room: Bedroom
+    light.dereks_lamp:
+      room: Bedroom
+    light.karis_top_bed_lamp:
+      room: Bedroom
+    light.karis_middle_bed_lamp:
+      room: Bedroom
+    light.karis_bottom_bed_lamp:
+      room: Bedroom
+    light.dresser_lamp:
+      room: Bedroom
+
+    # Entryway
+    light.front_foyer_foyer_light:
+      room: Entryway
+
+    # Guest Bedroom
+    light.guest_night_stand:
+      room: Guest bedroom
+    light.guest_dresser:
+      room: Guest bedroom
+    light.guest_dresser_lamp_2:
+      room: Guest bedroom
+    light.guest_dresser_lamp_3:
+      room: Guest bedroom
+
+    # Guest office
+    light.guest_futon:
+      room: Guest office
+    light.guest_desk:
+      room: Guest office
+
+    # Kitchen
+    light.island:
+      room: Kitchen
+    light.kitchen_cooking_lights:
+      room: Kitchen
+    light.dining_room_table_lights:
+      room: Dining room
+    light.sink_lights:
+      room: Kitchen
+    light.cabinets:
+      room: Kitchen
+    light.fridge_lights:
+      room: Kitchen
+
+    # Living room
+    switch.couch_ge_12721_switch:
+      room: Living room
+    light.living_room_ceiling_lamp:
+      room: Living room
+    light.turntable:
+      name: Turntable
+      room: Living room
+
+    # Lounge:
+    light.lounge_lounge_lights:
+      room: Lounge
+    light.stairwell:
+      name: Stairwell
+      room: Lounge
+
+    # Office
+    light.office_lamp:
+      room: Office
+    light.office_lamp_2:
+      room: Office
+    light.lamp_dimmer_one_level:
+      room: Office
+    switch.office_ge_12721_switch:
+      room: Office
+
+    # Outside
+    light.exterior_front_porch:
+      room: Outside
+    switch.exterior_driveway_light:
+      room: Outside
+
+    # Rec room
+    light.bar_table:
+      room: Rec room
+    light.basement_coffee_table:
+      room: Rec room
+    light.basement_couch_lamp:
+      room: Rec room
+    light.deer_head:
+      room: Rec room
+    light.foosball_table:
+      room: Rec room
+    light.rec_room_entry:
+      room: Rec room

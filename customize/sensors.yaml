@@ -1,0 +1,12 @@
+sensor.entryway_thermostat_temperature:
+  friendly_name: Inside temp
+sensor.entryway_thermostat_humidity:
+  friendly_name: Inside humidity
+sensor.dark_sky_apparent_temperature:
+  friendly_name: Feels like
+sensor.dark_sky_cloud_coverage:
+  friendly_name: Cloud coverage
+sensor.dark_sky_summary:
+  friendly_name: Conditions
+sensor.dark_sky_temperature:
+  friendly_name: Outside temp

@@ -1,0 +1,8 @@
+media_player.samsung_tv_un60ks8000:
+  friendly_name: Samsung TV
+  initial_state: off
+  start_off: true
+  # hidden: true
+media_player.kitchen_home:
+  friendly_name: Google Home
+  icon: mdi:google-assistant

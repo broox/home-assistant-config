@@ -1,0 +1,14 @@
+- platform: arlo
+  monitored_conditions:
+    - battery_level
+    - captured_today
+    - last_capture
+    - total_cameras
+    - signal_strength
+- platform: ring
+  monitored_conditions:
+    - battery
+    - last_activity
+    - last_ding
+    - last_motion
+    - volume

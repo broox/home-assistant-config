@@ -1,0 +1,19 @@
+- platform: darksky
+  api_key: !secret darksky_api_key
+  monitored_conditions:
+    - summary
+    - icon
+    - apparent_temperature
+    - apparent_temperature_max
+    - apparent_temperature_min
+    - cloud_cover
+    - humidity
+    - nearest_storm_distance
+    - precip_intensity
+    - precip_probability
+    - temperature
+    - temperature_max
+    - temperature_min
+    - wind_speed
+    - wind_bearing
+- platform: uptime

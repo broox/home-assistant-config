@@ -1,0 +1,40 @@
+light.cabinets:
+  friendly_name: Cabinet accent
+light.dining_room_table_lights:
+  friendly_name: Table lights
+light.exterior_front_porch:
+  friendly_name: Front porch
+light.fridge_lights:
+  friendly_name: Fridge accent
+light.front_foyer_foyer_light:
+  friendly_name: Foyer light
+light.great_room:
+  friendly_name: Great room Hue bulbs
+light.guest_bedroom:
+  friendly_name: Guest bedroom Hue bulbs
+light.guest_office:
+  friendly_name: Guest office Hue bulbs
+light.kitchen:
+  friendly_name: Kitchen Hue bulbs
+light.kitchen_cooking_lights:
+  friendly_name: Cooking lights
+light.lamp_dimmer_one_level:
+  friendly_name: Blinky
+  icon: mdi:ghost
+light.lamp_dimmer_two_level:
+  friendly_name: Christmas tree
+  icon: mdi:pine-tree
+light.living_room_ceiling_lamp:
+  friendly_name: Ceiling lamp
+light.lounge_lounge_lights:
+  friendly_name: Ceiling lights
+light.master_bedroom:
+  friendly_name: Master bedroom Hue bulbs
+light.office:
+  friendly_name: Office Hue bulbs
+light.rec_room:
+  friendly_name: Rec room Hue bulbs
+light.stairwell:
+  icon: mdi:stairs
+light.turntable:
+  icon: mdi:album
