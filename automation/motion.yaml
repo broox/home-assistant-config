@@ -1,0 +1,51 @@
+- id: office_motion_detected_day
+  alias: Office motion detected
+  trigger:
+    platform: state
+    entity_id: binary_sensor.office_motion
+    to: 'on'
+  condition:
+    - condition: and
+      conditions:
+        - condition: sun
+          after: sunrise
+        - condition: time
+          before: '22:00:00'
+        - condition: numeric_state
+          entity_id: sensor.vision_zp3111_multisensor_4in1_luminance
+          below: "30"
+  action:
+    - service: script.turn_off
+      data:
+        entity_id: script.office_motion_clear
+    - service: scene.turn_on
+      entity_id: scene.bright_office
+
+- id: office_motion_detected_night
+  alias: Office motion detected at night
+  trigger:
+    platform: state
+    entity_id: binary_sensor.office_motion
+    to: 'on'
+  condition:
+    - condition: or
+      conditions:
+        - condition: sun
+          before: sunrise
+        - condition: time
+          after: '21:59:59'
+  action:
+    - service: script.turn_off
+      data:
+        entity_id: script.office_motion_clear
+    - service: scene.turn_on
+      entity_id: scene.relaxed_office
+
+- id: office_motion_clear
+  alias: Office motion clear
+  trigger:
+    platform: state
+    entity_id: binary_sensor.office_motion
+    to: 'off'
+  action:
+    service: script.office_motion_clear

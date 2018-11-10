@@ -7,6 +7,31 @@ turn_off_house:
   - service: media_player.turn_off
     entity_id: group.sonos
 
+turn_off_office:
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.office  # Hue group
+        transition: 5
+    - service: light.turn_off
+      data:
+        entity_id: light.lamp_dimmer_one_level  # Blinky
+        transition: 5
+    - service: switch.turn_off
+      entity_id: switch.office_ge_12721_switch  # Miffy
+
+# Leave Miffy on
+turn_off_office_evening:
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.office  # Hue group
+        transition: 5
+    - service: light.turn_off
+      data:
+        entity_id: light.lamp_dimmer_one_level  # Blinky
+        transition: 5
+
 prepare_bedtime_lights:
   sequence:
   - condition: and

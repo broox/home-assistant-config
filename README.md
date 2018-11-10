@@ -23,6 +23,7 @@ My goals:
 * iPhone 7
 * Liftmaster MyQ Garage Door opener
 * Lutron Caséta dimmers and Pico remotes
+* Monoprice Z-Wave PIR motion sensors
 * Nest thermostat, protects, cameras
 * NuHeat Signature floor heating thermostat
 * Intel NUC to run [Home Assistant](https://home-assistant.io/)
