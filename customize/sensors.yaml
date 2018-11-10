@@ -1,3 +1,11 @@
+sensor.battery_level_dining_room:
+  friendly_name: Dining room Arlo battery
+sensor.battery_level_front:
+  friendly_name: Front yard Arlo battery
+sensor.battery_level_garage:
+  friendly_name: Garage Arlo battery
+sensor.battery_level_patio:
+  friendly_name: Patio Arlo battery
 sensor.entryway_thermostat_temperature:
   friendly_name: Inside temp
 sensor.entryway_thermostat_humidity:
