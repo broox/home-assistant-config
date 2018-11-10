@@ -1,0 +1,10 @@
+# My Monoprice Z-wave motion sensors don't report motion as binary. This is a
+# hack to create binary sensors off of the "alarm_level" reading.
+
+- platform: template
+  sensors:
+    office_motion:
+      device_class: motion
+      entity_id: sensor.vision_zp3111_multisensor_4in1_alarm_level
+      friendly_name: 'Office motion'
+      value_template: "{{ is_state('sensor.vision_zp3111_multisensor_4in1_alarm_level', '255') }}"

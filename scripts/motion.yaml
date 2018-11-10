@@ -1,0 +1,13 @@
+office_motion_clear:
+  sequence:
+    - delay:
+        minutes: 10
+    - service: script.turn_on
+      data_template:
+        entity_id: >-
+          {% if is_state('sun.sun', 'above_horizon') %}
+            script.turn_off_office
+          {% else %}
+            script.turn_off_office_evening
+          {% endif %}
+

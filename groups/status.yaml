@@ -2,10 +2,12 @@ batteries:
   name: Batteries
   entities:
     - sensor.entryway_nest_protect_battery_health
+    - sensor.basement_nest_protect_battery_health
     - sensor.battery_level_dining_room
     - sensor.battery_level_front
     - sensor.battery_level_garage
     - sensor.battery_level_patio
+    - sensor.office_motion_battery
 
 signal:
   name: Signal Strength
