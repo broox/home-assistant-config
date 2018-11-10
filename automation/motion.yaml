@@ -13,7 +13,7 @@
           before: '22:00:00'
         - condition: numeric_state
           entity_id: sensor.vision_zp3111_multisensor_4in1_luminance
-          below: "30"
+          below: "40"
   action:
     - service: script.turn_off
       data:
