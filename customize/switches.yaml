@@ -6,7 +6,7 @@ switch.exterior_driveway_light:
   icon: mdi:lightbulb
 switch.office_ge_12721_switch:
   friendly_name: Miffy
-  icon: mdi:lightbulb
+  icon: mdi:rabbit
 zwave.couch_ge_12721:
   friendly_name: Couch outlet
 zwave.office_ge_12721:
