@@ -31,6 +31,17 @@
     group.non_bedroom_lights: off
     light.exterior_front_porch: off
 
+- name: Bedtime early
+  entities:
+    light.master_bedroom: off
+    light.front_foyer_foyer_light:
+      state: on
+      brightness_pct: 10
+      transition: 3
+    light.exterior_front_porch:
+      state: off
+      transition: 3
+
 - name: Bedtime emergency
   entities:
     group.non_bedroom_lights: on

@@ -15,3 +15,5 @@ scenes:
   - scene.relaxed_upstairs
   - scene.movie_time
   - scene.bedtime
+  - script.go_to_sleep_early
+  - script.go_to_sleep_together

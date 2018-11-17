@@ -59,17 +59,34 @@
     service: scene.turn_on
     entity_id: scene.bedroom_reading
 
-# Turn off the bedroom lights
-- id: br_pico_off
+# Turn off the bedroom lights (if before 9pm)
+- id: br_pico_off_early
   alias: BR Pico off
   initial_state: True
   trigger:
     - platform: state
       entity_id: sensor.master_bedroom_pico
       to: '4'
+  condition:
+    condition: time
+    before: '21:00:00'
   action:
     service: light.turn_off
     entity_id: light.master_bedroom  # Hue group
+
+# Turn off the lights in/around the bedroom and start white noise (if after 9pm)
+- id: br_pico_off_bedtime
+  alias: BR Pico off
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.master_bedroom_pico
+      to: '4'
+  condition:
+    condition: time
+    after: '20:59:59'
+  action:
+    service: script.go_to_sleep_early
 
 # Brighten the bedroom lights
 - id: br_pico_up
