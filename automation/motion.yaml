@@ -49,3 +49,32 @@
     to: 'off'
   action:
     service: script.office_motion_clear
+
+- id: rec_room_motion_detected_night
+  alias: Rec room motion detected at night
+  trigger:
+    platform: state
+    entity_id: binary_sensor.rec_room_motion
+    to: 'on'
+  condition:
+    - condition: or
+      conditions:
+        - condition: sun
+          before: sunrise
+        - condition: sun
+          after: sunset
+  action:
+    - service: script.turn_off
+      data:
+        entity_id: script.rec_room_motion_clear
+    - service: scene.turn_on
+      entity_id: scene.red_rec_room
+
+- id: rec_room_motion_clear
+  alias: Rec room motion clear
+  trigger:
+    platform: state
+    entity_id: binary_sensor.rec_room_motion
+    to: 'off'
+  action:
+    service: script.rec_room_motion_clear

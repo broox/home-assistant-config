@@ -1,0 +1,27 @@
+- name: Red rec room
+  entities:
+    light.bar_table:
+      state: on
+      rgb_color: [255,93,40]
+      brightness: 76
+    light.basement_coffee_table:
+      state: on
+      rgb_color: [255,93,40]
+      brightness: 76
+    light.basement_couch_lamp:
+      state: on
+      rgb_color: [255,93,40]
+      brightness: 76
+    light.deer_head:
+      state: on
+      rgb_color: [255,70,55]
+      brightness: 76
+    light.foosball_table:
+      state: on
+      brightness: 144
+      color_temp: 443
+    light.rec_room_entry:
+      state: on
+      rgb_color: [255,93,40]
+      brightness: 76
+

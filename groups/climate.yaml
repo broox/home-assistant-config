@@ -17,3 +17,6 @@ interior_climate:
   entities:
   - sensor.entryway_thermostat_temperature
   - sensor.entryway_thermostat_humidity
+  - sensor.vision_zp3111_multisensor_4in1_temperature
+  - sensor.vision_zp3111_multisensor_4in1_relative_humidity
+  - sensor.vision_zp3102_pir_motion_sensor_temperature

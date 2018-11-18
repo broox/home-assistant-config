@@ -8,9 +8,10 @@ batteries:
     - sensor.battery_level_garage
     - sensor.battery_level_patio
     - sensor.office_motion_battery
+    - sensor.rec_room_motion_battery
 
 signal:
-  name: Signal Strength
+  name: Signal strength
   entities:
     - sensor.signal_strength_dining_room
     - sensor.signal_strength_front

@@ -21,3 +21,8 @@
       friendly_name: "Office motion sensor battery"
       entity_id: zwave.vision_zp3111_multisensor_4in1
       unit_of_measurement: '%'
+    rec_room_motion_battery:
+      value_template: "{{ states.zwave.vision_zp3102_pir_motion_sensor.attributes.battery_level }}"
+      friendly_name: "Rec room motion sensor battery"
+      entity_id: zwave.vision_zp3102_pir_motion_sensor
+      unit_of_measurement: '%'

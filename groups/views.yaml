@@ -53,5 +53,7 @@ status:
   entities:
     - group.batteries
     - group.signal
+    - group.interior_climate
     - group.bathroom
     - group.hass
+

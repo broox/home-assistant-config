@@ -7,9 +7,9 @@ sensor.battery_level_garage:
 sensor.battery_level_patio:
   friendly_name: Patio Arlo battery
 sensor.entryway_thermostat_temperature:
-  friendly_name: Inside temp
+  friendly_name: Entryway temp
 sensor.entryway_thermostat_humidity:
-  friendly_name: Inside humidity
+  friendly_name: Entryway humidity
 sensor.dark_sky_apparent_temperature:
   friendly_name: Feels like
 sensor.dark_sky_cloud_coverage:
@@ -18,3 +18,10 @@ sensor.dark_sky_summary:
   friendly_name: Conditions
 sensor.dark_sky_temperature:
   friendly_name: Outside temp
+sensor.vision_zp3111_multisensor_4in1_relative_humidity:
+  device_class: humidity
+  friendly_name: Office humidity
+sensor.vision_zp3111_multisensor_4in1_temperature:
+  friendly_name: Office temp
+sensor.vision_zp3102_pir_motion_sensor_temperature:
+  friendly_name: Rec room temp
