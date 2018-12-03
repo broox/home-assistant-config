@@ -8,6 +8,9 @@
       state: on
     scene.ambient_stairwell:
       state: on
+    light.dining_room_table_lights: off
+    light.front_foyer_foyer_light: off
+    light.lounge_lounge_lights: off
 
 - name: Bright great room
   entities:

@@ -1,17 +1,12 @@
-# TODO: motion detector toggles non-ambient lights accordingly
-
 - name: Ambient office
   entities:
-    switch.office_ge_12721_switch:  # Miffy
+    light.office_lamp: off
+    light.office_lamp_2: off
+    scene.office_accents:
       state: on
-    light.lamp_dimmer_one_level:  # Blinky
-      state: on
-      brightness_pct: 30
 
 - name: Bright office
   entities:
-    scene.ambient_office:
-      state: on
     light.office_lamp:
       state: on
       brightness_pct: 100
@@ -20,11 +15,11 @@
       state: on
       brightness_pct: 100
       color_temp: 325  # matches osrams at 100% brightness
+    scene.office_accents:
+      state: on
 
 - name: Chill office
   entities:
-    scene.ambient_office:
-      state: on
     light.office_lamp:
       state: on
       brightness_pct: 50
@@ -33,6 +28,8 @@
       state: on
       brightness_pct: 50
       color_temp: 446
+    scene.office_accents:
+      state: on
 
 - name: Energized office
   entities:
@@ -47,9 +44,17 @@
 
 - name: Orange office
   entities:
-    scene.ambient_office:
-      state: on
     light.office_lamp:
       state: on
       brightness_pct: 100
       rgb_color: [255, 95, 0]
+    scene.office_accents:
+      state: on
+
+- name: Office accents
+  entities:
+    light.lamp_dimmer_one_level:  # Blinky
+      state: on
+      brightness_pct: 30
+    switch.office_ge_12721_switch:  # Miffy
+      state: on

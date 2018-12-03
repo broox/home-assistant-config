@@ -2,12 +2,14 @@
 
 - name: Ambient kitchen
   entities:
-    scene.blue_kitchen_accents:
-      state: on
+    light.island: off
+    light.kitchen_cooking_lights: off
     light.sink_lights:
       state: on
       brightness_pct: 50
       color_temp: 325
+    scene.blue_kitchen_accents:
+      state: on
 
 - name: Blue kitchen accents
   entities:

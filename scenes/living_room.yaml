@@ -1,7 +1,9 @@
 - name: Ambient living room
   entities:
+    light.living_room_ceiling_lamp: off
     scene.red_turntable:
       state: on
+    switch.couch_ge_12721_switch: off
 
 - name: Bright living room
   entities:
