@@ -87,7 +87,7 @@ google_actions:
       room: Kitchen
     scene.bright_kitchen:
       room: Kitchen
-    scene.chill_kitchen:
+    scene.relaxed_kitchen:
       room: Kitchen
 
     # Living room
@@ -117,7 +117,7 @@ google_actions:
       room: Office
     scene.bright_office:
       room: Office
-    scene.chill_office:
+    scene.relaxed_office:
       room: Office
     scene.energized_office:
       room: Office

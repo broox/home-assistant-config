@@ -33,16 +33,16 @@
       brightness_pct: 100
       color_temp: 325  # matches osrams at 100% brightness
 
-- name: Chill bedroom
-  entities:
-    light.master_bedroom:
-      state: on
-      brightness_pct: 50
-      color_temp: 446
-
 - name: Dim bedroom
   entities:
     light.master_bedroom:
       state: on
       brightness: 1
       rgb_color: [255,161,40]
+
+- name: Relaxed bedroom
+  entities:
+    light.master_bedroom:
+      state: on
+      brightness_pct: 50
+      color_temp: 446

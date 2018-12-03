@@ -20,19 +20,6 @@
     switch.couch_ge_12721_switch:
       state: on
 
-- name: Chill living room
-  entities:
-    light.living_room_ceiling_lamp:
-      state: on
-      brightness_pct: 30
-    light.front_foyer_foyer_light:
-      state: on
-      brightness_pct: 30
-    scene.red_turntable:
-      state: on
-    switch.couch_ge_12721_switch:
-      state: on
-
 - name: Orange turntable
   entities:
     light.turntable:
@@ -46,3 +33,16 @@
       state: on
       rgb_color: [255,63,0]
       brightness_pct: 70
+
+- name: Relaxed living room
+  entities:
+    light.living_room_ceiling_lamp:
+      state: on
+      brightness_pct: 30
+    light.front_foyer_foyer_light:
+      state: on
+      brightness_pct: 30
+    scene.red_turntable:
+      state: on
+    switch.couch_ge_12721_switch:
+      state: on

@@ -46,7 +46,7 @@ prepare_bedtime_lights:
       - condition: sun
         before: sunrise
   - service: scene.turn_on
-    entity_id: scene.chill_bedroom
+    entity_id: scene.relaxed_bedroom
   - service: notify.pushbullet
     data:
       title: Lights
@@ -55,7 +55,7 @@ prepare_bedtime_lights:
 bedtime:
   sequence:
   - service: scene.turn_on
-    entity_id: scene.chill_bedroom
+    entity_id: scene.relaxed_bedroom
   - delay: 00:01:00  # minute
   - service: homeassistant.turn_off
     entity_id: group.non_bedroom_lights

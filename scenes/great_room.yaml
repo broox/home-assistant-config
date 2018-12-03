@@ -25,18 +25,6 @@
     scene.bright_stairwell:
       state: on
 
-- name: Chill great room
-  entities:
-    scene.chill_dining_room:
-      state: on
-    scene.chill_kitchen:
-      state: on
-    scene.chill_living_room:
-      state: on
-    light.lounge_lounge_lights: off
-    scene.chill_stairwell:
-      state: on
-
 - name: Movie time
   entities:
     light.island: off
@@ -75,6 +63,18 @@
     scene.orange_office:
       state: on
 
+- name: Relaxed great room
+  entities:
+    scene.relaxed_dining_room:
+      state: on
+    scene.relaxed_kitchen:
+      state: on
+    scene.relaxed_living_room:
+      state: on
+    light.lounge_lounge_lights: off
+    scene.relaxed_stairwell:
+      state: on
+
 # Upstairs
 
 - name: Bright upstairs
@@ -86,11 +86,11 @@
     scene.bright_office:
       state: on
 
-- name: Chill upstairs
+- name: Relaxed upstairs
   entities:
-    scene.chill_great_room:
+    scene.relaxed_great_room:
       state: on
-    scene.chill_bedroom:
+    scene.relaxed_bedroom:
       state: on
-    scene.chill_office:
+    scene.relaxed_office:
       state: on

@@ -23,7 +23,7 @@
         before: sunrise
   action:
   - service: scene.turn_on
-    entity_id: scene.chill_upstairs
+    entity_id: scene.relaxed_upstairs
   - service: notify.pushbullet
     data:
       title: Lights
@@ -168,7 +168,7 @@
       before: '21:00:00'
   action:
   - service: scene.turn_on
-    entity_id: scene.chill_upstairs
+    entity_id: scene.relaxed_upstairs
   - service: notify.pushbullet
     data:
       title: Lights

@@ -12,13 +12,6 @@
       brightness_pct: 100
       color_temp: 325  # matches osrams at 100% brightness
 
-- name: Chill stairwell
-  entities:
-    light.stairwell:
-      state: on
-      brightness_pct: 78
-      profile: relax
-
 - name: Red stairwell
   entities:
     light.stairwell_1:
@@ -33,3 +26,10 @@
       state: on
       xy_color: [0.6375,0.3362]
       brightness: 75
+
+- name: Relaxed stairwell
+  entities:
+    light.stairwell:
+      state: on
+      brightness_pct: 78
+      profile: relax

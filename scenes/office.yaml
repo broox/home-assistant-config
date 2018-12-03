@@ -18,19 +18,6 @@
     scene.office_accents:
       state: on
 
-- name: Chill office
-  entities:
-    light.office_lamp:
-      state: on
-      brightness_pct: 50
-      color_temp: 446
-    light.office_lamp_2:
-      state: on
-      brightness_pct: 50
-      color_temp: 446
-    scene.office_accents:
-      state: on
-
 - name: Energized office
   entities:
     light.office_lamp:
@@ -57,4 +44,17 @@
       state: on
       brightness_pct: 30
     switch.office_ge_12721_switch:  # Miffy
+      state: on
+
+- name: Relaxed office
+  entities:
+    light.office_lamp:
+      state: on
+      brightness_pct: 50
+      color_temp: 446
+    light.office_lamp_2:
+      state: on
+      brightness_pct: 50
+      color_temp: 446
+    scene.office_accents:
       state: on

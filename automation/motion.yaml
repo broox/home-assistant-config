@@ -33,7 +33,7 @@
           before: sunrise
   action:
     - service: scene.turn_on
-      entity_id: scene.chill_office
+      entity_id: scene.relaxed_office
 
 # Leave lights in their current state when there is motion
 - id: office_motion_detected

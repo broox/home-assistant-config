@@ -98,7 +98,7 @@
       to: '8'
   action:
     service: scene.turn_on
-    entity_id: scene.chill_bedroom
+    entity_id: scene.relaxed_bedroom
 
 # Dim the bedroom lights
 - id: br_pico_down
