@@ -1,3 +1,95 @@
+- name: Ambient rec room
+  entities:
+    light.basement_couch_lamp:
+      state: on
+      rgb_color: [255,93,40]
+      brightness: 76
+    light.deer_head:
+      state: on
+      rgb_color: [255,70,55]
+      brightness: 76
+
+- name: Chill foosball
+  entities:
+    light.bar_table:
+      state: on
+      rgb_color: [255,161,40]
+      brightness_pct: 5
+    light.basement_coffee_table:
+      state: on
+      rgb_color: [255,161,40]
+      brightness_pct: 5
+    light.basement_couch_lamp:
+      state: on
+      rgb_color: [255,161,40]
+      brightness_pct: 5
+    light.deer_head:
+      state: on
+      rgb_color: [255,161,40]
+      brightness_pct: 5
+    light.foosball_table:
+      state: on
+      brightness_pct: 100
+      color_temp: 447
+    light.rec_room_entry:
+      state: on
+      rgb_color: [255,161,40]
+      brightness_pct: 5
+
+- name: Chill rec room
+  entities:
+    light.bar_table:
+      state: on
+      rgb_color: [255,188,85]
+      brightness_pct: 56
+    light.basement_coffee_table:
+      state: on
+      rgb_color: [255,188,85]
+      brightness_pct: 56
+    light.basement_couch_lamp:
+      state: on
+      rgb_color: [255,188,85]
+      brightness_pct: 56
+    light.deer_head:
+      state: on
+      rgb_color: [255,188,85]
+      brightness_pct: 56
+    light.foosball_table:
+      state: on
+      brightness_pct: 56
+      color_temp: 443
+    light.rec_room_entry:
+      state: on
+      rgb_color: [255,188,85]
+      brightness_pct: 56
+
+- name: Bright rec room
+  entities:
+    light.bar_table:
+      state: on
+      rgb_color: [255,210,129]
+      brightness_pct: 100
+    light.basement_coffee_table:
+      state: on
+      rgb_color: [255,210,129]
+      brightness_pct: 100
+    light.basement_couch_lamp:
+      state: on
+      rgb_color: [255,210,129]
+      brightness_pct: 100
+    light.deer_head:
+      state: on
+      rgb_color: [255,210,129]
+      brightness_pct: 100
+    light.foosball_table:
+      state: on
+      brightness_pct: 100
+      color_temp: 343
+    light.rec_room_entry:
+      state: on
+      rgb_color: [255,210,129]
+      brightness_pct: 100
+
 - name: Red rec room
   entities:
     light.bar_table:
@@ -24,4 +116,3 @@
       state: on
       rgb_color: [255,93,40]
       brightness: 76
-

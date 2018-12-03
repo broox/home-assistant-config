@@ -1,5 +1,5 @@
-- id: office_motion_detected_day
-  alias: Office motion detected
+- id: office_motion_detected_dark_day
+  alias: Office motion detected (when dark)
   trigger:
     platform: state
     entity_id: binary_sensor.office_motion
@@ -15,9 +15,6 @@
           entity_id: sensor.vision_zp3111_multisensor_4in1_luminance
           below: "40"
   action:
-    - service: script.turn_off
-      data:
-        entity_id: script.office_motion_clear
     - service: scene.turn_on
       entity_id: scene.bright_office
 
@@ -30,16 +27,25 @@
   condition:
     - condition: or
       conditions:
-        - condition: sun
-          before: sunrise
         - condition: time
           after: '21:59:59'
+        - condition: sun
+          before: sunrise
+  action:
+    - service: scene.turn_on
+      entity_id: scene.chill_office
+
+# Leave lights in their current state when there is motion
+- id: office_motion_detected
+  alias: Office motion detected
+  trigger:
+    platform: state
+    entity_id: binary_sensor.office_motion
+    to: 'on'
   action:
     - service: script.turn_off
       data:
         entity_id: script.office_motion_clear
-    - service: scene.turn_on
-      entity_id: scene.relaxed_office
 
 - id: office_motion_clear
   alias: Office motion clear

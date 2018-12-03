@@ -21,10 +21,21 @@
       brightness_pct: 100
       color_temp: 325  # matches osrams at 100% brightness
 
-- name: Energized office
+- name: Chill office
   entities:
     scene.ambient_office:
       state: on
+    light.office_lamp:
+      state: on
+      brightness_pct: 50
+      color_temp: 446
+    light.office_lamp_2:
+      state: on
+      brightness_pct: 50
+      color_temp: 446
+
+- name: Energized office
+  entities:
     light.office_lamp:
       state: on
       brightness_pct: 100
@@ -42,16 +53,3 @@
       state: on
       brightness_pct: 100
       rgb_color: [255, 95, 0]
-
-- name: Relaxed office
-  entities:
-    scene.ambient_office:
-      state: on
-    light.office_lamp:
-      state: on
-      brightness_pct: 50
-      color_temp: 446
-    light.office_lamp_2:
-      state: on
-      brightness_pct: 50
-      color_temp: 446

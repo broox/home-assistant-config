@@ -1,5 +1,14 @@
 # TODO: cooking and dining
 
+- name: Ambient kitchen
+  entities:
+    scene.blue_kitchen_accents:
+      state: on
+    light.sink_lights:
+      state: on
+      brightness_pct: 50
+      color_temp: 325
+
 - name: Blue kitchen accents
   entities:
     light.cabinets:
@@ -49,6 +58,42 @@
       brightness_pct: 100
       color_temp: 325
 
+- name: Chill kitchen
+  entities:
+    scene.blue_kitchen_accents:
+      state: on
+    scene.chill_island:
+      state: on
+    scene.chill_sink:
+      state: on
+    light.kitchen_cooking_lights: off
+
+- name: Chill dining room
+  entities:
+    light.dining_room_table_lights:
+      state: on
+      brightness_pct: 30
+
+- name: Chill island
+  entities:
+    light.island:
+      state: on
+      brightness_pct: 85
+      color_temp: 446
+
+- name: Chill lounge
+  entities:
+    light.lounge_lounge_lights:
+      state: on
+      brightness_pct: 30
+
+- name: Chill sink
+  entities:
+    light.sink_lights:
+      state: on
+      brightness_pct: 85
+      color_temp: 346
+
 - name: Orange kitchen accents
   entities:
     light.cabinets:
@@ -70,40 +115,3 @@
       state: on
       rgb_color: [255,63,0]
       brightness_pct: 95
-
-- name: Relaxed kitchen
-  entities:
-    scene.blue_kitchen_accents:
-      state: on
-    scene.relaxed_island:
-      state: on
-    scene.relaxed_sink:
-      state: on
-    light.kitchen_cooking_lights: off
-
-- name: Relaxed dining room
-  entities:
-    light.dining_room_table_lights:
-      state: on
-      brightness_pct: 30
-
-- name: Relaxed island
-  entities:
-    light.island:
-      state: on
-      brightness_pct: 85
-      color_temp: 446
-
-- name: Relaxed lounge
-  entities:
-    light.lounge_lounge_lights:
-      state: on
-      brightness_pct: 30
-
-- name: Relaxed sink
-  entities:
-    light.sink_lights:
-      state: on
-      brightness_pct: 85
-      color_temp: 346
-

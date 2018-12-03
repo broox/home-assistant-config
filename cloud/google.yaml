@@ -83,6 +83,12 @@ google_actions:
       room: Kitchen
     light.fridge_lights:
       room: Kitchen
+    scene.ambient_kitchen:
+      room: Kitchen
+    scene.bright_kitchen:
+      room: Kitchen
+    scene.chill_kitchen:
+      room: Kitchen
 
     # Living room
     switch.couch_ge_12721_switch:
@@ -106,6 +112,14 @@ google_actions:
     light.office_lamp_2:
       room: Office
     light.lamp_dimmer_one_level:
+      room: Office
+    scene.ambient_office:
+      room: Office
+    scene.bright_office:
+      room: Office
+    scene.chill_office:
+      room: Office
+    scene.energized_office:
       room: Office
     switch.office_ge_12721_switch:
       room: Office

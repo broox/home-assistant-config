@@ -7,12 +7,12 @@ scenes:
   name: Scenes
   entities:
   - scene.bright_kitchen
-  - scene.relaxed_kitchen
+  - scene.chill_kitchen
   - scene.bright_great_room
   - scene.bright_upstairs
   - scene.orange_great_room
-  - scene.relaxed_great_room
-  - scene.relaxed_upstairs
+  - scene.chill_great_room
+  - scene.chill_upstairs
   - scene.movie_time
   - scene.bedtime
   - script.go_to_sleep_early

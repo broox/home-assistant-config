@@ -1,5 +1,14 @@
 # TODO: on weekdays, move from bright to dim after 9pm
 
+- name: Ambient great room
+  entities:
+    scene.ambient_kitchen:
+      state: on
+    scene.ambient_living_room:
+      state: on
+    scene.ambient_stairwell:
+      state: on
+
 - name: Bright great room
   entities:
     scene.bright_dining_room:
@@ -13,43 +22,16 @@
     scene.bright_stairwell:
       state: on
 
-- name: Relaxed great room
+- name: Chill great room
   entities:
-    scene.relaxed_dining_room:
+    scene.chill_dining_room:
       state: on
-    scene.relaxed_kitchen:
+    scene.chill_kitchen:
       state: on
-    scene.relaxed_living_room:
+    scene.chill_living_room:
       state: on
     light.lounge_lounge_lights: off
-    scene.relaxed_stairwell:
-      state: on
-
-- name: Bright upstairs
-  entities:
-    scene.bright_great_room:
-      state: on
-    scene.bright_bedroom:
-      state: on
-    scene.bright_office:
-      state: on
-
-- name: Orange great room
-  entities:
-    scene.orange_kitchen_accents:
-      state: on
-    scene.orange_turntable:
-      state: on
-    scene.orange_office:
-      state: on
-
-- name: Relaxed upstairs
-  entities:
-    scene.relaxed_great_room:
-      state: on
-    scene.relaxed_bedroom:
-      state: on
-    scene.relaxed_office:
+    scene.chill_stairwell:
       state: on
 
 - name: Movie time
@@ -80,3 +62,32 @@
       state: on
       rgb_color: [255,63,0]  # red
       brightness_pct: 5
+
+- name: Orange great room
+  entities:
+    scene.orange_kitchen_accents:
+      state: on
+    scene.orange_turntable:
+      state: on
+    scene.orange_office:
+      state: on
+
+# Upstairs
+
+- name: Bright upstairs
+  entities:
+    scene.bright_great_room:
+      state: on
+    scene.bright_bedroom:
+      state: on
+    scene.bright_office:
+      state: on
+
+- name: Chill upstairs
+  entities:
+    scene.chill_great_room:
+      state: on
+    scene.chill_bedroom:
+      state: on
+    scene.chill_office:
+      state: on

@@ -13,5 +13,5 @@
   entities:
     scene.christmas_kitchen_accents:
       state: on
-    scene.relaxed_island:
+    scene.chill_island:
       state: on

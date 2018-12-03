@@ -5,27 +5,6 @@
       brightness_pct: 99
       rgb_color: [255,210,129]
 
-- name: Bright bedroom
-  entities:
-    light.master_bedroom:
-      state: on
-      brightness_pct: 100
-      color_temp: 325  # matches osrams at 100% brightness
-
-- name: Dim bedroom
-  entities:
-    light.master_bedroom:
-      state: on
-      brightness: 1
-      rgb_color: [255,161,40]
-
-- name: Relaxed bedroom
-  entities:
-    light.master_bedroom:
-      state: on
-      brightness_pct: 50
-      color_temp: 446
-
 - name: Bedtime
   entities:
     group.non_bedroom_lights: off
@@ -46,3 +25,24 @@
   entities:
     group.non_bedroom_lights: on
     light.exterior_front_porch: on
+
+- name: Bright bedroom
+  entities:
+    light.master_bedroom:
+      state: on
+      brightness_pct: 100
+      color_temp: 325  # matches osrams at 100% brightness
+
+- name: Chill bedroom
+  entities:
+    light.master_bedroom:
+      state: on
+      brightness_pct: 50
+      color_temp: 446
+
+- name: Dim bedroom
+  entities:
+    light.master_bedroom:
+      state: on
+      brightness: 1
+      rgb_color: [255,161,40]
