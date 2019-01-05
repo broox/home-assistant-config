@@ -98,6 +98,9 @@ google_actions:
     light.turntable:
       name: Turntable
       room: Living room
+    light.lamp_dimmer_two_level:
+      name: Christmas tree
+      room: Living room
 
     # Lounge:
     light.lounge_lounge_lights:
@@ -128,6 +131,8 @@ google_actions:
     light.exterior_front_porch:
       room: Outside
     switch.exterior_driveway_light:
+      room: Outside
+    switch.exterior_christmas_lights:
       room: Outside
 
     # Rec room

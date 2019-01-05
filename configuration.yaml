@@ -44,7 +44,7 @@ lutron_caseta_pro:
   bridges:
     - host: !secret lutron_host_ip
       mac: !secret lutron_mac
-      switch: [9]
+      switch: [9, 16]
 
 # Enable Home Assistant Cloud (for voice control)
 cloud: !include_dir_merge_named cloud

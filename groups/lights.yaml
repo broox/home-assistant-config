@@ -25,6 +25,7 @@ exterior:
   entities:
   - light.exterior_front_porch
   - switch.exterior_driveway_light
+  - switch.exterior_christmas_lights
 
 foyer:
   name: Foyer
@@ -69,6 +70,7 @@ living_room:
     - switch.couch_ge_12721_switch
     - light.living_room_ceiling_lamp
     - light.turntable  # Hue group
+    - light.lamp_dimmer_two_level
 
 lounge:
   name: Lounge

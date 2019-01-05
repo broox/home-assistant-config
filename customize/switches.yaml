@@ -1,3 +1,6 @@
+switch.exterior_christmas_lights:
+  friendly_name: Christmas lights
+  icon: mdi:lightbulb
 switch.couch_ge_12721_switch:
   friendly_name: Couch lamp
   icon: mdi:lightbulb

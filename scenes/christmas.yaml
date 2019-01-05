@@ -1,3 +1,11 @@
+- name: Christmas lights
+  entities:
+    light.lamp_dimmer_two_level:
+      state: on
+      brightness_pct: 100
+    switch.exterior_christmas_lights:
+      state: on
+
 - name: Christmas kitchen accents
   entities:
     light.cabinets:
