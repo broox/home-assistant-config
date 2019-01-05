@@ -1,122 +1,80 @@
 - name: Ambient rec room
   entities:
-    light.bar_table: off
-    light.basement_coffee_table: off
-    light.basement_couch_lamp:
+    light.main_rec_room_ceiling_lights: off  # ceiling light hue group
+    light.ambient_rec_room_lights:  # hue group
       state: on
       rgb_color: [255,93,40]
-      brightness: 76
-    light.deer_head:
-      state: on
-      rgb_color: [255,70,55]
-      brightness: 76
-    light.foosball_table: off
-    light.rec_room_entry: off
+      brightness_pct: 30
 
 - name: Bright rec room
   entities:
-    light.bar_table:
+    light.ambient_rec_room_lights:  # hue group
       state: on
       rgb_color: [255,210,129]
       brightness_pct: 100
-    light.basement_coffee_table:
-      state: on
-      rgb_color: [255,210,129]
-      brightness_pct: 100
-    light.basement_couch_lamp:
-      state: on
-      rgb_color: [255,210,129]
-      brightness_pct: 100
-    light.deer_head:
-      state: on
-      rgb_color: [255,210,129]
-      brightness_pct: 100
+      transition: 1
     light.foosball_table:
       state: on
       brightness_pct: 100
       color_temp: 343
-    light.rec_room_entry:
+      transition: 1
+    light.rec_room_color_ceiling_lights:  # hue group
       state: on
-      rgb_color: [255,210,129]
       brightness_pct: 100
+      color_temp: 343
+      transition: 1
 
 - name: Red rec room
   entities:
-    light.bar_table:
+    light.ambient_rec_room_lights:  # hue group
       state: on
       rgb_color: [255,93,40]
-      brightness: 76
-    light.basement_coffee_table:
-      state: on
-      rgb_color: [255,93,40]
-      brightness: 76
-    light.basement_couch_lamp:
-      state: on
-      rgb_color: [255,93,40]
-      brightness: 76
-    light.deer_head:
-      state: on
-      rgb_color: [255,70,55]
-      brightness: 76
+      brightness_pct: 30
+      transition: 1
     light.foosball_table:
       state: on
-      brightness: 144
+      brightness_pct: 56
       color_temp: 443
-    light.rec_room_entry:
+      transition: 2
+    light.rec_room_color_ceiling_lights:  # hue group
       state: on
-      rgb_color: [255,93,40]
-      brightness: 76
+      rgb_color: [255,70,55]
+      brightness_pct: 76
+      transition: 1
 
 - name: Relaxed foosball
   entities:
-    light.bar_table:
+    light.ambient_rec_room_lights:  # hue group
       state: on
-      rgb_color: [255,161,40]
-      brightness_pct: 5
-    light.basement_coffee_table:
-      state: on
-      rgb_color: [255,161,40]
-      brightness_pct: 5
-    light.basement_couch_lamp:
-      state: on
-      rgb_color: [255,161,40]
-      brightness_pct: 5
-    light.deer_head:
-      state: on
-      rgb_color: [255,161,40]
-      brightness_pct: 5
+      rgb_color: [255,93,40]
+      brightness_pct: 30
+      transition: 1
     light.foosball_table:
       state: on
       brightness_pct: 100
       color_temp: 447
-    light.rec_room_entry:
+      transition: 2
+    light.rec_room_color_ceiling_lights:  # hue group
       state: on
       rgb_color: [255,161,40]
       brightness_pct: 5
+      transition: 1
 
 - name: Relaxed rec room
   entities:
-    light.bar_table:
+    light.ambient_rec_room_lights:  # hue group
       state: on
-      rgb_color: [255,188,85]
-      brightness_pct: 56
-    light.basement_coffee_table:
-      state: on
-      rgb_color: [255,188,85]
-      brightness_pct: 56
-    light.basement_couch_lamp:
-      state: on
-      rgb_color: [255,188,85]
-      brightness_pct: 56
-    light.deer_head:
-      state: on
-      rgb_color: [255,188,85]
-      brightness_pct: 56
+      rgb_color: [255,93,40]
+      brightness_pct: 30
+      transition: 1
     light.foosball_table:
       state: on
       brightness_pct: 56
       color_temp: 443
-    light.rec_room_entry:
+      transition: 2
+    light.rec_room_color_ceiling_lights:  # ceiling light hue group
       state: on
-      rgb_color: [255,188,85]
       brightness_pct: 56
+      color_temp: 443
+      transition: 1
+

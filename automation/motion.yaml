@@ -74,7 +74,7 @@
       data:
         entity_id: script.rec_room_motion_clear
     - service: scene.turn_on
-      entity_id: scene.red_rec_room
+      entity_id: scene.relaxed_foosball
 
 - id: rec_room_motion_clear
   alias: Rec room motion clear
@@ -84,3 +84,4 @@
     to: 'off'
   action:
     service: script.rec_room_motion_clear
+
