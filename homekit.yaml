@@ -1,0 +1,30 @@
+# Note: Apple has a limit of 100 devices
+
+auto_start: false  # This is necessary in order to give Z-Wave time to startup
+filter:
+  include_domains:
+    - climate
+    - cover
+    - input_boolean
+    - light
+    - switch
+
+  exclude_entities:
+    # Redundant lights that are in Hue group lights
+    - light.island_1
+    - light.island_2
+    - light.stairwell_1
+    - light.stairwell_2
+    - light.stairwell_3
+    - light.turntable_1
+    - light.turntable_2
+
+    # Hue group lights that don't make sense
+    - light.great_room
+    - light.group_for_wakeup
+    - light.guest_bedroom
+    - light.guest_office
+    - light.kitchen
+    - light.master_bedroom
+    - light.office
+    - light.rec_room
