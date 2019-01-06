@@ -166,20 +166,8 @@ script: !include_dir_merge_named scripts
 
 sensor: !include_dir_merge_list sensors
 
-switch:
-  - platform: template
-    switches:
-      party_christmas:
-        friendly_name: Party christmas
-        value_template: "{{ is_state('script.party_christmas', 'on') or is_state('script.restart_party_christmas', 'on') }}"
-        turn_on:
-          service: script.turn_on
-          data:
-            entity_id: script.party_christmas
-        turn_off:
-          service: script.turn_on
-          data:
-            entity_id: script.stop_party_christmas
+switch: !include_dir_merge_list switches
+
 
 # Track the sun
 sun:
