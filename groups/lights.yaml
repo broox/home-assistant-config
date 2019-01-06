@@ -19,6 +19,7 @@ bedroom:
   - light.karis_middle_bed_lamp
   - light.karis_bottom_bed_lamp
   - light.dresser_lamp
+  - switch.white_noise
 
 exterior:
   name: Exterior
