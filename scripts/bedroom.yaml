@@ -12,11 +12,9 @@ go_to_sleep_early:
     - service: script.turn_on
       data:
         entity_id: script.dim_foyer_if_on
-    - service: media_player.play_media
-      entity_id: media_player.bedroom_speaker
+    - service: script.turn_on
       data:
-        media_content_id: !secret white_noise_mp3_url
-        media_content_type: "audio/mp3"
+        entity_id: script.play_white_noise
 
 dim_foyer_if_on:
   sequence:
@@ -38,6 +36,13 @@ go_to_sleep_together:
         entity_id: light.master_bedroom  # The Hue transition is better than the Hass one
     - service: scene.turn_on
       entity_id: scene.bedtime
+    - service: script.turn_on
+      data:
+        entity_id: script.play_white_noise
+
+play_white_noise:
+  alias: "White noise"
+  sequence:
     - service: media_player.play_media
       entity_id: media_player.bedroom_speaker
       data:
