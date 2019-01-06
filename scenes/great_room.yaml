@@ -38,6 +38,10 @@
       state: on
       rgb_color: [255,63,0]
       brightness_pct: 70
+    light.fireplace_accent:
+      state: on
+      rgb_color: [255,63,0]
+      brightness_pct: 70
     light.fridge_lights:
       state: on
       rgb_color: [255,63,0]

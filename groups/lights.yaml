@@ -63,6 +63,7 @@ kitchen:
     - light.sink_lights
     - light.cabinets
     - light.fridge_lights
+    - light.fireplace_accent
 
 living_room:
   name: Living room
