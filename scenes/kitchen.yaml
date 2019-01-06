@@ -2,6 +2,10 @@
 
 - name: Ambient kitchen
   entities:
+    light.fireplace_accent:
+      state: on
+      brightness_pct: 100
+      rgb_color: [255,60,13]
     light.island: off
     light.kitchen_cooking_lights: off
     light.sink_lights:
@@ -43,6 +47,10 @@
       state: on
     scene.bright_sink:
       state: on
+    light.fireplace_accent:
+      state: on
+      brightness_pct: 100
+      rgb_color: [255,60,13]
     light.kitchen_cooking_lights:
       state: on
       brightness_pct: 100
@@ -66,6 +74,10 @@
       state: on
       rgb_color: [255, 95, 0]
       brightness_pct: 100
+    light.fireplace_accent:
+      state: on
+      rgb_color: [255, 95, 0]
+      brightness_pct: 100
     light.fridge_lights:
       state: on
       rgb_color: [255, 95, 0]
@@ -74,6 +86,10 @@
 - name: Red kitchen accents
   entities:
     light.cabinets:
+      state: on
+      rgb_color: [255,63,0]
+      brightness_pct: 95
+    light.fireplace_accent:
       state: on
       rgb_color: [255,63,0]
       brightness_pct: 95
@@ -90,6 +106,10 @@
       state: on
     scene.relaxed_sink:
       state: on
+    light.fireplace_accent:
+      state: on
+      brightness_pct: 100
+      rgb_color: [255,60,13]
     light.kitchen_cooking_lights: off
 
 - name: Relaxed dining room
