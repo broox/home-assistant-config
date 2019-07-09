@@ -10,8 +10,9 @@
     entity_id: input_boolean.guest_mode
     state: 'off'
   action:
-    service: alarm_control_panel.alarm_arm_away
-    entity_id: alarm_control_panel.living_room
+    - service: alarm_control_panel.alarm_arm_away
+      entity_id: alarm_control_panel.living_room
+    - service: cloud.remote_connect
 
 - id: disarm_arlo_when_arriving
   alias: Set Arlo cameras to Home mode when arriving
@@ -21,5 +22,6 @@
     from: not_home
     to: home
   action:
-    service: alarm_control_panel.alarm_arm_home
-    entity_id: alarm_control_panel.living_room
+    - service: alarm_control_panel.alarm_arm_home
+      entity_id: alarm_control_panel.living_room
+    - service: cloud.remote_disconnect

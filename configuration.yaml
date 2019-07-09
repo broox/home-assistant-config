@@ -125,14 +125,6 @@ media_player:
   #   port: 8001
   #   name: Living Room TV
 
-# Presence / CloudMQTT / Owntracks
-mqtt:
-  broker: m12.cloudmqtt.com
-  port: 27170
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-  certificate: auto
-
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_secret
@@ -149,6 +141,18 @@ nuheat:
   username: !secret nuheat_username
   password: !secret nuheat_password
   devices: !secret nuheat_thermostat
+
+person:
+  - name: Derek
+    id: broox
+    user_id: !secret user_id_broox
+    device_trackers:
+      - device_tracker.life360_derek_brooks
+  - name: Kari
+    id: kbroox
+    user_id: !secret user_id_kbroox
+    device_trackers:
+      - device_tracker.life360_kari
 
 # Make sure to purge the history to keep the DB reasonably sized.
 recorder:
@@ -235,3 +239,9 @@ zone 6:
   radius: 120
   icon: mdi:dumbbell
 
+zone 7:
+  name: Pool
+  latitude: !secret pool_latitude
+  longitude: !secret pool_longitude
+  radius: 120
+  icon: mdi:swim

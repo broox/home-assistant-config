@@ -3,8 +3,8 @@ default_view:
   view: yes
   entities:
   - sensor.entryway_thermostat_temperature
-  - device_tracker.derek_derek
-  - device_tracker.kari_kari
+  - person.derek
+  - person.kari
   - sensor.dark_sky_temperature
   - group.kitchen
   - group.living_room
@@ -42,8 +42,8 @@ maps:
   name: Maps
   view: yes
   entities:
-    - device_tracker.kari_kari # life360 / owntracks / mqtt
-    - device_tracker.derek_derek # life360 / owntracks / mqtt
+    - person.derek
+    - person.kari
     - camera.dereks_location
     - camera.karis_location
 
