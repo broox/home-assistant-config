@@ -69,8 +69,6 @@ device_tracker:
   - platform: nmap_tracker
     hosts: 192.168.86.0/24
     exclude: !secret nmap_exclusions
-  - platform: owntracks
-    max_gps_accuracy: 200
 
 # Discover some devices automatically
 discovery:
@@ -108,6 +106,11 @@ input_boolean:
 # Show links to resources in log and frontend
 # introduction:
 
+life360:
+  accounts:
+    username: !secret life360_username
+    password: !secret life360_password
+
 # View all events in a logbook
 logbook:
 
@@ -121,7 +124,6 @@ media_player:
   #   mac: !secret samsung_tv_mac_address
   #   port: 8001
   #   name: Living Room TV
-  - platform: sonos
 
 # Presence / CloudMQTT / Owntracks
 mqtt:
@@ -172,9 +174,12 @@ switch: !include_dir_merge_list switches
 # Track the sun
 sun:
 
+system_health:
+
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
 
 # Check for available updates
 # Note: This component will send some information about your system to
@@ -187,12 +192,6 @@ updater:
 
 zwave:
   usb_path: /dev/ttyUSB0
-  config_path: /usr/local/lib/python3.6/site-packages/python_openzwave/ozw_config
-  #device_config:
-  #  light.ge_45602_lamp_dimmer_module_level:
-  #    # polling_intensity: 1
-  #    refresh_value: true
-  #    delay: 3
 
 zone:
   name: Home
@@ -235,3 +234,4 @@ zone 6:
   longitude: !secret powerlife_longitude
   radius: 120
   icon: mdi:dumbbell
+

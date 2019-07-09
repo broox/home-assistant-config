@@ -4,16 +4,16 @@
     - summary
     - icon
     - apparent_temperature
-    - apparent_temperature_max
-    - apparent_temperature_min
+    - apparent_temperature_high
+    - apparent_temperature_low
     - cloud_cover
     - humidity
     - nearest_storm_distance
     - precip_intensity
     - precip_probability
     - temperature
-    - temperature_max
-    - temperature_min
+    - temperature_high
+    - temperature_low
     - wind_speed
     - wind_bearing
 - platform: uptime
