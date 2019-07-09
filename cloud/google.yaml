@@ -36,6 +36,10 @@ google_actions:
     # re-adding hass.io to Google Assistant much quicker since the entities
     # will be auto-grouped into rooms.
 
+    # Basement
+    light.basement_hallway_lights:
+      room: Basement hallway
+
     # Bedroom
     climate.master_bath:
       room: Bedroom
@@ -76,6 +80,8 @@ google_actions:
     light.kitchen_cooking_lights:
       room: Kitchen
     light.dining_room_table_lights:
+      room: Dining room
+    light.fireplace_accent:
       room: Dining room
     light.sink_lights:
       room: Kitchen

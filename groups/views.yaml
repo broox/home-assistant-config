@@ -14,12 +14,19 @@ default_view:
   - group.bedroom
   - group.bathroom
   - group.exterior
-  - group.rec_room
-  - group.guest_bedroom
-  - group.guest_office
+  - group.basement
   - group.garage
   - group.modes
   - group.scenes
+
+basement:
+  name: Basement
+  view: yes
+  entities:
+    - group.rec_room
+    - light.basement_hallway_lights
+    - group.guest_bedroom
+    - group.guest_office
 
 cameras:
   name: Cameras

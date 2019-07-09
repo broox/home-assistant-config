@@ -10,6 +10,7 @@ basement:
   - group.guest_bedroom
   - group.guest_office
   - group.rec_room
+  - light.basement_hallway_lights
 
 bedroom:
   name: Master bedroom
@@ -72,7 +73,7 @@ living_room:
     - switch.couch_ge_12721_switch
     - light.living_room_ceiling_lamp
     - light.turntable  # Hue group
-    - light.lamp_dimmer_two_level
+    # - light.lamp_dimmer_two_level # Christmas tree
 
 lounge:
   name: Lounge
