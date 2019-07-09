@@ -14,6 +14,8 @@ homeassistant:
 alarm_control_panel:
   - platform: arlo
     home_mode_name: 'Home'
+    away_mode_name: 'Armed'
+    night_mode_name: 'Night'
 
 arlo:
   username: !secret arlo_username

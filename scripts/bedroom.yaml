@@ -39,6 +39,9 @@ go_to_sleep_together:
     - service: script.turn_on
       data:
         entity_id: script.play_white_noise
+    - service: alarm_control_panel.alarm_arm_night
+      data:
+        entity_id: alarm_control_panel.living_room
 
 play_white_noise:
   alias: "White noise"
@@ -48,3 +51,12 @@ play_white_noise:
       data:
         media_content_id: !secret white_noise_mp3_url
         media_content_type: "audio/mp3"
+
+wake_up:
+  alias: "Wake up"
+  sequence:
+    - service: alarm_control_panel.alarm_arm_home
+      entity_id: alarm_control_panel.living_room
+    - service: media_player.media_stop
+      entity_id: media_player.bedroom_speaker
+
