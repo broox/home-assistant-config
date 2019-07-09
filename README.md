@@ -19,10 +19,8 @@ My goals:
 * GE Z-Wave wall outlets
 * Google Chromecast Ultra
 * Google Home and Home Mini
-* Google Pixel 2
-* iPhone 7
 * Liftmaster MyQ Garage Door opener
-* Lutron Caséta dimmers and Pico remotes
+* Lutron Caséta dimmers, switches, and Pico remotes
 * Monoprice Z-Wave PIR motion sensors
 * Nest thermostat, protects, cameras
 * NuHeat Signature floor heating thermostat
@@ -30,7 +28,6 @@ My goals:
 * Philips Hue bulbs
 * Ring Pro Doorbell
 * Samsung KS8000 TV
-* Smartthings door sensors
 * Sonos speakers
 
 # Supplemental software I'm using
