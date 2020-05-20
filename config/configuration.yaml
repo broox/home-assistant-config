@@ -6,3 +6,5 @@ frontend:
 
 http:
   server_port: 8124
+
+system_health:
