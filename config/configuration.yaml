@@ -1,0 +1,8 @@
+# Enables configuration UI
+config:
+
+# Enables the frontend
+frontend:
+
+http:
+  server_port: 8124
