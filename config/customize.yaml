@@ -1,0 +1,47 @@
+person.derek_brooks:
+  entity_picture: /local/broox.png
+person.kari_brooks:
+  entity_picture: /local/kbroox.jpg
+binary_sensor.aarlo_motion_dining_room:
+  friendly_name: Dining room motion
+binary_sensor.aarlo_motion_front:
+  friendly_name: Driveway motion
+binary_sensor.aarlo_motion_garage:
+  friendly_name: Garage motion
+binary_sensor.aarlo_motion_patio:
+  friendly_name: Patio motion
+binary_sensor.front_door_motion:
+  friendly_name: Front door motion
+binary_sensor.side_door_motion:
+  friendly_name: Side door motion
+group.bedroom:
+  icon: mdi:lightbulb-group
+group.exterior:
+  icon: mdi:lightbulb-group
+group.kitchen:
+  icon: mdi:lightbulb-group
+group.living_room:
+  icon: mdi:lightbulb-group
+group.lounge:
+  icon: mdi:lightbulb-group
+group.office:
+  icon: mdi:lightbulb-group
+group.office_motion:
+  icon: mdi:eye
+group.rec_room_motion:
+  icon: mdi:eye
+sensor.outside_temperature:
+  friendly_name: Outside temp
+sensor.entryway_thermostat_temperature:
+  friendly_name: Entryway temp
+sensor.vision_zp3111_multisensor_4in1_temperature:
+  friendly_name: Office temp
+sensor.outside_humidity:
+  friendly_name: Outside humidity
+  icon: mdi:water-percent
+sensor.kari_phone_battery:
+  friendly_name: Kari's phone battery
+sensor.derek_phone_battery:
+  friendly_name: Derek's phone battery
+switch.white_noise:
+  icon: mdi:weather-windy

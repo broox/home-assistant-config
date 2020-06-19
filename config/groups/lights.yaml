@@ -1,0 +1,156 @@
+away_lights:
+  name: Away lamps
+  entities:
+    - switch.couch_ge_12721_switch
+    - switch.office_ge_12721_switch
+    - light.guest_futon
+    - light.dresser_lamp
+
+back_yard:
+  name: Back yard
+  entities:
+    - light.exterior_deck_lights
+    - light.exterior_patio_lights
+    - light.exterior_patio_sconce
+
+basement:
+  name: Basement
+  entities:
+  - group.guest_bedroom
+  - group.guest_office
+  - group.rec_room
+  - light.basement_hallway_lights
+
+bedroom:
+  name: Bedroom lights
+  entities:
+  - light.dereks_lamp
+  - light.karis_lamp
+  - light.dresser_lamp
+  - switch.white_noise
+
+exterior:
+  name: Outside lights
+  entities:
+  - light.exterior_front_porch
+  - light.side_door_light
+  - light.exterior_deck_lights
+  - switch.exterior_driveway_light
+  - switch.exterior_christmas_lights
+  - light.exterior_patio_lights
+  - light.exterior_patio_sconce
+
+foyer:
+  name: Foyer
+  entities:
+  - light.front_foyer_foyer_light
+
+front_yard:
+  name: Front yard
+  entities:
+    - light.exterior_front_porch
+    - switch.exterior_driveway_light
+
+garage:
+  name: Garage
+  entities:
+  - switch.garage_lights
+  - fan.garage_ceiling_fan
+
+guest_bedroom:
+  name: Guest bedroom
+  entities:
+    - light.guest_bedroom_ceiling_fan_light
+    - fan.guest_bedroom_ceiling_fan
+    - light.guest_night_stand
+    # - light.guest_dresser_lamp_3
+
+guest_office:
+  name: Guest office
+  entities:
+    - light.guest_futon
+    - light.guest_desk
+
+karis_lamp:
+  name: Kari's lamp
+  icon: mdi:lightbulb
+  entities:
+  - light.karis_top_bed_lamp
+  - light.karis_middle_bed_lamp
+  - light.karis_bottom_bed_lamp
+
+kitchen:
+  name: Kitchen lights
+  entities:
+    - light.kitchen_cooking_lights
+    - light.island  # Hue group
+    - light.dining_room_table_lights
+    - light.sink_lights
+    - light.cabinet_accents
+    - light.fridge_accents
+    - light.fireplace_accent
+
+living_room:
+  name: Living room lights
+  entities:
+    - switch.couch_ge_12721_switch
+    - light.living_room_ceiling_lamp
+    - light.turntable  # Hue group
+#    - light.lamp_dimmer_one_level  # Christmas tree
+#    - light.lamp_dimmer_two_level  # Christmas lights
+
+lounge:
+  name: Lounge lights
+  entities:
+    - light.lounge_lounge_lights
+    - light.stairwell  # Hue group
+    - light.front_foyer_foyer_light
+
+non_bedroom_lights:
+  name: Non Bedroom lights
+  entities:
+  - group.basement
+  - group.foyer
+  - group.garage
+  - group.kitchen
+  - group.living_room
+  - group.office
+  - group.lounge
+  - group.patio
+
+office:
+  name: Office lights
+  entities:
+  - light.office_lamp
+  - light.big_office_lamp  # Hue group
+  - light.office_desk_lamp
+  - switch.office_ge_12721_switch
+
+patio:
+  name: Patio lights
+  entities:
+    - light.exterior_patio_lights
+    - light.exterior_patio_sconce
+
+rec_room:
+  name: Rec room
+  entities:
+    - light.couch
+    - light.dm_skyline
+    - light.side_bar
+    - light.basement_couch_lamp
+    - light.wet_bar
+    - light.foosball_table
+    - light.rec_room_entry
+
+upstairs:
+  name: upstairs
+  entities:
+  - group.bedroom
+  - group.foyer
+  - group.kitchen
+  - group.garage
+  - group.living_room
+  - group.office
+  - group.lounge
+

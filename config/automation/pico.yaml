@@ -1,0 +1,122 @@
+# Pico state codes
+# - On: 1
+# - Up: 8
+# - Fav: 2
+# - Down: 16
+# - Off: 4
+
+# Turn on the lights outside of the bedroom if they're all off
+- id: br_pico_fav_on
+  alias: BR Pico fav button pressed on
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.master_bedroom_pico
+      to: '2'
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: group.non_bedroom_lights
+          state: 'off'
+        - condition: state
+          entity_id: light.exterior_front_porch
+          state: 'off'
+  action:
+    service: scene.turn_on
+    entity_id: scene.bedtime_emergency
+
+# Turn off the lights outside of the bedroom if any are on
+- id: br_pico_fav_off
+  alias: BR Pico fav button pressed off
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.master_bedroom_pico
+      to: '2'
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: group.non_bedroom_lights
+          state: 'on'
+        - condition: state
+          entity_id: light.exterior_front_porch
+          state: 'on'
+  action:
+    service: scene.turn_on
+    entity_id: scene.bedtime
+
+# Turn on the bedroom lights
+- id: br_pico_on
+  alias: BR Pico on
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.master_bedroom_pico
+      to: '1'
+  action:
+    service: scene.turn_on
+    entity_id: scene.bedroom_reading
+
+# Turn off the bedroom lights (if between 4am and 9pm)
+- id: br_pico_off_early
+  alias: BR Pico off
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.master_bedroom_pico
+      to: '4'
+  condition:
+    - condition: or
+      conditions:
+        - condition: time
+          after: '03:59:59'
+        - condition: time
+          before: '21:00:00'
+  action:
+    - service: light.turn_off
+      entity_id: light.master_bedroom  # Hue group
+    - service: script.wake_up
+
+# Turn off the lights in/around the bedroom and start white noise (if between 9pm and 4am)
+- id: br_pico_off_bedtime
+  alias: BR Pico off
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.master_bedroom_pico
+      to: '4'
+  condition:
+    - condition: or
+      conditions:
+        - condition: time
+          after: '20:59:59'
+        - condition: time
+          before: '04:00:00'
+  action:
+    service: script.go_to_sleep_early
+
+# Brighten the bedroom lights
+- id: br_pico_up
+  alias: BR Pico up
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.master_bedroom_pico
+      to: '8'
+  action:
+    service: scene.turn_on
+    entity_id: scene.relaxed_bedroom
+
+# Dim the bedroom lights
+- id: br_pico_down
+  alias: BR Pico down
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.master_bedroom_pico
+      to: '16'
+  action:
+    service: scene.turn_on
+    entity_id: scene.dim_bedroom

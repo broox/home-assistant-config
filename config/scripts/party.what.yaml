@@ -1,0 +1,168 @@
+every_party:
+  sequence:
+    - service: light.turn_on  # Super dim lights
+      data:
+        entity_id:
+          - light.basement_hallway_lights
+        brightness_pct: 1
+    - service: light.turn_on  # Dim lights
+      data:
+        entity_id:
+          - light.exterior_front_porch
+          - light.exterior_deck_lights
+          - light.living_room_ceiling_lamp
+          - light.guest_dresser_lamp_3  # Guest nightstand
+          - light.guest_futon
+          - light.guest_desk
+          - light.big_office_lamp
+        brightness_pct: 10
+        kelvin: 1000
+    - service: light.turn_on  # Slightly less dim lights
+      data:
+        entity_id:
+          - light.living_room_ceiling_lamp
+        brightness_pct: 20
+    - service: light.turn_on  # Bright lights
+      data:
+        entity_id:
+          - light.office_desk_lamp
+          - light.foosball_table
+        brightness_pct: 60
+        kelvin: 1000
+    - service: light.turn_on  # Super Bright lights
+      data:
+        entity_id:
+          - light.exterior_patio_lights
+        brightness_pct: 100
+    - service: light.turn_off  # Turn off
+      entity_id:
+        - light.front_foyer_foyer_light
+        - light.dining_room_table_lights
+        - light.lounge_lounge_lights
+        - light.kitchen_cooking_lights
+        - light.exterior_patio_sconce
+    - service: switch.turn_on
+      entity_id:
+        - switch.couch_ge_12721_switch
+        - switch.office_ge_12721_switch  # Miffy
+        - switch.exterior_driveway_light
+        - switch.exterior_christmas_lights
+    - service: automation.turn_off
+      entity_id: 
+        - automation.office_motion_detected
+        - automation.office_motion_detected_at_night
+        - automation.office_motion_clear
+
+# TODO: deck
+
+red_party:
+  sequence:
+    - service: script.turn_on
+      entity_id:
+        - script.every_party
+    - service: light.turn_on  # Color lights
+      data:
+        entity_id:
+          - light.kitchen  # Hue group
+          - light.office_lamp
+          - light.stairwell
+          - light.turntable
+          - light.master_bedroom  # Hue group
+          - light.ambient_rec_room_lights
+          - light.rec_room_color_ceiling_lights
+        rgb_color: [255,45,0]
+        brightness_pct: 60
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.dm_skyline
+        rgb_color: [255,45,0]
+        brightness_pct: 100
+
+blue_party:
+  sequence:
+    - service: script.turn_on
+      entity_id:
+        - script.every_party
+    - service: light.turn_on  # Color lights
+      data:
+        entity_id:
+          - light.kitchen  # Hue group
+          - light.office_lamp
+          - light.stairwell
+          - light.turntable
+          - light.master_bedroom  # Hue group
+          - light.ambient_rec_room_lights
+          - light.rec_room_color_ceiling_lights
+        rgb_color: [82,0,255]
+        brightness_pct: 60
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.dm_skyline
+        rgb_color: [82,0,255]
+        brightness_pct: 100
+
+pink_party:
+  sequence:
+    - service: script.turn_on
+      entity_id:
+        - script.every_party
+    - service: light.turn_on  # Color lights
+      data:
+        entity_id:
+          - light.island
+          - light.cabinets
+          - light.fridge_lights
+          - light.sink_lights
+          - light.fireplace_accent
+          - light.office_lamp
+          - light.stairwell
+          - light.turntable
+          - light.master_bedroom  # Hue group
+          - light.ambient_rec_room_lights
+          - light.rec_room_color_ceiling_lights
+        rgb_color: [255,42,191]
+        brightness_pct: 60
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.dm_skyline
+        rgb_color: [255,42,191]
+        brightness_pct: 100
+
+dim_party:
+  sequence:
+    - service: script.turn_on
+      entity_id:
+        - script.every_party
+    - service: light.turn_on  # Color lights become dim
+      data:
+        entity_id:
+          - light.island
+          - light.sink_lights
+          - light.office_lamp
+          - light.stairwell
+          - light.turntable
+          - light.master_bedroom  # Hue group
+        kelvin: 1000
+        brightness_pct: 10
+    - service: light.turn_on  # Red lights
+      data:
+        entity_id:
+          - light.cabinets
+          - light.fridge_lights
+          - light.fireplace_accent
+        rgb_color: [255,45,0]
+        brightness_pct: 60
+    - service: scene.turn_on
+      entity_id:
+        - scene.red_rec_room
+
+party_over:
+  sequence:
+    - service: automation.turn_on
+      entity_id: 
+        - automation.office_motion_detected
+        - automation.office_motion_detected_at_night
+        - automation.office_motion_clear

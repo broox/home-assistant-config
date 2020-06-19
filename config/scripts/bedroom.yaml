@@ -1,0 +1,62 @@
+# Turn off lights in and around bedroom, start white noise.
+go_to_sleep_early:
+  alias: "Go to sleep early"
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.master_bedroom  # The Hue transition is better than the Hass one
+    - service: light.turn_off
+      data:
+        entity_id: light.exterior_front_porch
+        transition: 3
+    - service: script.turn_on
+      data:
+        entity_id: script.dim_foyer_if_on
+    - service: script.turn_on
+      data:
+        entity_id: script.play_white_noise
+
+dim_foyer_if_on:
+  sequence:
+    - condition: state
+      entity_id: light.front_foyer_foyer_light
+      state: 'on'
+    - service: light.turn_on
+      data_template:
+        entity_id: light.front_foyer_foyer_light
+        transition: 3
+        brightness_pct: 10
+
+# Turn off all lights, start white noise
+go_to_sleep_together:
+  alias: "Go to sleep together"
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.master_bedroom  # The Hue transition is better than the Hass one
+    - service: scene.turn_on
+      entity_id: scene.bedtime
+    - service: script.turn_on
+      data:
+        entity_id: script.play_white_noise
+    - service: alarm_control_panel.alarm_arm_night
+      data:
+        entity_id: alarm_control_panel.living_room
+
+play_white_noise:
+  alias: "White noise"
+  sequence:
+    - service: media_player.play_media
+      entity_id: media_player.bedroom_speaker
+      data:
+        media_content_id: !secret white_noise_mp3_url
+        media_content_type: "audio/mp3"
+
+wake_up:
+  alias: "Wake up"
+  sequence:
+    - service: media_player.media_stop
+      entity_id: media_player.bedroom_speaker
+    - service: alarm_control_panel.alarm_arm_home
+      entity_id: alarm_control_panel.living_room
+

@@ -1,0 +1,177 @@
+- id: evening_lights
+  alias: Turn on lights in the evening when home
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -01:00:00
+  - platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.house_occupied
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: sun
+        after: sunset
+        after_offset: -01:00:00
+      - condition: sun
+        before: sunrise
+  action:
+  - service: script.turn_on
+    entity_id: script.relaxed_upstairs
+  - service: notify.derek
+    data:
+      title: Lights
+      message: Evening lights activated
+
+- id: bedtime_lights
+  alias: Turn on bedroom lights before bed when home
+  trigger:
+  - platform: time
+    at: '21:00:00'
+  - platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  action:
+  - service: script.prepare_bedtime_lights
+
+- id: dining_room_off_at_night
+  alias: Turn dining room lights off during the week at night
+  trigger:
+    - platform: time
+      at: '21:00:00'
+  condition:
+    condition: time
+    weekday:
+      - sun
+      - mon
+      - tue
+      - wed
+      - thu
+  action:
+    service: light.turn_off
+    entity_id: light.dining_room_table_lights
+
+- id: lights_off_when_leaving
+  alias: Turn off most lights when leaving
+  trigger:
+  - platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  condition:
+  - condition: template
+    value_template: "{{states['light'] | selectattr('state', 'eq', 'on') | list | count > 0 }}"
+  - condition: state
+    entity_id: binary_sensor.house_occupied
+    state: 'off'
+  action:
+  - service: light.turn_off
+    entity_id: all
+    # Leaves on the switches (Miffy and Living Room Edison Lamp)
+  - service: fan.turn_off
+    entity_id: all
+  - service: notify.derek
+    data:
+      title: Lights
+      message: Turning off most of the lights
+
+- id: exterior_lights_on_at_night
+  alias: Turn exterior lights on at night
+  trigger:
+  - platform: sun
+    event: sunset
+  action:
+  - service: switch.turn_on
+    entity_id: switch.exterior_driveway_light
+  - service: light.turn_on
+    entity_id: light.exterior_front_porch
+    data:
+      brightness_pct: 50
+
+- id: exterior_lights_off_late
+  alias: Turn exterior lights off late at night
+  trigger:
+  - platform: time
+    at: '03:00:00'
+  action:
+  - service: homeassistant.turn_off
+    entity_id: group.exterior
+
+- id: lamps_on_while_away_in_the_evening
+  alias: Turn on a couple lamps while we're away in the evening  # for the dog
+  trigger:
+  - platform: sun
+    event: sunset
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.house_occupied
+      state: 'off'
+    - condition: state
+      entity_id: group.away_lights
+      state: 'off'
+  action:
+  - service: homeassistant.turn_on
+    entity_id: group.away_lights
+  - service: notify.derek
+    data:
+      title: Lights
+      message: Turning on a couple lamps
+
+- id: lights_off_while_away_at_night
+  alias: Turn off any lights if we're still away late at night
+  trigger:
+  - platform: time
+    at: '23:00:00'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.house_occupied
+      state: 'off'
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: "{{states['light'] | selectattr('state', 'eq', 'on') | list | count > 0 }}"
+        - condition: template
+          value_template: "{{states['switch'] | selectattr('state', 'eq', 'on') | list | count > 0 }}"
+  action:
+  - service: script.turn_off_house
+  - service: notify.derek
+    data:
+      title: Lights
+      message: Turning off all lights
+
+- id: lights_on_when_cloudy
+  alias: Turn on lights when it's cloudy
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.dark_sky_cloud_coverage
+    above: "90"
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.house_occupied
+      state: 'on'
+    - condition: state
+      entity_id: group.upstairs_lights
+      state: 'off'
+    - condition: time
+      after: '10:00:00'
+      before: '21:00:00'
+  action:
+  - service: script.turn_on
+    entity_id: script.relaxed_upstairs
+  - service: notify.derek
+    data:
+      title: Lights
+      message: Turning on some lights because it's cloudy

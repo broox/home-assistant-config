@@ -1,0 +1,9 @@
+- id: evening_christmas_lights
+  alias: Turn on Christmas lights in the evening
+  trigger:
+    platform: sun
+    event: sunset
+  action:
+    service: scene.turn_on
+    entity_id: scene.christmas_lights
+

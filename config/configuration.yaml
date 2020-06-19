@@ -1,10 +1,80 @@
+homeassistant:
+  customize: !include customize.yaml
+
+alarm_control_panel:
+  - platform: aarlo
+    home_mode_name: home
+    away_mode_name: armed
+    night_mode_name: night
+
+aarlo:
+  username: !secret arlo_username
+  password: !secret arlo_password
+
+automation: !include_dir_merge_list automation
+
+binary_sensor: !include_dir_merge_list binary_sensors
+
+camera:
+  - platform: aarlo
+
+cloud:
+
 # Enables configuration UI
 config:
 
 # Enables the frontend
 frontend:
 
+group: !include_dir_merge_named groups
+
+# Enables support for tracking state changes over time
+history:
+
 http:
   server_port: 8124
 
+homekit: !include homekit.yaml
+
+input_boolean:
+
+lutron_caseta_pro:
+  bridges:
+    - host: !secret lutron_host_ip
+      mac: !secret lutron_mac
+      fan: [21, 27]
+      switch: [9, 16, 24]
+
+mobile_app:
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_secret
+
+notify:
+  - name: derek
+    platform: group
+    services:
+      - service: mobile_app_dereks_iphone
+  - name: kari
+    platform: group
+    services:
+      - service: mobile_app_kari_s_iphone
+  - name: family
+    platform: group
+    services:
+      - service: mobile_app_dereks_iphone
+      - service: mobile_app_kari_s_iphone
+
+scene: !include_dir_merge_list scenes
+
+script: !include_dir_merge_named scripts
+
+sensor: !include_dir_merge_list sensors
+
+sun:
+
+switch: !include_dir_merge_list switches
+
 system_health:
+

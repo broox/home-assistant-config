@@ -1,11 +1,16 @@
-# An * ensures that everything will be ignored.
-*
+.*
+*.conf
+*.db
+*.json
+*.log
+*.sqlite
+*.txt
+*.pyc
+*.xml
 
-# You can whitelist files/folders with !, these will not be ignored.
-!*.yaml
-!.gitignore
-!*.md
-!config/
+config/www/*.mp3
+config/www/*.png
+config/www/*.jpg
 
 # Ignore folders.
 .storage

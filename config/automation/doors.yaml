@@ -1,0 +1,22 @@
+- id: check_garage_door_at_bedtime
+  alias: Check whether the garage door is open when the bedroom lights turn off at night
+  trigger:
+    platform: state
+    entity_id: group.bedroom
+    to: 'off'
+  condition:
+    condition: time
+    after: '21:00:00'
+  action:
+    service: script.check_garage_door
+
+- id: garage_door_left_open
+  alias: Garage door left open
+  trigger:
+    platform: state
+    entity_id: cover.garage_door_opener
+    to: open
+    for:
+      minutes: 7
+  action:
+    service: script.check_garage_door

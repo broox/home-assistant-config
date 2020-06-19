@@ -1,0 +1,15 @@
+office_motion:
+  name: Office motion
+  entities:
+    - automation.office_motion_clear
+    - automation.office_motion_detected
+    - automation.office_motion_detected_when_dark
+    - automation.office_motion_detected_at_night
+
+rec_room_motion:
+  name: Rec room motion
+  entities:
+    - automation.rec_room_motion_detected
+    - automation.rec_room_motion_detected_night
+    - automation.rec_room_motion_clear
+

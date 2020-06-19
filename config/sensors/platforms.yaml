@@ -1,0 +1,24 @@
+- platform: uptime
+- platform: template
+  sensors:
+    derek_phone_battery:
+      unit_of_measurement: '%'
+      value_template: "{{ state_attr('device_tracker.life360_derek_brooks', 'battery') }}"
+    fan_on_count:
+      entity_id:
+        - fan.garage_ceiling_fan
+        - fan.guest_bedroom_ceiling_fan
+      value_template: "{{ states['fan'] | selectattr('state','eq', 'on') | map(attribute='entity_id') | list | count }}"
+    kari_phone_battery:
+      unit_of_measurement: '%'
+      value_template: "{{ state_attr('device_tracker.life360_kari', 'battery') }}"
+#    light_on_count:
+#      value_template: "{% states.light | selectattr('state','eq', 'on') | map(attribute='entity_id') | list | count %}"
+    outside_humidity:
+      unit_of_measurement: '%'
+      value_template: "{{ state_attr('weather.home', 'humidity') }}"
+    outside_temperature:
+      unit_of_measurement: '°F'
+      value_template: "{{ state_attr('weather.home', 'temperature') }}"
+#    switch_on_count:
+#      value_template: "{% set count = states['switch'] | selectattr('state','eq', 'on') | map(attribute='entity_id') | list | count %}"

@@ -1,0 +1,104 @@
+- id: away_from_home
+  alias: Everyone is away from home
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  action:
+    - service: script.check_garage_door
+
+- id: someone_home
+  alias: Someone is home
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  action:
+  - service: notify.derek
+    data_template:
+      title: Presence
+      message: >
+        {%- if is_state("input_boolean.guest_mode", "off") -%}
+        Someone is home.
+        {%- else -%}
+        Someone is home, turning off guest mode.
+        {%- endif %}
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.guest_mode
+
+- id: kari_heading_home
+  alias: Kari is heading home from work
+  trigger:
+  - platform: state
+    entity_id: person.kari
+    from: 'Moulton'
+    to: not_home
+  - platform: state
+    entity_id: person.kari
+    from: 'Smouse'
+    to: not_home
+  - platform: state
+    entity_id: person.kari
+    from: 'Oak Park'
+    to: not_home
+  action:
+    service: notify.derek
+    data:
+      title: Presence
+      message: Kari has left work
+
+- id: hass_update
+  alias: Home assistant updated
+  trigger:
+  - platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.derek
+    data:
+      title: "Upgrade alert!"
+      message: "Home Assistant {{ states.updater.updater.state }} is now available"
+
+- id: garage_door_open_while_away
+  alias: Garage door open while away
+  trigger:
+    platform: state
+    entity_id: cover.garage_door_opener_2
+    to: open
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: cover.garage_door_opener_2
+      state: open
+    - condition: state
+      entity_id: group.family
+      state: not_home
+  action:
+    service: notify.family
+    data:
+      title: Door
+      message: Garage door has opened
+
+- id: garage_door_closed_while_away
+  alias: Garage door closed while away
+  trigger:
+    platform: state
+    entity_id: cover.garage_door_opener_2
+    to: closed
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: cover.garage_door_opener_2
+      state: closed
+    - condition: state
+      entity_id: group.family
+      state: not_home
+  action:
+    service: notify.family
+    data:
+      title: Door
+      message: Garage door has closed

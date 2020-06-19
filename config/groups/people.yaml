@@ -1,0 +1,5 @@
+family:
+  name: Family
+  entities:
+    - person.derek_brooks
+    - person.kari_brooks
