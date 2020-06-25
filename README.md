@@ -34,9 +34,26 @@ My goals:
 * [Life360](https://www.life360.com/) for mobile device tracking
 * [Plex](https://www.plex.tv/) media server
 
-# Installing with Docker
+# Docker
+
+I use Docker to keep my home assistant installation contained and easily deployable wherever I want.
+
+## Installation
 
 1. Install Docker (and docker-compose)
-1. Clone out this repository
+1. Clone this repository
 1. Run: `docker-compose up -d` in a shell
 
+## Logs
+
+Logs can be tailed by running the following in a shell: `docker-compose logs -f --tail=50`
+
+## Updating
+
+To update to the latest version of home assistant in the docker container, run the following in a shell.
+
+```
+docker pull homeassistant/home-assistant:latest
+docker-compose down
+docker-compose up -d
+```
