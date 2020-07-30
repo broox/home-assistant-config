@@ -1,3 +1,18 @@
+all_motion:
+  name: All motion sensors
+  entities:
+    - group.dining_room_motion
+    - group.office_motion
+    - group.rec_room_motion
+
+dining_room_motion:
+  name: Dining room motion
+  entities:
+    - automation.dining_room_motion_clear
+    - automation.dining_room_motion_detected
+    - automation.dining_room_motion_detected_at_night
+    - automation.dining_room_motion_detected_when_dark
+
 office_motion:
   name: Office motion
   entities:
@@ -9,7 +24,7 @@ office_motion:
 rec_room_motion:
   name: Rec room motion
   entities:
-    - automation.rec_room_motion_detected
-    - automation.rec_room_motion_detected_night
     - automation.rec_room_motion_clear
+    - automation.rec_room_motion_detected
+    - automation.rec_room_motion_detected_at_night
 

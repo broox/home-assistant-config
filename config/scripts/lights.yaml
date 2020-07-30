@@ -32,12 +32,14 @@ turn_off_office_evening:
 ambient_kitchen:
   alias: Ambient kitchen
   sequence:
+    - service: automation.turn_off
+      data:
+        entity_id: group.dining_room_motion
     - service: light.turn_off
       data:
-        entity_id: light.island
-    - service: light.turn_off
-      data:
-        entity_id: light.kitchen_cooking_lights
+        entity_id:
+          - light.island
+          - light.kitchen_cooking_lights
     - service: scene.turn_on
       entity_id:
         - scene.blue_kitchen_accents
@@ -109,6 +111,9 @@ relaxed_living_room:
 ambient_great_room:
   alias: Amibent great room
   sequence:
+    - service: automation.turn_off
+      data:
+        entity_id: group.dining_room_motion
     - service: script.turn_on
       entity_id:
         - script.ambient_kitchen
@@ -117,13 +122,10 @@ ambient_great_room:
       entity_id: scene.ambient_stairwell
     - service: light.turn_off
       data:
-        entity_id: light.lounge_lounge_lights
-    - service: light.turn_off
-      data:
-        entity_id: light.front_foyer_foyer_light
-    - service: light.turn_off
-      data:
-        entity_id: light.dining_room_table_lights
+        entity_id:
+          - light.lounge_lounge_lights
+          - light.front_foyer_foyer_light
+          - light.dining_room_table_lights
 
 bright_great_room:
   alias: Bright great room

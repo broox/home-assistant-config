@@ -1,3 +1,15 @@
+- id: enable_motion_detection
+  alias: Enable motion detection
+  trigger:
+    - platform: time
+      at: '9:00:00'
+  action:
+    - service: automation.turn_on
+      entity_id:
+        - group.dining_room_motion
+        - group.office_motion
+        - group.rec_room_motion
+
 # DINING ROOM
 
 - id: dining_room_motion_detected_day

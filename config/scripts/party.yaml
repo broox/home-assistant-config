@@ -1,5 +1,8 @@
 every_party:
   sequence:
+    - service: automation.turn_off
+      data:
+        entity_id: group.all_motion
     - service: light.turn_on  # Super dim lights
       data:
         entity_id:
@@ -47,12 +50,6 @@ every_party:
         - switch.office_ge_12721_switch  # Miffy
         - switch.exterior_driveway_light
         - switch.exterior_christmas_lights
-    - service: automation.turn_off
-      entity_id: 
-        - automation.office_motion_detected
-        - automation.office_motion_detected_at_night
-        - automation.office_motion_detected_when_dark
-        - automation.office_motion_clear
 
 # TODO: deck
 

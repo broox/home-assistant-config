@@ -1,9 +1,11 @@
 # TODO: on weekdays, move from bright to dim after 9pm
 - name: Movie time
   entities:
+    group.dining_room_motion: off
     light.island: off
     light.lounge_lounge_lights: off
     light.dining_room_table_lights: off
+    light.front_foyer_foyer_light: off
     switch.couch_ge_12721_switch: off
     light.living_room_ceiling_lamp:
       state: on
@@ -20,9 +22,6 @@
       state: on
       rgb_color: [255,63,0]
       brightness_pct: 70
-    light.front_foyer_foyer_light:
-      state: on
-      brightness_pct: 10
     light.stairwell:
       state: on
       rgb_color: [255,63,0]  # red

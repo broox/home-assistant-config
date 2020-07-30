@@ -1,5 +1,6 @@
 - name: Ambient office
   entities:
+    group.office_motion: off
     light.office_lamp: off
     light.big_office_lamp: off
     light.office_desk_lamp:  # Blinky

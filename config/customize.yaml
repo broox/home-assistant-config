@@ -16,6 +16,8 @@ binary_sensor.side_door_motion:
   friendly_name: Side door motion
 group.bedroom:
   icon: mdi:lightbulb-group
+group.dining_room_motion:
+  icon: mdi:eye
 group.exterior:
   icon: mdi:lightbulb-group
 group.kitchen:
