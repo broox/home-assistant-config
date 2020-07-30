@@ -1,3 +1,61 @@
+# DINING ROOM
+
+- id: dining_room_motion_detected_day
+  alias: Dining room motion detected (when dark)
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeon_labs_zw100_multisensor_6_sensor
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.dark_dining_room
+      state: 'on'
+    - condition: time
+      after: '9:59:59'
+      before: '22:00:00'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.bright_dining_room
+
+- id: dining_room_motion_detected_night
+  alias: Dining room motion detected at night
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeon_labs_zw100_multisensor_6_sensor
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.dark_dining_room
+      state: 'on'
+    - condition: time
+      after: '21:59:59'
+      before: '10:00:00'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.relaxed_dining_room
+
+- id: dining_room_motion_detected
+  alias: Dining room motion detected
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeon_labs_zw100_multisensor_6_sensor
+    to: 'on'
+  action:
+    - service: script.turn_off
+      data:
+        entity_id: script.dining_room_motion_clear
+
+- id: dining_room_motion_clear
+  alias: Dining room motion clear
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeon_labs_zw100_multisensor_6_sensor
+    to: 'off'
+  action:
+    service: script.dining_room_motion_clear
+
+# OFFICE
+
 - id: office_motion_detected_dark_day
   alias: Office motion detected (when dark)
   trigger:
@@ -5,23 +63,12 @@
     entity_id: binary_sensor.office_motion
     to: 'on'
   condition:
-    - condition: or
-      conditions:
-        - condition: and
-          conditions:  # daytime darkness
-            - condition: sun
-              after: sunrise
-            - condition: sun
-              before: sunset
-            - condition: numeric_state
-              entity_id: sensor.vision_zp3111_multisensor_4in1_luminance
-              below: "40"  # not always reliable
-        - condition: and
-          conditions:  # early evening darkness
-            - condition: sun
-              after: sunset
-            - condition: time
-              before: '22:00:00'
+    - condition: state
+      entity_id: binary_sensor.dark_office
+      state: 'on'
+    - condition: time
+      after: '9:59:59'
+      before: '22:00:00'
   action:
     - service: scene.turn_on
       entity_id: scene.bright_office
@@ -33,17 +80,16 @@
     entity_id: binary_sensor.office_motion
     to: 'on'
   condition:
-    - condition: or
-      conditions:
-        - condition: time
-          after: '21:59:59'
-        - condition: sun
-          before: sunrise
+    - condition: state
+      entity_id: binary_sensor.dark_office
+      state: 'on'
+    - condition: time
+      after: '21:59:59'
+      before: '10:00:00'
   action:
     - service: scene.turn_on
       entity_id: scene.relaxed_office
 
-# Leave lights in their current state when there is motion
 - id: office_motion_detected
   alias: Office motion detected
   trigger:
@@ -64,25 +110,17 @@
   action:
     service: script.office_motion_clear
 
+# REC ROOM
+
 - id: rec_room_motion_detected_night
   alias: Rec room motion detected at night
   trigger:
     platform: state
     entity_id: binary_sensor.rec_room_motion
     to: 'on'
-  condition:
-    - condition: or
-      conditions:
-        - condition: sun
-          before: sunrise
-        - condition: sun
-          after: sunset
   action:
-    - service: script.turn_off
-      data:
-        entity_id: script.rec_room_motion_clear
     - service: scene.turn_on
-      entity_id: scene.relaxed_foosball
+      entity_id: scene.bright_rec_room
 
 - id: rec_room_motion_detected
   alias: Rec room motion detected

@@ -1,3 +1,10 @@
+all_lights:
+  name: All lights
+  entities:
+    - group.basement
+    - group.exterior
+    - group.upstairs
+
 away_lights:
   name: Away lamps
   entities:
@@ -95,6 +102,7 @@ living_room:
   entities:
     - switch.couch_ge_12721_switch
     - light.living_room_ceiling_lamp
+    - light.tree_accent
     - light.turntable  # Hue group
 #    - light.lamp_dimmer_one_level  # Christmas tree
 #    - light.lamp_dimmer_two_level  # Christmas lights

@@ -13,7 +13,14 @@
       unit_of_measurement: '%'
       value_template: "{{ state_attr('device_tracker.life360_kari', 'battery') }}"
 #    light_on_count:
-#      value_template: "{% states.light | selectattr('state','eq', 'on') | map(attribute='entity_id') | list | count %}"
+#      value_template: >-
+#        {% set total = 0 %}
+#        {% for light in group.all_lights %}
+#          {% if light.state == 'on' %}
+#            {% set total = total + 1 %}
+#          {% endif %}
+#        {% endfor %}
+#        {{ total }}
     outside_humidity:
       unit_of_measurement: '%'
       value_template: "{{ state_attr('weather.home', 'humidity') }}"

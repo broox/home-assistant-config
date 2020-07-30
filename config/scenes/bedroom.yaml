@@ -16,10 +16,8 @@
     light.front_foyer_foyer_light:
       state: on
       brightness_pct: 10
-      transition: 3
     light.exterior_front_porch:
       state: off
-      transition: 3
 
 - name: Bedtime emergency
   entities:

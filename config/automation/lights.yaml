@@ -1,9 +1,10 @@
 - id: evening_lights
   alias: Turn on lights in the evening when home
   trigger:
-  - platform: sun
-    event: sunset
-    offset: -01:00:00
+  - platform: state
+    entity_id: binary_sensor.daylight
+    from: 'on'
+    to: 'off'
   - platform: state
     entity_id: group.family
     from: not_home
@@ -14,13 +15,9 @@
     - condition: state
       entity_id: binary_sensor.house_occupied
       state: 'on'
-    - condition: or
-      conditions:
-      - condition: sun
-        after: sunset
-        after_offset: -01:00:00
-      - condition: sun
-        before: sunrise
+    - condition: state
+      entity_id: binary_sensor.daylight
+      state: 'off'
   action:
   - service: script.turn_on
     entity_id: script.relaxed_upstairs

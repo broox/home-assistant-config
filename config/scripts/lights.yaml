@@ -12,11 +12,9 @@ turn_off_office:
     - service: light.turn_off
       data:
         entity_id: light.office  # Hue group
-        transition: 5
     - service: light.turn_off
       data:
         entity_id: light.office_desk_lamp  # Blinky
-        transition: 5
     - service: switch.turn_off
       entity_id: switch.office_ge_12721_switch  # Miffy
 
@@ -26,11 +24,9 @@ turn_off_office_evening:
     - service: light.turn_off
       data:
         entity_id: light.office  # Hue group
-        transition: 5
     - service: light.turn_off
       data:
         entity_id: light.office_desk_lamp  # Blinky
-        transition: 5
 
 # Kitchen
 ambient_kitchen:
@@ -39,11 +35,9 @@ ambient_kitchen:
     - service: light.turn_off
       data:
         entity_id: light.island
-        transition: 5
     - service: light.turn_off
       data:
         entity_id: light.kitchen_cooking_lights
-        transition: 5
     - service: scene.turn_on
       entity_id:
         - scene.blue_kitchen_accents
@@ -80,7 +74,6 @@ relaxed_kitchen:
     - service: light.turn_off
       data:
         entity_id: light.kitchen_cooking_lights
-        transition: 5
 
 # Living room
 ambient_living_room:
@@ -89,9 +82,10 @@ ambient_living_room:
     - service: light.turn_off
       data:
         entity_id: light.living_room_ceiling_lamp
-        transition: 5
     - service: scene.turn_on
-      entity_id: scene.red_turntable
+      entity_id:
+        - scene.red_tree_accent
+        - scene.red_turntable
     - service: switch.turn_off
       entity_id: switch.couch_ge_12721_switch
 
@@ -99,7 +93,9 @@ relaxed_living_room:
   alias: Relaxed living room
   sequence:
     - service: scene.turn_on
-      entity_id: scene.red_turntable
+      entity_id:
+        - scene.red_tree_accent
+        - scene.red_turntable
     - service: light.turn_on
       data:
         entity_id:
@@ -122,15 +118,12 @@ ambient_great_room:
     - service: light.turn_off
       data:
         entity_id: light.lounge_lounge_lights
-        transition: 5
     - service: light.turn_off
       data:
         entity_id: light.front_foyer_foyer_light
-        transition: 5
     - service: light.turn_off
       data:
         entity_id: light.dining_room_table_lights
-        transition: 5
 
 bright_great_room:
   alias: Bright great room

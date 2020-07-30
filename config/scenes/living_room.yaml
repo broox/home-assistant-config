@@ -27,3 +27,9 @@
       rgb_color: [255,63,0]
       brightness_pct: 70
 
+- name: Red tree accent
+  entities:
+    light.tree_accent:
+      state: on
+      rgb_color: [255,63,0]
+      brightness_pct: 100

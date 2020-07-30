@@ -16,21 +16,17 @@
       state: on
       rgb_color: [255,210,129]
       brightness_pct: 100
-      transition: 1
     light.dm_skyline:
       state: on
       rgb_color: [255,93,40]
-      brightness_pct: 100
     light.foosball_table:
       state: on
       brightness_pct: 100
       color_temp: 343
-      transition: 1
     light.rec_room_color_ceiling_lights:  # hue group
       state: on
       brightness_pct: 100
       color_temp: 343
-      transition: 1
 
 - name: Red rec room
   entities:
@@ -38,7 +34,6 @@
       state: on
       rgb_color: [255,45,0]
       brightness_pct: 30
-      transition: 1
     light.dm_skyline:
       state: on
       rgb_color: [255,45,0]
@@ -47,12 +42,10 @@
       state: on
       brightness_pct: 56
       color_temp: 443
-      transition: 2
     light.rec_room_color_ceiling_lights:  # hue group
       state: on
       rgb_color: [255,45,0]
       brightness_pct: 30
-      transition: 1
 
 - name: Relaxed foosball
   entities:
@@ -60,7 +53,6 @@
       state: on
       rgb_color: [255,93,40]
       brightness_pct: 30
-      transition: 1
     light.dm_skyline:
       state: on
       rgb_color: [255,93,40]
@@ -69,12 +61,10 @@
       state: on
       brightness_pct: 100
       color_temp: 447
-      transition: 2
     light.rec_room_color_ceiling_lights:  # hue group
       state: on
       rgb_color: [255,161,40]
       brightness_pct: 5
-      transition: 1
 
 - name: Relaxed rec room
   entities:
@@ -82,7 +72,6 @@
       state: on
       rgb_color: [255,93,40]
       brightness_pct: 30
-      transition: 1
     light.dm_skyline:
       state: on
       rgb_color: [255,93,40]
@@ -91,10 +80,8 @@
       state: on
       brightness_pct: 56
       color_temp: 443
-      transition: 2
     light.rec_room_color_ceiling_lights:  # ceiling light hue group
       state: on
       brightness_pct: 56
       color_temp: 443
-      transition: 1
 
