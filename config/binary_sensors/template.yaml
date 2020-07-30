@@ -3,6 +3,12 @@
 
 - platform: template
   sensors:
+    christmas_time:
+      friendly_name: Christmas time
+      value_template: >-
+        {% set from = '11=25' %}
+        {% set to = '1-31' %}
+        {{ from <= now()|as_timestamp|timestamp_custom('%m-%d', False) <= to }}
     dark_dining_room:
       friendly_name: Dark dining room
       value_template: >-

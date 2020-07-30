@@ -3,6 +3,10 @@
   trigger:
     platform: sun
     event: sunset
+  condition:
+    - condition: state
+      entity_id: binary_sensor.christmas_time
+      state: 'on'
   action:
     service: scene.turn_on
     entity_id: scene.christmas_lights
