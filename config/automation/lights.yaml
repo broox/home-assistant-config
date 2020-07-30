@@ -87,10 +87,6 @@
   action:
   - service: switch.turn_on
     entity_id: switch.exterior_driveway_light
-  - service: light.turn_on
-    entity_id: light.exterior_front_porch
-    data:
-      brightness_pct: 50
 
 - id: exterior_lights_off_late
   alias: Turn exterior lights off late at night
