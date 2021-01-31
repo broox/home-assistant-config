@@ -3,33 +3,40 @@
     light.stairwell:
       state: on
       rgb_color: [255,63,0]  # red
-      brightness_pct: 50
+      brightness: 129  # 50%
 
 - name: Bright stairwell
   entities:
     light.stairwell:
       state: on
-      brightness_pct: 100
-      color_temp: 325  # matches osrams at 100% brightness
+      brightness: 255  # 100%
+      color_temp: 312  # 3200k
+
+- name: Normal stairwell
+  entities:
+    light.stairwell:
+      state: on
+      brightness: 216  # 85%
+      color_temp: 333  # 3000k
 
 - name: Red stairwell
   entities:
     light.stairwell_1:
       state: on
       xy_color: [0.6421,0.3335]
-      brightness: 75
+      brightness: 77  # 30%
     light.stairwell_2:
       state: on
       xy_color: [0.5385,0.3836]
-      brightness: 75
+      brightness: 77  # 30%
     light.stairwell_3:
       state: on
       xy_color: [0.6375,0.3362]
-      brightness: 75
+      brightness: 77  # 30%
 
 - name: Relaxed stairwell
   entities:
     light.stairwell:
       state: on
-      brightness_pct: 78
+      brightness: 199  # 78%
       profile: relax

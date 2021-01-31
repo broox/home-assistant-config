@@ -1,0 +1,21 @@
+- id: straightener_off_when_kari_leaves
+  alias: Turn Kari's straightener off when Kari leaves
+  trigger:
+    - platform: state
+      entity_id: person.kari_brooks
+      from: home
+      to: not_home
+  action:
+    - service: switch.turn_off
+      entity_id: switch.vanity_ge_14288_switch
+
+- id: straightener_on_when_kari_arrives
+  alias: Turn Kari's straightener outlet on when Kari's home
+  trigger:
+    - platform: state
+      entity_id: person.kari_brooks
+      to: home
+  action:
+    - service: switch.turn_on
+      entity_id: switch.vanity_ge_14288_switch
+

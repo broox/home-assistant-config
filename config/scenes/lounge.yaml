@@ -1,0 +1,36 @@
+- name: Bright foyer
+  entities:
+    light.front_foyer_foyer_light:
+      state: on
+      brightness: 255 # 100%
+
+- name: Bright lounge
+  entities:
+    light.lounge_lounge_lights:
+      state: on
+      brightness: 255  # 100%
+
+- name: Normal foyer
+  entities:
+    light.front_foyer_foyer_light:
+      state: on
+      brightness: 129 # 50%
+
+- name: Normal lounge
+  entities:
+    light.lounge_lounge_lights:
+      state: on
+      brightness: 129  # 50%
+
+- name: Relaxed foyer
+  entities:
+    light.front_foyer_foyer_light:
+      state: on
+      brightness: 77 # 30%
+
+- name: Relaxed lounge
+  entities:
+    light.lounge_lounge_lights:
+      state: on
+      brightness: 77  # 30%
+

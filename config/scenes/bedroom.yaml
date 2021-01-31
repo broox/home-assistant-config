@@ -2,7 +2,7 @@
   entities:
     light.master_bedroom:  # Light group from Hue (operates all lights at once)
       state: on
-      brightness_pct: 99
+      brightness: 252  # 99%
       rgb_color: [255,210,129]
 
 - name: Bedtime
@@ -15,7 +15,7 @@
     light.master_bedroom: off
     light.front_foyer_foyer_light:
       state: on
-      brightness_pct: 10
+      brightness: 26  # 10%
     light.exterior_front_porch:
       state: off
 
@@ -28,8 +28,8 @@
   entities:
     light.master_bedroom:
       state: on
-      brightness_pct: 100
-      color_temp: 325  # matches osrams at 100% brightness
+      brightness: 255
+      color_temp:  312 # 3200k
 
 - name: Dim bedroom
   entities:
@@ -42,5 +42,5 @@
   entities:
     light.master_bedroom:
       state: on
-      brightness_pct: 50
+      brightness: 129  # 50%
       color_temp: 446

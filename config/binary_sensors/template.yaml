@@ -6,9 +6,8 @@
     christmas_time:
       friendly_name: Christmas time
       value_template: >-
-        {% set from = '11=25' %}
-        {% set to = '1-31' %}
-        {{ from <= now()|as_timestamp|timestamp_custom('%m-%d', False) <= to }}
+        {% set n = now() %}
+        {{ (n.month == 11 and n.day >= 25) or n.month == 12 or (n.month == 1 and (1 <= n.day <= 15)) }}
     dark_dining_room:
       friendly_name: Dark dining room
       value_template: >-
@@ -19,12 +18,17 @@
       value_template: >-
         {%- set lux = states('sensor.vision_zp3111_multisensor_4in1_luminance') | float %}
         {{ is_state('binary_sensor.daylight', 'off') or lux < 40 }}
+    dark_outside:
+      friendly_name: Dark outside
+      value_template: >-
+        {%- set lux = states('sensor.broox_dead_end_weather_solar_rad_lx') | float %}
+        {{ is_state('sun.sun', 'below_horizon') or lux < 2000 }}
     dark_rec_room:
       friendly_name: Dark rec room
       value_template: "{{ is_state('binary_sensor.daylight', 'off') }}"
     daylight:
       friendly_name: Daylight
-      value_template: "{{ state_attr('sun.sun','elevation') | float >= 12 }}"
+      value_template: "{{ state_attr('sun.sun','elevation') | float >= 9 }}"
     golden_hour:
       friendly_name: Golden hour
       value_template: >-
@@ -35,11 +39,9 @@
       value_template: "{{ is_state('group.family', 'home') or is_state('input_boolean.guest_mode', 'on') }}"
     office_motion:
       device_class: motion
-      entity_id: sensor.vision_zp3111_multisensor_4in1_alarm_level
       friendly_name: 'Office motion'
       value_template: "{{ is_state('sensor.vision_zp3111_multisensor_4in1_alarm_level', '255') }}"
     rec_room_motion:
       device_class: motion
-      entity_id: sensor.vision_zp3102_pir_motion_sensor_alarm_level
       friendly_name: 'Rec room motion'
       value_template: "{{ is_state('sensor.vision_zp3102_pir_motion_sensor_alarm_level', '255') }}"

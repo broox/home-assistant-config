@@ -6,6 +6,7 @@ turn_off_house:
     entity_id: group.all_switches
   - service: media_player.turn_off
     entity_id: group.sonos
+# TODO: turn off fans
 
 turn_off_office:
   sequence:
@@ -47,7 +48,7 @@ ambient_kitchen:
     - service: light.turn_on
       data:
         entity_id: light.sink_lights
-        brightness_pct: 50
+        brightness: 129  # 50%
         color_temp: 325
 
 bright_kitchen:
@@ -62,7 +63,20 @@ bright_kitchen:
     - service: light.turn_on
       data:
         entity_id: light.kitchen_cooking_lights
-        brightness_pct: 100
+        brightness: 255  # 100%
+
+normal_kitchen:
+  alias: Normal kitchen
+  sequence:
+    - service: scene.turn_on
+      entity_id:
+        - scene.blue_kitchen_accents
+        - scene.normal_island
+        - scene.normal_sink
+        - scene.fireplace_accent
+    - service: light.turn_off
+      data:
+        entity_id: light.kitchen_cooking_lights
 
 relaxed_kitchen:
   alias: Relaxed kitchen
@@ -102,10 +116,51 @@ relaxed_living_room:
       data:
         entity_id:
           - light.living_room_ceiling_lamp
-          - light.front_foyer_foyer_light
-        brightness_pct: 30
+        brightness: 77  # 30%
     - service: switch.turn_on
       entity_id: switch.couch_ge_12721_switch
+
+# Lounge
+
+relax_dining_room_lights_if_on:
+  sequence:
+    - condition: state
+      entity_id: light.dining_room_table_lights
+      state: 'on'
+    - service: scene.turn_on
+      entity_id: scene.relaxed_dining_room
+
+relax_kitchen_lights_if_on:
+  sequence:
+    - condition: state
+      entity_id: group.kitchen_overhead
+      state: 'on'
+    - service: script.turn_on
+      entity_id: script.relaxed_kitchen
+
+relax_lounge_ceiling_lights_if_on:
+  sequence:
+    - condition: state
+      entity_id: light.lounge_lounge_lights
+      state: 'on'
+    - service: scene.turn_on
+      entity_id: scene.relaxed_lounge
+
+relax_foyer_lights_if_on:
+  sequence:
+    - condition: state
+      entity_id: light.front_foyer_foyer_light
+      state: 'on'
+    - service: scene.turn_on
+      entity_id: scene.relaxed_foyer
+
+relax_stairwell_lights_if_on:
+  sequence:
+    - condition: state
+      entity_id: light.stairwell
+      state: 'on'
+    - service: scene.turn_on
+      entity_id: scene.relaxed_stairwell
 
 # Great room
 ambient_great_room:
@@ -133,11 +188,26 @@ bright_great_room:
     - service: scene.turn_on
       entity_id:
         - scene.bright_dining_room
+        - scene.bright_foyer
         - scene.bright_living_room
         - scene.bright_lounge
         - scene.bright_stairwell
     - service: script.turn_on
       entity_id: script.bright_kitchen
+
+normal_great_room:
+  alias: Normal great room
+  sequence:
+    - service: scene.turn_on
+      entity_id:
+        - scene.normal_dining_room
+        - scene.normal_foyer
+        - scene.normal_lounge
+        - scene.normal_stairwell
+    - service: script.turn_on
+      entity_id:
+        - script.normal_kitchen
+        - script.relaxed_living_room
 
 orange_great_room:
   alias: Orange great room
@@ -154,6 +224,7 @@ relaxed_great_room:
     - service: scene.turn_on
       entity_id:
         - scene.relaxed_dining_room
+        - scene.relaxed_foyer
         - scene.relaxed_lounge
         - scene.relaxed_stairwell
     - service: script.turn_on
@@ -171,6 +242,16 @@ bright_upstairs:
     - service: scene.turn_on
       entity_id:
         - scene.bright_bedroom
+        - scene.bright_office
+
+normal_upstairs:
+  alias: Normal upstairs
+  sequence:
+    - service: script.turn_on
+      entity_id:
+        - script.normal_great_room
+    - service: scene.turn_on
+      entity_id:
         - scene.bright_office
 
 relaxed_upstairs:

@@ -7,3 +7,13 @@ check_garage_door:
     data:
       title: Warning
       message: Garage door is open
+
+check_mud_room_door:
+  sequence:
+    - condition: state
+      entity_id: binary_sensor.mud_room_door
+      state: 'on'
+    - service: notify.family
+      data:
+        title: Warning
+        message: Mud room door is open

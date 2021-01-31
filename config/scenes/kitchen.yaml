@@ -2,100 +2,107 @@
   entities:
     light.fireplace_accent:
       state: on
-      brightness_pct: 100
+      brightness: 255  # 100%
       rgb_color: [255,60,13]
-
 
 - name: Blue kitchen accents
   entities:
     light.cabinet_accents:
       state: on
       xy_color: [0.1567,0.1846]
-      brightness_pct: 95
+      brightness: 242  # 95%
     light.fridge_accents:
       state: on
       xy_color: [0.1714,0.3539]
-      brightness_pct: 95
+      brightness: 242  # 95%
 
 - name: Bright dining room
   entities:
     light.dining_room_table_lights:
       state: on
-      brightness_pct: 100
+      brightness: 255  # 100%
 
 - name: Bright island
   entities:
     light.island:
       state: on
-      brightness_pct: 100
-      color_temp: 325  # matches osrams at 100% brightness
-
-- name: Bright lounge
-  entities:
-    light.lounge_lounge_lights:
-      state: on
-      brightness_pct: 100
+      brightness: 255  # 100%
+      color_temp: 312  # 3200k
 
 - name: Bright sink
   entities:
     light.sink_lights:
       state: on
-      brightness_pct: 100
-      color_temp: 325
+      brightness: 255  # 100%
+      color_temp: 312  # 3200km
+
+- name: Normal dining room
+  entities:
+    light.dining_room_table_lights:
+      state: on
+      brightness: 216  # 85%
+
+- name: Normal island
+  entities:
+    light.island:
+      state: on
+      brightness: 216  # 85%
+      color_temp: 333  # 3000k
+
+- name: Normal sink
+  entities:
+    light.sink_lights:
+      state: on
+      brightness: 216  # 85%
+      color_temp: 333  # 3000k
 
 - name: Orange kitchen accents
   entities:
     light.cabinet_accents:
       state: on
       rgb_color: [255, 95, 0]
-      brightness_pct: 100
+      brightness: 255  # 100%
     light.fireplace_accent:
       state: on
       rgb_color: [255, 95, 0]
-      brightness_pct: 100
+      brightness: 255  # 100%
     light.fridge_accents:
       state: on
       rgb_color: [255, 95, 0]
-      brightness_pct: 100
+      brightness: 255  # 100%
 
 - name: Red kitchen accents
   entities:
     light.cabinet_accents:
       state: on
       rgb_color: [255,63,0]
-      brightness_pct: 95
+      brightness: 242  # 95%
     light.fireplace_accent:
       state: on
       rgb_color: [255,63,0]
-      brightness_pct: 95
+      brightness: 242  # 95%
     light.fridge_accents:
       state: on
       rgb_color: [255,63,0]
-      brightness_pct: 95
+      brightness: 242  # 95%
 
 - name: Relaxed dining room
   entities:
     light.dining_room_table_lights:
       state: on
-      brightness_pct: 30
+      brightness: 77  # 30%
 
 - name: Relaxed island
   entities:
     light.island:
       state: on
-      brightness_pct: 85
+      brightness: 216  # 85%
       color_temp: 446
-
-- name: Relaxed lounge
-  entities:
-    light.lounge_lounge_lights:
-      state: on
-      brightness_pct: 30
 
 - name: Relaxed sink
   entities:
     light.sink_lights:
       state: on
-      brightness_pct: 85
+      brightness: 216  # 85%
       color_temp: 346
 

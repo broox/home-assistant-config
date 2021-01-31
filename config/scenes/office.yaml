@@ -5,7 +5,7 @@
     light.big_office_lamp: off
     light.office_desk_lamp:  # Blinky
       state: on
-      brightness_pct: 30
+      brightness: 77  # 30%
     switch.office_ge_12721_switch:  # Miffy
       state: on
 
@@ -13,15 +13,15 @@
   entities:
     light.office_lamp:
       state: on
-      brightness_pct: 100
-      color_temp: 325  # matches osrams at 100% brightness
+      brightness: 255  # 100%
+      color_temp: 312  # 3200k
     light.big_office_lamp:
       state: on
-      brightness_pct: 100
-      color_temp: 325  # matches osrams at 100% brightness
+      brightness: 255  # 100%
+      color_temp: 312  # 3200k
     light.office_desk_lamp:  # Blinky
       state: on
-      brightness_pct: 30
+      brightness: 77  # 30%
     switch.office_ge_12721_switch:  # Miffy
       state: on
 
@@ -29,22 +29,22 @@
   entities:
     light.office_lamp:
       state: on
-      brightness_pct: 100
+      brightness: 255  # 100%
       color_temp: 156
     light.big_office_lamp:
       state: on
-      brightness_pct: 100
+      brightness: 255  # 100%
       color_temp: 156
 
 - name: Orange office
   entities:
     light.office_lamp:
       state: on
-      brightness_pct: 100
+      brightness: 255  # 100%
       rgb_color: [255, 95, 0]
     light.office_desk_lamp:  # Blinky
       state: on
-      brightness_pct: 30
+      brightness: 77  # 30%
     switch.office_ge_12721_switch:  # Miffy
       state: on
 
@@ -52,7 +52,7 @@
   entities:
     light.office_desk_lamp:  # Blinky
       state: on
-      brightness_pct: 30
+      brightness: 77  # 30%
     switch.office_ge_12721_switch:  # Miffy
       state: on
 
@@ -60,15 +60,15 @@
   entities:
     light.office_lamp:
       state: on
-      brightness_pct: 50
+      brightness: 129  # 50%
       color_temp: 446
     light.big_office_lamp:
       state: on
-      brightness_pct: 50
+      brightness: 129  # 50%
       color_temp: 446
     light.office_desk_lamp:  # Blinky
       state: on
-      brightness_pct: 30
+      brightness: 77  # 30%
     switch.office_ge_12721_switch:  # Miffy
       state: on
 

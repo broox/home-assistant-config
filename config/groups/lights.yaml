@@ -36,6 +36,13 @@ bedroom:
   - light.dresser_lamp
   - switch.white_noise
 
+christmas_lights:
+  name: Christmas lights
+  entities:
+    - light.lamp_dimmer_one_level
+    - light.lamp_dimmer_two_level
+    - switch.exterior_christmas_lights
+
 exterior:
   name: Outside lights
   entities:
@@ -96,6 +103,12 @@ kitchen:
     - light.cabinet_accents
     - light.fridge_accents
     - light.fireplace_accent
+
+kitchen_overhead:
+  name: Overhead kitchen lights
+  entities:
+    - light.kitchen_cooking_lights
+    - light.island  # Hue group
 
 living_room:
   name: Living room lights

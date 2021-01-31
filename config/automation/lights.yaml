@@ -10,21 +10,59 @@
     from: not_home
     to: home
   condition:
-  - condition: and
-    conditions:
     - condition: state
       entity_id: binary_sensor.house_occupied
       state: 'on'
     - condition: state
       entity_id: binary_sensor.daylight
       state: 'off'
+    - condition: time
+      before: '21:00:00'
+  action:
+  - service: script.turn_on
+    entity_id: script.normal_upstairs
+  - service: notify.derek
+    data:
+      title: Lights
+      message: Evening lights activated
+
+- id: night_lights_when_arriving
+  alias: Turn on lights when getting home late
+  trigger:
+  - platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  condition:
+    - condition: state
+      entity_id: binary_sensor.house_occupied
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.daylight
+      state: 'off'
+    - condition: time
+      after: '20:59:59'
+      before: '6:00:00'
   action:
   - service: script.turn_on
     entity_id: script.relaxed_upstairs
   - service: notify.derek
     data:
       title: Lights
-      message: Evening lights activated
+      message: Night lights activated
+
+- id: night_great_room
+  alias: Dim the great room lights to prepare for bed
+  trigger:
+    - platform: time
+      at: '21:00:00'
+  action:
+    - service: script.turn_on
+      entity_id:
+        - script.relax_kitchen_lights_if_on
+        - script.relax_dining_room_lights_if_on
+        - script.relax_lounge_ceiling_lights_if_on
+        - script.relax_stairwell_lights_if_on
 
 - id: bedtime_lights
   alias: Turn on bedroom lights before bed when home

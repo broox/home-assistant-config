@@ -4,28 +4,28 @@
     light.ambient_rec_room_lights:  # hue group
       state: on
       rgb_color: [255,93,40]
-      brightness_pct: 30
+      brightness: 77  # 30%
     light.dm_skyline:
       state: on
       rgb_color: [255,93,40]
-      brightness_pct: 100
+      brightness: 255  # 100%
 
 - name: Bright rec room
   entities:
     light.ambient_rec_room_lights:  # hue group
       state: on
       rgb_color: [255,210,129]
-      brightness_pct: 100
+      brightness: 255  # 100%
     light.dm_skyline:
       state: on
       rgb_color: [255,93,40]
     light.foosball_table:
       state: on
-      brightness_pct: 100
+      brightness: 255  # 100%
       color_temp: 343
     light.rec_room_color_ceiling_lights:  # hue group
       state: on
-      brightness_pct: 100
+      brightness: 255  # 100%
       color_temp: 343
 
 - name: Red rec room
@@ -33,55 +33,55 @@
     light.ambient_rec_room_lights:  # hue group
       state: on
       rgb_color: [255,45,0]
-      brightness_pct: 30
+      brightness: 77  # 30%
     light.dm_skyline:
       state: on
       rgb_color: [255,45,0]
-      brightness_pct: 100
+      brightness: 255  # 100%
     light.foosball_table:
       state: on
-      brightness_pct: 56
+      brightness: 143  # 56%
       color_temp: 443
     light.rec_room_color_ceiling_lights:  # hue group
       state: on
       rgb_color: [255,45,0]
-      brightness_pct: 30
+      brightness: 77  # 30%
 
 - name: Relaxed foosball
   entities:
     light.ambient_rec_room_lights:  # hue group
       state: on
       rgb_color: [255,93,40]
-      brightness_pct: 30
+      brightness: 77  # 30%
     light.dm_skyline:
       state: on
       rgb_color: [255,93,40]
-      brightness_pct: 100
+      brightness: 255  # 100%
     light.foosball_table:
       state: on
-      brightness_pct: 100
+      brightness: 255  # 100%
       color_temp: 447
     light.rec_room_color_ceiling_lights:  # hue group
       state: on
       rgb_color: [255,161,40]
-      brightness_pct: 5
+      brightness: 13  # 5%
 
 - name: Relaxed rec room
   entities:
     light.ambient_rec_room_lights:  # hue group
       state: on
       rgb_color: [255,93,40]
-      brightness_pct: 30
+      brightness: 77  # 30%
     light.dm_skyline:
       state: on
       rgb_color: [255,93,40]
-      brightness_pct: 100
+      brightness: 255  # 100%
     light.foosball_table:
       state: on
-      brightness_pct: 56
+      brightness: 143  # 56%
       color_temp: 443
     light.rec_room_color_ceiling_lights:  # ceiling light hue group
       state: on
-      brightness_pct: 56
+      brightness: 143  # 56%
       color_temp: 443
 

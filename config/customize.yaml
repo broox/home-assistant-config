@@ -47,3 +47,7 @@ sensor.derek_phone_battery:
   friendly_name: Derek's phone battery
 switch.white_noise:
   icon: mdi:weather-windy
+binary_sensor.mud_room_door:
+  device_class: door
+binary_sensor.aeon_labs_zw100_multisensor_6_sensor:
+  device_class: motion

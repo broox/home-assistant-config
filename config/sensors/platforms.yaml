@@ -29,3 +29,6 @@
       value_template: "{{ state_attr('weather.home', 'temperature') }}"
 #    switch_on_count:
 #      value_template: "{% set count = states['switch'] | selectattr('state','eq', 'on') | map(attribute='entity_id') | list | count %}"
+    sun_elevation:
+      unit_of_measurement: '°'
+      value_template: "{{ state_attr('sun.sun', 'elevation') }}"

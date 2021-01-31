@@ -24,7 +24,7 @@
       state: 'on'
     - condition: time
       after: '9:59:59'
-      before: '22:00:00'
+      before: '21:00:00'
   action:
     - service: scene.turn_on
       entity_id: scene.bright_dining_room
@@ -40,7 +40,7 @@
       entity_id: binary_sensor.dark_dining_room
       state: 'on'
     - condition: time
-      after: '21:59:59'
+      after: '20:59:59'
       before: '10:00:00'
   action:
     - service: scene.turn_on

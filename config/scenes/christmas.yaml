@@ -2,10 +2,10 @@
   entities:
     light.lamp_dimmer_one_level:
       state: on
-      brightness_pct: 100
+      brightness: 255  # 100%
     light.lamp_dimmer_two_level:
       state: on
-      brightness_pct: 100
+      brightness: 255  # 100%
     switch.exterior_christmas_lights:
       state: on
 
@@ -14,9 +14,9 @@
     light.cabinet_accents:
       state: on
       rgb_color: [255,43,21]
-      brightness_pct: 95
+      brightness: 242  # 95%
     light.fridge_accents:
       state: on
       rgb_color: [81,255,79]
-      brightness_pct: 95
+      brightness: 242  # 95%
 
