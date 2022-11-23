@@ -1,22 +1,25 @@
 homeassistant:
   customize: !include customize.yaml
 
-alarm_control_panel:
-  - platform: aarlo
-    home_mode_name: home
-    away_mode_name: armed
-    night_mode_name: night
-
-aarlo:
-  username: !secret arlo_username
-  password: !secret arlo_password
+amcrest:
+  - name: Garage camera
+    host: !secret amcrest_garage_ip
+    username: !secret amcrest_camera_user
+    password: !secret amcrest_camera_password
+    binary_sensors:
+      - motion_detected
+      - online
+  - name: Driveway camera
+    host: !secret amcrest_driveway_ip
+    username: !secret amcrest_camera_user
+    password: !secret amcrest_camera_password
+    binary_sensors:
+      - motion_detected
+      - online
 
 automation: !include_dir_merge_list automation
 
 binary_sensor: !include_dir_merge_list binary_sensors
-
-camera:
-  - platform: aarlo
 
 cloud:
 
@@ -38,6 +41,21 @@ homekit: !include homekit.yaml
 
 input_boolean:
 
+input_text:
+  public_domain:
+    initial: !secret public_domain
+
+ios:
+  push:
+    categories:
+      - name: Camera
+        identifier: 'camera'
+        actions:
+          - identifier: 'VIEW_VIDEO'
+            title: 'See video'
+          - identifier: 'VIEW_SNAPSHOT'
+            title: 'See snapshot'
+
 lutron_caseta_pro:
   bridges:
     - host: !secret lutron_host_ip
@@ -46,6 +64,9 @@ lutron_caseta_pro:
       switch: [9, 16, 24]
 
 mobile_app:
+
+mqtt:
+  broker: mosquitto
 
 nest:
   client_id: !secret nest_client_id
@@ -80,5 +101,7 @@ system_health:
 
 tts:
   - platform: google_translate
+    cache: true
+    cache_dir: /tmp/tts
     service_name: google_say
     base_url: !secret host_base_url 

@@ -1,19 +1,13 @@
-- id: tell_garth_karis_home
-  alias: Tell Garth Kari's Home
+- id: tell_dog_karis_home
+  alias: Tell Dog Kari's Home
   trigger:
     - platform: state
       entity_id: person.kari_brooks
+      from: not_home
       to: home
   action:
-#    - service: media_player.volume_set
-#      entity_id: media_player.office_speaker
-#      volume_level: 0.5
     - service: tts.google_say
-      entity_id: media_player.office_speaker
       data:
-        message: "Garth!"
-    - delay: '1'
-    - service: tts.google_say
-      entity_id: media_player.office_speaker
-      data:
-        message: "Who's heere"
+        entity_id: media_player.office_speaker
+        message: "Benny! Who's here?"
+

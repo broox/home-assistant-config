@@ -13,7 +13,7 @@ every_party:
         entity_id:
           - light.exterior_deck_lights
           - light.living_room_ceiling_lamp
-          - light.guest_dresser_lamp_3  # Guest nightstand
+          - light.guest_night_stand  # Guest nightstand
           - light.guest_futon
           - light.guest_desk
           - light.big_office_lamp
@@ -62,7 +62,9 @@ red_party:
       data:
         entity_id:
           - light.kitchen  # Hue group
-          - light.office_lamp
+          - light.office_sconce
+          - light.medium_office_lamp
+          - light.tall_office_lamp
           - light.stairwell
           - light.turntable
           - light.master_bedroom  # Hue group
@@ -87,7 +89,9 @@ blue_party:
       data:
         entity_id:
           - light.kitchen  # Hue group
-          - light.office_lamp
+          - light.office_sconce
+          - light.medium_office_lamp
+          - light.tall_office_lamp
           - light.stairwell
           - light.turntable
           - light.master_bedroom  # Hue group
@@ -116,7 +120,9 @@ pink_party:
           - light.fridge_accents
           - light.sink_lights
           - light.fireplace_accent
-          - light.office_lamp
+          - light.office_sconce
+          - light.medium_office_lamp
+          - light.tall_office_lamp
           - light.stairwell
           - light.turntable
           - light.master_bedroom  # Hue group
@@ -142,7 +148,9 @@ dim_party:
         entity_id:
           - light.island
           - light.sink_lights
-          - light.office_lamp
+          - light.office_sconce
+          - light.medium_office_lamp
+          - light.tall_office_lamp
           - light.stairwell
           - light.turntable
           - light.master_bedroom  # Hue group

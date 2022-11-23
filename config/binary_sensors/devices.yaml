@@ -1,5 +1,5 @@
-- platform: aarlo
-  monitored_conditions:
-  - motion
-  - sound
-  - connectivity
+#- platform: aarlo
+#  monitored_conditions:
+#  - motion
+#  - sound
+#  - connectivity

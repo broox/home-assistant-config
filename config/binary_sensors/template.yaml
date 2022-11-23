@@ -1,6 +1,8 @@
 # My Monoprice Z-wave motion sensors don't report motion as binary. This is a
 # hack to create binary sensors off of the "alarm_level" reading.
 
+# time of day: https://www.home-assistant.io/integrations/tod/
+
 - platform: template
   sensors:
     christmas_time:

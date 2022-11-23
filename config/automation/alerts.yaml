@@ -102,3 +102,27 @@
     data:
       title: Door
       message: Garage door has closed
+
+- id: person_detected_outside
+  alias: "Person detected outside"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.driveway_person_motion
+      from: "off"
+      to: "on"
+  condition: []
+  action:
+    - service: scene.create
+      data:
+        scene_id: before_person_detected_outside
+        snapshot_entities: >-
+          {{expand(state_attr('group.ambient_notification_lights', 'entity_id'))|map(attribute='entity_id')|list}}
+    - service: light.turn_on
+      target:
+        entity_id: group.ambient_notification_lights
+      data:
+        rgb_color: [255, 128, 25]
+    - delay: '0:00:05'
+    - service: scene.turn_on
+      target:
+        entity_id: scene.before_person_detected_outside

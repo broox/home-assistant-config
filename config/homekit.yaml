@@ -1,6 +1,5 @@
 # Note: Apple has a limit of 100 devices
 
-auto_start: false  # This is necessary in order to give Z-Wave time to startup
 filter:
   include_domains:
     - climate

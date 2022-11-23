@@ -5,6 +5,12 @@ all_lights:
     - group.exterior
     - group.upstairs
 
+ambient_notification_lights:
+  name: Ambient notification lights
+  entities:
+    - light.sink_lights
+    - light.tall_office_lamp
+
 away_lights:
   name: Away lamps
   entities:
@@ -142,8 +148,9 @@ non_bedroom_lights:
 office:
   name: Office lights
   entities:
-  - light.office_lamp
-  - light.big_office_lamp  # Hue group
+  - light.medium_office_lamp  # Hue group
+  - light.tall_office_lamp  # Hue group
+  - light.office_sconce  # Hue group
   - light.office_desk_lamp
   - switch.office_ge_12721_switch
 
