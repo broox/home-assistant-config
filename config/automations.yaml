@@ -1,0 +1,801 @@
+- id: away_from_home
+  alias: Everyone is away from home
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  action:
+  - service: script.check_garage_door
+- id: someone_home
+  alias: Someone is home
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  action:
+  - service: notify.derek
+    data_template:
+      title: Presence
+      message: '{%- if is_state("input_boolean.guest_mode", "off") -%} Someone is
+        home. {%- else -%} Someone is home, turning off guest mode. {%- endif %}
+
+        '
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.guest_mode
+- id: kari_heading_home
+  alias: Kari is heading home from work
+  trigger:
+  - platform: state
+    entity_id: person.kari
+    from: Moulton
+    to: not_home
+  - platform: state
+    entity_id: person.kari
+    from: Smouse
+    to: not_home
+  - platform: state
+    entity_id: person.kari
+    from: Oak Park
+    to: not_home
+  action:
+    service: notify.derek
+    data:
+      title: Presence
+      message: Kari has left work
+- id: hass_update
+  alias: Home assistant updated
+  trigger:
+  - platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.derek
+    data:
+      title: Upgrade alert!
+      message: Home Assistant {{ states.updater.updater.state }} is now available
+- id: garage_door_open_while_away
+  alias: Garage door open while away
+  trigger:
+    platform: state
+    entity_id: cover.garage_door_opener_2
+    to: open
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: cover.garage_door_opener_2
+      state: open
+    - condition: state
+      entity_id: group.family
+      state: not_home
+  action:
+    service: notify.family
+    data:
+      title: Door
+      message: Garage door has opened
+- id: garage_door_closed_while_away
+  alias: Garage door closed while away
+  trigger:
+    platform: state
+    entity_id: cover.garage_door_opener_2
+    to: closed
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: cover.garage_door_opener_2
+      state: closed
+    - condition: state
+      entity_id: group.family
+      state: not_home
+  action:
+    service: notify.family
+    data:
+      title: Door
+      message: Garage door has closed
+- id: person_detected_outside
+  alias: Person detected outside
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.driveway_person_motion
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: scene.create
+    data:
+      scene_id: before_person_detected_outside
+      snapshot_entities: '{{expand(state_attr(''group.ambient_notification_lights'',
+        ''entity_id''))|map(attribute=''entity_id'')|list}}'
+  - service: light.turn_on
+    target:
+      entity_id: group.ambient_notification_lights
+    data:
+      rgb_color:
+      - 255
+      - 128
+      - 25
+  - delay: 0:00:05
+  - service: scene.turn_on
+    target:
+      entity_id: scene.before_person_detected_outside
+- id: motion_in_garage
+  alias: Motion in garage
+  trigger:
+    platform: state
+    entity_id: binary_sensor.garage_camera_motion_detected
+    to: 'on'
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.garage_camera
+      filename: /config/www/garage.jpg
+  - service: notify.derek
+    data:
+      title: Motion
+      message: Motion in the garage
+      data:
+        attachment:
+          content-type: jpg
+          hide-thumbnail: false
+        entity_id: camera.garage_camera
+        push:
+          badge: 0
+          category: camera
+- alias: Send camera event notification
+  trigger:
+    platform: mqtt
+    topic: frigate/events
+  condition:
+  - '{{ trigger.payload_json[''type''] == ''new'' }}'
+  action:
+  - service: notify.derek
+    data_template:
+      message: A {{trigger.payload_json["after"]["label"]}} ({{ (trigger.payload_json["after"]["top_score"]
+        | float * 100) | round(0) }}%) was detected on the {{trigger.payload_json["after"]["camera"]}}
+        camera.
+      data:
+        attachment:
+          content-type: jpg
+          hide-thumbnail: false
+          url: '{{states("input_text.public_domain")}}/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/thumbnail.jpg'
+        push:
+          category: camera
+        url:
+          _: /lovelace/cameras
+          VIEW_VIDEO: '{{states("input_text.public_domain")}}/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/{{trigger.payload_json["after"]["camera"]}}/clip.mp4'
+          VIEW_SNAPSHOT: '{{states("input_text.public_domain")}}/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg'
+        apns_headers:
+          apns-collapse-id: motion-{{trigger.payload_json["after"]["id"]}}
+        action_data:
+          video_url: '{{states("input_text.public_domain")}}/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/{{trigger.payload_json["after"]["camera"]}}/clip.mp4'
+          snapshot_url: '{{states("input_text.public_domain")}}/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg'
+  id: 7558c2b68e224cb69182f5aa8de386b5
+- id: evening_christmas_lights
+  alias: Turn on Christmas lights in the evening
+  trigger:
+    platform: sun
+    event: sunset
+  condition:
+  - condition: state
+    entity_id: binary_sensor.christmas_time
+    state: 'on'
+  action:
+    service: scene.turn_on
+    entity_id: scene.christmas_lights
+- id: floor_off_when_leaving
+  alias: Turn off heated floor when leaving
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  action:
+    service: climate.set_temperature
+    data:
+      entity_id: climate.master_bath
+      temperature: 50
+- id: floor_resume_when_arriving
+  alias: Resume heated floor schedule when arriving
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  action:
+    service: climate.nuheat_resume_program
+- id: check_doors_at_bedtime
+  alias: Check whether doors are open when the bedroom lights turn off at night
+  trigger:
+    platform: state
+    entity_id: group.bedroom
+    to: 'off'
+  condition:
+    condition: time
+    after: '21:00:00'
+  action:
+  - service: script.check_garage_door
+  - service: script.check_mud_room_door
+- id: garage_door_left_open
+  alias: Garage door left open
+  trigger:
+    platform: state
+    entity_id: cover.garage_door_opener
+    to: open
+    for:
+      minutes: 7
+  action:
+    service: script.check_garage_door
+- id: mud_room_door_open
+  alias: Mud room door open
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.mud_room_door
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: group.family
+    state: not_home
+  action:
+  - service: script.check_mud_room_door
+  mode: single
+- id: mud_room_door_left_open
+  alias: Mud room door left open
+  trigger:
+    platform: state
+    entity_id: binary_sensor.mud_room_door
+    to: 'on'
+    for:
+      minutes: 5
+  action:
+    service: script.check_mud_room_door
+- alias: Start HomeKit
+  trigger:
+  - platform: event
+    event_type: zwave.network_ready
+  - platform: event
+    event_type: zwave.network_complete
+  - platform: event
+    event_type: zwave.network_complete_some_dead
+  action:
+  - service: homekit.start
+- id: evening_lights
+  alias: Turn on lights in the evening when home
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.daylight
+    from: 'on'
+    to: 'off'
+  - platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  condition:
+  - condition: state
+    entity_id: binary_sensor.house_occupied
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.daylight
+    state: 'off'
+  - condition: time
+    before: '21:00:00'
+  action:
+  - service: script.turn_on
+    entity_id: script.normal_upstairs
+  - service: notify.derek
+    data:
+      title: Lights
+      message: Evening lights activated
+- id: night_lights_when_arriving
+  alias: Turn on lights when getting home late
+  trigger:
+  - platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  condition:
+  - condition: state
+    entity_id: binary_sensor.house_occupied
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.daylight
+    state: 'off'
+  - condition: time
+    after: '20:59:59'
+    before: '6:00:00'
+  action:
+  - service: script.turn_on
+    entity_id: script.relaxed_upstairs
+  - service: notify.derek
+    data:
+      title: Lights
+      message: Night lights activated
+- id: night_great_room
+  alias: Dim the great room lights to prepare for bed
+  trigger:
+  - platform: time
+    at: '21:00:00'
+  action:
+  - service: script.turn_on
+    entity_id:
+    - script.relax_kitchen_lights_if_on
+    - script.relax_dining_room_lights_if_on
+    - script.relax_lounge_ceiling_lights_if_on
+    - script.relax_stairwell_lights_if_on
+- id: bedtime_lights
+  alias: Turn on bedroom lights before bed when home
+  trigger:
+  - platform: time
+    at: '21:00:00'
+  - platform: state
+    entity_id: group.family
+    from: not_home
+    to: home
+  action:
+  - service: script.prepare_bedtime_lights
+- id: lights_off_when_leaving
+  alias: Turn off most lights when leaving
+  trigger:
+  - platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  condition:
+  - condition: template
+    value_template: '{{states[''light''] | selectattr(''state'', ''eq'', ''on'') |
+      list | count > 0 }}'
+  - condition: state
+    entity_id: binary_sensor.house_occupied
+    state: 'off'
+  action:
+  - service: light.turn_off
+    entity_id: all
+  - service: fan.turn_off
+    entity_id: all
+  - service: notify.derek
+    data:
+      title: Lights
+      message: Turning off most of the lights
+- id: exterior_lights_on_at_night
+  alias: Turn exterior lights on at night
+  trigger:
+  - platform: sun
+    event: sunset
+  action:
+  - service: switch.turn_on
+    entity_id: switch.exterior_driveway_light
+- id: exterior_lights_off_late
+  alias: Turn exterior lights off late at night
+  trigger:
+  - platform: time
+    at: 03:00:00
+  action:
+  - service: homeassistant.turn_off
+    entity_id: group.exterior
+- id: lamps_on_while_away_in_the_evening
+  alias: Turn on a couple lamps while we're away in the evening
+  trigger:
+  - platform: sun
+    event: sunset
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.house_occupied
+      state: 'off'
+    - condition: state
+      entity_id: group.away_lights
+      state: 'off'
+  action:
+  - service: homeassistant.turn_on
+    entity_id: group.away_lights
+  - service: notify.derek
+    data:
+      title: Lights
+      message: Turning on a couple lamps
+- id: lights_off_while_away_at_night
+  alias: Turn off any lights if we're still away late at night
+  trigger:
+  - platform: time
+    at: '23:00:00'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.house_occupied
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: '{{states[''light''] | selectattr(''state'', ''eq'', ''on'')
+          | list | count > 0 }}'
+      - condition: template
+        value_template: '{{states[''switch''] | selectattr(''state'', ''eq'', ''on'')
+          | list | count > 0 }}'
+  action:
+  - service: script.turn_off_house
+  - service: notify.derek
+    data:
+      title: Lights
+      message: Turning off all lights
+- id: lights_on_when_cloudy
+  alias: Turn on lights when it's cloudy
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.dark_sky_cloud_coverage
+    above: '90'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.house_occupied
+      state: 'on'
+    - condition: state
+      entity_id: group.upstairs_lights
+      state: 'off'
+    - condition: time
+      after: '10:00:00'
+      before: '21:00:00'
+  action:
+  - service: script.turn_on
+    entity_id: script.relaxed_upstairs
+  - service: notify.derek
+    data:
+      title: Lights
+      message: Turning on some lights because it's cloudy
+- id: music_off_when_leaving
+  alias: Turn off music when leaving
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  condition:
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
+  action:
+    service: media_player.turn_off
+    entity_id: group.sonos
+- id: tv_off_when_leaving
+  alias: Turn off TV when leaving
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: home
+    to: not_home
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: media_player.living_room_tv
+      state: 'on'
+  action:
+    service: media_player.turn_off
+    entity_id: media_player.living_room_tv
+- id: turntable_lights_on_when_playing
+  alias: Turn on turntable lights when playing
+  trigger:
+    platform: state
+    entity_id: media_player.turntable
+    to: playing
+  action:
+    service: scene.turn_on
+    entity_id: scene.red_turntable
+- id: enable_motion_detection
+  alias: Enable motion detection
+  trigger:
+  - platform: time
+    at: '9:00:00'
+  action:
+  - service: automation.turn_on
+    entity_id:
+    - group.dining_room_motion
+    - group.office_motion
+    - group.rec_room_motion
+- id: dining_room_motion_detected_day
+  alias: Dining room motion detected (when dark)
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeon_labs_zw100_multisensor_6_sensor
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.dark_dining_room
+    state: 'on'
+  - condition: time
+    after: '9:59:59'
+    before: '21:00:00'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.bright_dining_room
+- id: dining_room_motion_detected_night
+  alias: Dining room motion detected at night
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeon_labs_zw100_multisensor_6_sensor
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.dark_dining_room
+    state: 'on'
+  - condition: time
+    after: '20:59:59'
+    before: '10:00:00'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.relaxed_dining_room
+- id: dining_room_motion_detected
+  alias: Dining room motion detected
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeon_labs_zw100_multisensor_6_sensor
+    to: 'on'
+  action:
+  - service: script.turn_off
+    data:
+      entity_id: script.dining_room_motion_clear
+- id: dining_room_motion_clear
+  alias: Dining room motion clear
+  trigger:
+    platform: state
+    entity_id: binary_sensor.aeon_labs_zw100_multisensor_6_sensor
+    to: 'off'
+  action:
+    service: script.dining_room_motion_clear
+- id: office_motion_detected_dark_day
+  alias: Office motion detected (when dark)
+  trigger:
+    platform: state
+    entity_id: binary_sensor.office_motion
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.dark_office
+    state: 'on'
+  - condition: time
+    after: '9:59:59'
+    before: '22:00:00'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.bright_office
+- id: office_motion_detected_night
+  alias: Office motion detected at night
+  trigger:
+    platform: state
+    entity_id: binary_sensor.office_motion
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.dark_office
+    state: 'on'
+  - condition: time
+    after: '21:59:59'
+    before: '10:00:00'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.relaxed_office
+- id: office_motion_detected
+  alias: Office motion detected
+  trigger:
+    platform: state
+    entity_id: binary_sensor.office_motion
+    to: 'on'
+  action:
+  - service: script.turn_off
+    data:
+      entity_id: script.office_motion_clear
+- id: office_motion_clear
+  alias: Office motion clear
+  trigger:
+    platform: state
+    entity_id: binary_sensor.office_motion
+    to: 'off'
+  action:
+    service: script.office_motion_clear
+- id: rec_room_motion_detected_night
+  alias: Rec room motion detected at night
+  trigger:
+    platform: state
+    entity_id: binary_sensor.rec_room_motion
+    to: 'on'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.bright_rec_room
+- id: rec_room_motion_detected
+  alias: Rec room motion detected
+  trigger:
+    platform: state
+    entity_id: binary_sensor.rec_room_motion
+    to: 'on'
+  action:
+  - service: script.turn_off
+    data:
+      entity_id: script.rec_room_motion_clear
+- id: rec_room_motion_clear
+  alias: Rec room motion clear
+  trigger:
+    platform: state
+    entity_id: binary_sensor.rec_room_motion
+    to: 'off'
+  action:
+    service: script.rec_room_motion_clear
+- id: br_pico_fav_on
+  alias: BR Pico fav button pressed on
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: sensor.master_bedroom_pico
+    to: '2'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.non_bedroom_lights
+      state: 'off'
+    - condition: state
+      entity_id: light.exterior_front_porch
+      state: 'off'
+  action:
+    service: scene.turn_on
+    entity_id: scene.bedtime_emergency
+- id: br_pico_fav_off
+  alias: BR Pico fav button pressed off
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: sensor.master_bedroom_pico
+    to: '2'
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: group.non_bedroom_lights
+      state: 'on'
+    - condition: state
+      entity_id: light.exterior_front_porch
+      state: 'on'
+  action:
+    service: scene.turn_on
+    entity_id: scene.bedtime
+- id: br_pico_on
+  alias: BR Pico on
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: sensor.master_bedroom_pico
+    to: '1'
+  action:
+    service: scene.turn_on
+    entity_id: scene.bedroom_reading
+- id: br_pico_off_early
+  alias: BR Pico off
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: sensor.master_bedroom_pico
+    to: '4'
+  condition:
+  - condition: or
+    conditions:
+    - condition: time
+      after: 03:59:59
+    - condition: time
+      before: '21:00:00'
+  action:
+  - service: light.turn_off
+    entity_id: light.master_bedroom
+  - service: script.wake_up
+- id: br_pico_off_bedtime
+  alias: BR Pico off
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: sensor.master_bedroom_pico
+    to: '4'
+  condition:
+  - condition: or
+    conditions:
+    - condition: time
+      after: '20:59:59'
+    - condition: time
+      before: 04:00:00
+  action:
+    service: script.go_to_sleep_early
+- id: br_pico_up
+  alias: BR Pico up
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: sensor.master_bedroom_pico
+    to: '8'
+  action:
+    service: scene.turn_on
+    entity_id: scene.relaxed_bedroom
+- id: br_pico_down
+  alias: BR Pico down
+  initial_state: true
+  trigger:
+  - platform: state
+    entity_id: sensor.master_bedroom_pico
+    to: '16'
+  action:
+    service: scene.turn_on
+    entity_id: scene.dim_bedroom
+- id: minimote_3_off
+  alias: Minimote Button 2 Pressed Off
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.aeotec_minimote_1
+      scene_id: 3
+  condition:
+    condition: state
+    entity_id: group.bedroom
+    state: 'on'
+  action:
+  - service: light.turn_off
+    entity_id: group.bedroom
+- id: minimote_3_on
+  alias: Minimote Button 2 Pressed On
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.aeotec_minimote_1
+      scene_id: 3
+  condition:
+    condition: state
+    entity_id: group.bedroom
+    state: 'off'
+  action:
+  - service: light.turn_on
+    entity_id: group.bedroom
+- id: minimote_4_held
+  alias: Minimote Button 2 Held
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      entity_id: zwave.aeotec_minimote_1
+      scene_id: 4
+  action:
+    service: scene.turn_on
+    entity_id: scene.dim_bedroom
+- id: straightener_off_when_kari_leaves
+  alias: Turn Kari's straightener off when Kari leaves
+  trigger:
+  - platform: state
+    entity_id: person.kari_brooks
+    from: home
+    to: not_home
+  action:
+  - service: switch.turn_off
+    entity_id: switch.vanity_ge_14288_switch
+- id: straightener_on_when_kari_arrives
+  alias: Turn Kari's straightener outlet on when Kari's home
+  trigger:
+  - platform: state
+    entity_id: person.kari_brooks
+    to: home
+  action:
+  - service: switch.turn_on
+    entity_id: switch.vanity_ge_14288_switch
+- id: tell_dog_karis_home
+  alias: Tell Dog Kari's Home
+  trigger:
+  - platform: state
+    entity_id: person.kari_brooks
+    from: not_home
+    to: home
+  action:
+  - service: tts.google_say
+    data:
+      entity_id: media_player.office_speaker
+      message: Durby! Who's here?

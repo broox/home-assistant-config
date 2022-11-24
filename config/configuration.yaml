@@ -17,7 +17,7 @@ amcrest:
       - motion_detected
       - online
 
-automation: !include_dir_merge_list automation
+automation: !include automations.yaml
 
 binary_sensor: !include_dir_merge_list binary_sensors
 
