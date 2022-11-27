@@ -1,0 +1,524 @@
+# bedroom
+
+- name: Bedroom reading
+  entities:
+    light.master_bedroom:  # Light group from Hue (operates all lights at once)
+      state: on
+      brightness: 252  # 99%
+      rgb_color: [255,210,129]
+
+- name: Bedtime
+  entities:
+    group.non_bedroom_lights: off
+    light.exterior_front_porch: off
+
+- name: Bedtime early
+  entities:
+    light.master_bedroom: off
+    light.front_foyer_foyer_light:
+      state: on
+      brightness: 26  # 10%
+    light.exterior_front_porch:
+      state: off
+
+- name: Bedtime emergency
+  entities:
+    group.non_bedroom_lights: on
+    light.exterior_front_porch: on
+
+- name: Bright bedroom
+  entities:
+    light.master_bedroom:
+      state: on
+      brightness: 255
+      color_temp:  312 # 3200k
+
+- name: Dim bedroom
+  entities:
+    light.master_bedroom:
+      state: on
+      brightness: 1
+      rgb_color: [255,161,40]
+
+- name: Relaxed bedroom
+  entities:
+    light.master_bedroom:
+      state: on
+      brightness: 129  # 50%
+      color_temp: 446
+
+# christmas
+
+- name: Christmas lights
+  entities:
+    light.lamp_dimmer_one_level:
+      state: on
+      brightness: 255  # 100%
+    light.lamp_dimmer_two_level:
+      state: on
+      brightness: 255  # 100%
+    switch.exterior_christmas_lights:
+      state: on
+
+- name: Christmas kitchen accents
+  entities:
+    light.cabinet_accents:
+      state: on
+      rgb_color: [255,43,21]
+      brightness: 242  # 95%
+    light.fridge_accents:
+      state: on
+      rgb_color: [81,255,79]
+      brightness: 242  # 95%
+
+# living room
+
+- name: Movie time
+  entities:
+    group.dining_room_motion: off
+    light.island: off
+    light.lounge_lounge_lights: off
+    light.dining_room_table_lights: off
+    light.front_foyer_foyer_light: off
+    switch.couch_ge_12721_switch: off
+    light.living_room_ceiling_lamp:
+      state: on
+      brightness: 25  # 10%
+    light.cabinet_accents:
+      state: on
+      rgb_color: [255,63,0]
+      brightness: 179  # 70%
+    light.fireplace_accent:
+      state: on
+      rgb_color: [255,63,0]
+      brightness: 179  # 70%
+    light.fridge_accents:
+      state: on
+      rgb_color: [255,63,0]
+      brightness: 179  # 70%
+    light.stairwell:
+      state: on
+      rgb_color: [255,63,0]  # red
+      brightness: 13  # 5%
+    light.tree_accent:
+      state: on
+      rgb_color: [255,63,0]
+      brightness: 179  # 70%
+    light.turntable:
+      state: on
+      rgb_color: [255,63,0]  # red
+      brightness: 13  # 5%
+
+# kitchen
+
+- name: Fireplace accent
+  entities:
+    light.fireplace_accent:
+      state: on
+      brightness: 255  # 100%
+      rgb_color: [255,60,13]
+
+- name: Blue kitchen accents
+  entities:
+    light.cabinet_accents:
+      state: on
+      xy_color: [0.1567,0.1846]
+      brightness: 242  # 95%
+    light.fridge_accents:
+      state: on
+      xy_color: [0.1714,0.3539]
+      brightness: 242  # 95%
+
+- name: Bright dining room
+  entities:
+    light.dining_room_table_lights:
+      state: on
+      brightness: 255  # 100%
+
+- name: Bright island
+  entities:
+    light.island:
+      state: on
+      brightness: 255  # 100%
+      color_temp: 312  # 3200k
+
+- name: Bright sink
+  entities:
+    light.sink_lights:
+      state: on
+      brightness: 255  # 100%
+      color_temp: 312  # 3200km
+
+- name: Normal dining room
+  entities:
+    light.dining_room_table_lights:
+      state: on
+      brightness: 216  # 85%
+
+- name: Normal island
+  entities:
+    light.island:
+      state: on
+      brightness: 216  # 85%
+      color_temp: 333  # 3000k
+
+- name: Normal sink
+  entities:
+    light.sink_lights:
+      state: on
+      brightness: 216  # 85%
+      color_temp: 333  # 3000k
+
+- name: Orange kitchen accents
+  entities:
+    light.cabinet_accents:
+      state: on
+      rgb_color: [255, 95, 0]
+      brightness: 255  # 100%
+    light.fireplace_accent:
+      state: on
+      rgb_color: [255, 95, 0]
+      brightness: 255  # 100%
+    light.fridge_accents:
+      state: on
+      rgb_color: [255, 95, 0]
+      brightness: 255  # 100%
+
+- name: Red kitchen accents
+  entities:
+    light.cabinet_accents:
+      state: on
+      rgb_color: [255,63,0]
+      brightness: 242  # 95%
+    light.fireplace_accent:
+      state: on
+      rgb_color: [255,63,0]
+      brightness: 242  # 95%
+    light.fridge_accents:
+      state: on
+      rgb_color: [255,63,0]
+      brightness: 242  # 95%
+
+- name: Relaxed dining room
+  entities:
+    light.dining_room_table_lights:
+      state: on
+      brightness: 77  # 30%
+
+- name: Relaxed island
+  entities:
+    light.island:
+      state: on
+      brightness: 216  # 85%
+      color_temp: 446
+
+- name: Relaxed sink
+  entities:
+    light.sink_lights:
+      state: on
+      brightness: 216  # 85%
+      color_temp: 346
+
+# living room
+
+- name: Bright living room
+  entities:
+    light.living_room_ceiling_lamp:
+      state: on
+      brightness: 255  # 100%
+    light.turntable:
+      state: on
+      brightness: 255  # 100%
+      color_temp: 312  # 3200k
+    switch.couch_ge_12721_switch:
+      state: on
+
+- name: Orange turntable
+  entities:
+    light.turntable:
+      state: on
+      rgb_color: [255, 95, 0]
+      brightness: 255  # 100%
+
+- name: Red turntable
+  entities:
+    light.turntable:
+      state: on
+      rgb_color: [255,63,0]
+      brightness: 179  # 70%
+
+- name: Red tree accent
+  entities:
+    light.tree_accent:
+      state: on
+      rgb_color: [255,63,0]
+      brightness: 255  # 100%
+
+# lounge
+
+- name: Bright foyer
+  entities:
+    light.front_foyer_foyer_light:
+      state: on
+      brightness: 255 # 100%
+
+- name: Bright lounge
+  entities:
+    light.lounge_lounge_lights:
+      state: on
+      brightness: 255  # 100%
+
+- name: Normal foyer
+  entities:
+    light.front_foyer_foyer_light:
+      state: on
+      brightness: 129 # 50%
+
+- name: Normal lounge
+  entities:
+    light.lounge_lounge_lights:
+      state: on
+      brightness: 129  # 50%
+
+- name: Relaxed foyer
+  entities:
+    light.front_foyer_foyer_light:
+      state: on
+      brightness: 77 # 30%
+
+- name: Relaxed lounge
+  entities:
+    light.lounge_lounge_lights:
+      state: on
+      brightness: 77  # 30%
+
+# office
+
+- name: Ambient office
+  entities:
+    group.office_motion: off
+    light.medium_office_lamp: off
+    light.tall_office_lamp: off
+    light.office_sconce: off
+    light.office_desk_lamp:  # Blinky
+      state: on
+      brightness: 77  # 30%
+    switch.office_ge_12721_switch:  # Miffy
+      state: on
+
+- name: Bright office
+  entities:
+    light.medium_office_lamp:
+      state: on
+      brightness: 255  # 100%
+      color_temp: 312  # 3200k
+    light.office_sconce:
+      state: on
+      brightness: 255  # 100%
+      color_temp: 312  # 3200k
+    light.tall_office_lamp:
+      state: on
+      brightness: 255  # 100%
+      color_temp: 312  # 3200k
+    light.office_desk_lamp:  # Blinky
+      state: on
+      brightness: 77  # 30%
+    switch.office_ge_12721_switch:  # Miffy
+      state: on
+
+- name: Energized office
+  entities:
+    light.medium_office_lamp:
+      state: on
+      brightness: 255  # 100%
+      color_temp: 156
+    light.office_sconce:
+      state: on
+      brightness: 255  # 100%
+      color_temp: 156
+    light.tall_office_lamp:
+      state: on
+      brightness: 255  # 100%
+      color_temp: 156
+
+- name: Orange office
+  entities:
+    light.medium_office_lamp:
+      state: on
+      brightness: 255  # 100%
+      rgb_color: [255, 95, 0]
+    light.office_sconce:
+      state: on
+      brightness: 255  # 100%
+      rgb_color: [255, 95, 0]
+    light.tall_office_lamp:
+      state: on
+      brightness: 255  # 100%
+      rgb_color: [255, 95, 0]
+    light.office_desk_lamp:  # Blinky
+      state: on
+      brightness: 77  # 30%
+    switch.office_ge_12721_switch:  # Miffy
+      state: on
+
+- name: Office accents
+  entities:
+    light.office_desk_lamp:  # Blinky
+      state: on
+      brightness: 77  # 30%
+    switch.office_ge_12721_switch:  # Miffy
+      state: on
+
+- name: Relaxed office
+  entities:
+    light.medium_office_lamp:
+      state: on
+      brightness: 129  # 50%
+      color_temp: 446
+    light.office_sconce:
+      state: on
+      brightness: 129  # 50%
+      color_temp: 446
+    light.tall_office_lamp:
+      state: on
+      brightness: 129  # 50%
+      color_temp: 446
+    light.office_desk_lamp:  # Blinky
+      state: on
+      brightness: 77  # 30%
+    switch.office_ge_12721_switch:  # Miffy
+      state: on
+
+# rec room
+
+- name: Ambient rec room
+  entities:
+    light.main_rec_room_ceiling_lights: off  # ceiling light hue group
+    light.ambient_rec_room_lights:  # hue group
+      state: on
+      rgb_color: [255,93,40]
+      brightness: 77  # 30%
+    light.dm_skyline:
+      state: on
+      rgb_color: [255,93,40]
+      brightness: 255  # 100%
+
+- name: Bright rec room
+  entities:
+    light.ambient_rec_room_lights:  # hue group
+      state: on
+      rgb_color: [255,210,129]
+      brightness: 255  # 100%
+    light.dm_skyline:
+      state: on
+      rgb_color: [255,93,40]
+    light.foosball_table:
+      state: on
+      brightness: 255  # 100%
+      color_temp: 343
+    light.rec_room_color_ceiling_lights:  # hue group
+      state: on
+      brightness: 255  # 100%
+      color_temp: 343
+
+- name: Red rec room
+  entities:
+    light.ambient_rec_room_lights:  # hue group
+      state: on
+      rgb_color: [255,45,0]
+      brightness: 77  # 30%
+    light.dm_skyline:
+      state: on
+      rgb_color: [255,45,0]
+      brightness: 255  # 100%
+    light.foosball_table:
+      state: on
+      brightness: 143  # 56%
+      color_temp: 443
+    light.rec_room_color_ceiling_lights:  # hue group
+      state: on
+      rgb_color: [255,45,0]
+      brightness: 77  # 30%
+
+- name: Relaxed foosball
+  entities:
+    light.ambient_rec_room_lights:  # hue group
+      state: on
+      rgb_color: [255,93,40]
+      brightness: 77  # 30%
+    light.dm_skyline:
+      state: on
+      rgb_color: [255,93,40]
+      brightness: 255  # 100%
+    light.foosball_table:
+      state: on
+      brightness: 255  # 100%
+      color_temp: 447
+    light.rec_room_color_ceiling_lights:  # hue group
+      state: on
+      rgb_color: [255,161,40]
+      brightness: 13  # 5%
+
+- name: Relaxed rec room
+  entities:
+    light.ambient_rec_room_lights:  # hue group
+      state: on
+      rgb_color: [255,93,40]
+      brightness: 77  # 30%
+    light.dm_skyline:
+      state: on
+      rgb_color: [255,93,40]
+      brightness: 255  # 100%
+    light.foosball_table:
+      state: on
+      brightness: 143  # 56%
+      color_temp: 443
+    light.rec_room_color_ceiling_lights:  # ceiling light hue group
+      state: on
+      brightness: 143  # 56%
+      color_temp: 443
+
+# stairwell
+
+- name: Ambient stairwell
+  entities:
+    light.stairwell:
+      state: on
+      rgb_color: [255,63,0]  # red
+      brightness: 129  # 50%
+
+- name: Bright stairwell
+  entities:
+    light.stairwell:
+      state: on
+      brightness: 255  # 100%
+      color_temp: 312  # 3200k
+
+- name: Normal stairwell
+  entities:
+    light.stairwell:
+      state: on
+      brightness: 216  # 85%
+      color_temp: 333  # 3000k
+
+- name: Red stairwell
+  entities:
+    light.stairwell_1:
+      state: on
+      xy_color: [0.6421,0.3335]
+      brightness: 77  # 30%
+    light.stairwell_2:
+      state: on
+      xy_color: [0.5385,0.3836]
+      brightness: 77  # 30%
+    light.stairwell_3:
+      state: on
+      xy_color: [0.6375,0.3362]
+      brightness: 77  # 30%
+
+- name: Relaxed stairwell
+  entities:
+    light.stairwell:
+      state: on
+      brightness: 199  # 78%
+      profile: relax

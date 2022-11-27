@@ -1,0 +1,686 @@
+# bedroom
+
+# Turn off lights in and around bedroom, start white noise.
+go_to_sleep_early:
+  alias: "Go to sleep early"
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.master_bedroom  # The Hue transition is better than the Hass one
+    - service: light.turn_off
+      data:
+        entity_id: light.exterior_front_porch
+        transition: 3
+    - service: script.turn_on
+      data:
+        entity_id: script.dim_foyer_if_on
+    - service: script.turn_on
+      data:
+        entity_id: script.play_white_noise
+
+dim_foyer_if_on:
+  sequence:
+    - condition: state
+      entity_id: light.front_foyer_foyer_light
+      state: 'on'
+    - service: light.turn_on
+      data_template:
+        entity_id: light.front_foyer_foyer_light
+        transition: 3
+        brightness_pct: 10
+
+# Turn off all lights, start white noise
+go_to_sleep_together:
+  alias: "Go to sleep together"
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.master_bedroom  # The Hue transition is better than the Hass one
+    - service: scene.turn_on
+      entity_id: scene.bedtime
+    - service: script.turn_on
+      data:
+        entity_id: script.play_white_noise
+    - service: alarm_control_panel.alarm_arm_night
+      data:
+        entity_id: alarm_control_panel.living_room
+
+play_white_noise:
+  alias: "White noise"
+  sequence:
+    - service: media_player.play_media
+      entity_id: media_player.bedroom_speaker
+      data:
+        media_content_id: !secret white_noise_mp3_url
+        media_content_type: "audio/mp3"
+
+wake_up:
+  alias: "Wake up"
+  sequence:
+    - service: media_player.media_stop
+      entity_id: media_player.bedroom_speaker
+    - service: alarm_control_panel.alarm_arm_home
+      entity_id: alarm_control_panel.living_room
+
+# party_christmas:
+#   sequence:
+#     - service: light.turn_on
+#       data:
+#         entity_id: light.cabinet_accents
+#         rgb_color: [255,43,21]  # red
+#         brightness: 178
+#         transition: 3
+#     - service: light.turn_on
+#       data:
+#         entity_id: light.fridge_accents
+#         rgb_color: [81,255,79]  # green
+#         brightness: 178
+#         transition: 3
+#     - delay: 00:10:00  # minute
+#     - service: light.turn_on
+#       data:
+#         entity_id: light.cabinet_accents
+#         rgb_color: [81,255,79]
+#         brightness: 178
+#         transition: 3
+#     - service: light.turn_on
+#       data:
+#         entity_id: light.fridge_accents
+#         rgb_color: [255,43,21]
+#         brightness: 178
+#         transition: 3
+#     - service: script.turn_on
+#       data:
+#         entity_id: script.restart_party_christmas
+#
+# restart_party_christmas:
+#   sequence:
+#     - delay: 00:10:00  # minute
+#     - service: script.turn_on
+#       data:
+#         entity_id: script.party_christmas
+#
+# stop_party_christmas:
+#   sequence:
+#     - service: script.turn_off
+#       data:
+#         entity_id: script.party_christmas
+#     - service: script.turn_off
+#       data:
+#         entity_id: script.restart_party_christmas
+#
+# christmas_kitchen:
+#   alias: Christmas kitchen
+#   sequence:
+#     - service: scene.turn_on
+#       entity_id:
+#         - scene.christmas_kitchen_accents
+#         - scene.relaxed_island
+#
+# christmas_great_room:
+#   sequence:
+#     - service: script.turn_on
+#       data:
+#         entity_id: script.christmas_kitchen
+#     - service: light.turn_on
+#       data:
+#         entity_id:
+#           - light.lamp_dimmer_one_level  # Christmas tree
+#           - light.lamp_dimmer_two_level  # TV Christmas lights
+#         brightness_pct: 100
+#         transition: 3
+
+# doors
+
+check_garage_door:
+  sequence:
+  - condition: state
+    entity_id: cover.garage_door_opener_2
+    state: open
+  - service: notify.family
+    data:
+      title: Warning
+      message: Garage door is open
+
+check_mud_room_door:
+  sequence:
+    - condition: state
+      entity_id: binary_sensor.mud_room_door
+      state: 'on'
+    - service: notify.family
+      data:
+        title: Warning
+        message: Mud room door is open
+
+# lights
+
+turn_off_house:
+  sequence:
+  - service: light.turn_off
+    entity_id: group.all_lights
+  - service: switch.turn_off
+    entity_id: group.all_switches
+  - service: media_player.turn_off
+    entity_id: group.sonos
+# TODO: turn off fans
+
+turn_off_office:
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.office  # Hue group
+    - service: light.turn_off
+      data:
+        entity_id: light.office_desk_lamp  # Blinky
+    - service: switch.turn_off
+      entity_id: switch.office_ge_12721_switch  # Miffy
+
+# Leave Miffy on
+turn_off_office_evening:
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.office  # Hue group
+    - service: light.turn_off
+      data:
+        entity_id: light.office_desk_lamp  # Blinky
+
+# Kitchen
+ambient_kitchen:
+  alias: Ambient kitchen
+  sequence:
+    - service: automation.turn_off
+      data:
+        entity_id: group.dining_room_motion
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.island
+          - light.kitchen_cooking_lights
+    - service: scene.turn_on
+      entity_id:
+        - scene.blue_kitchen_accents
+        - scene.fireplace_accent
+    - service: light.turn_on
+      data:
+        entity_id: light.sink_lights
+        brightness: 129  # 50%
+        color_temp: 325
+
+bright_kitchen:
+  alias: Bright kitchen
+  sequence:
+    - service: scene.turn_on
+      entity_id:
+        - scene.blue_kitchen_accents
+        - scene.bright_island
+        - scene.bright_sink
+        - scene.fireplace_accent
+    - service: light.turn_on
+      data:
+        entity_id: light.kitchen_cooking_lights
+        brightness: 255  # 100%
+
+normal_kitchen:
+  alias: Normal kitchen
+  sequence:
+    - service: scene.turn_on
+      entity_id:
+        - scene.blue_kitchen_accents
+        - scene.normal_island
+        - scene.normal_sink
+        - scene.fireplace_accent
+    - service: light.turn_off
+      data:
+        entity_id: light.kitchen_cooking_lights
+
+relaxed_kitchen:
+  alias: Relaxed kitchen
+  sequence:
+    - service: scene.turn_on
+      entity_id:
+        - scene.blue_kitchen_accents
+        - scene.relaxed_island
+        - scene.relaxed_sink
+        - scene.fireplace_accent
+    - service: light.turn_off
+      data:
+        entity_id: light.kitchen_cooking_lights
+
+# Living room
+ambient_living_room:
+  alias: Ambient living room
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.living_room_ceiling_lamp
+    - service: scene.turn_on
+      entity_id:
+        - scene.red_tree_accent
+        - scene.red_turntable
+    - service: switch.turn_off
+      entity_id: switch.couch_ge_12721_switch
+
+relaxed_living_room:
+  alias: Relaxed living room
+  sequence:
+    - service: scene.turn_on
+      entity_id:
+        - scene.red_tree_accent
+        - scene.red_turntable
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.living_room_ceiling_lamp
+        brightness: 77  # 30%
+    - service: switch.turn_on
+      entity_id: switch.couch_ge_12721_switch
+
+# Lounge
+
+relax_dining_room_lights_if_on:
+  sequence:
+    - condition: state
+      entity_id: light.dining_room_table_lights
+      state: 'on'
+    - service: scene.turn_on
+      entity_id: scene.relaxed_dining_room
+
+relax_kitchen_lights_if_on:
+  sequence:
+    - condition: state
+      entity_id: group.kitchen_overhead
+      state: 'on'
+    - service: script.turn_on
+      entity_id: script.relaxed_kitchen
+
+relax_lounge_ceiling_lights_if_on:
+  sequence:
+    - condition: state
+      entity_id: light.lounge_lounge_lights
+      state: 'on'
+    - service: scene.turn_on
+      entity_id: scene.relaxed_lounge
+
+relax_foyer_lights_if_on:
+  sequence:
+    - condition: state
+      entity_id: light.front_foyer_foyer_light
+      state: 'on'
+    - service: scene.turn_on
+      entity_id: scene.relaxed_foyer
+
+relax_stairwell_lights_if_on:
+  sequence:
+    - condition: state
+      entity_id: light.stairwell
+      state: 'on'
+    - service: scene.turn_on
+      entity_id: scene.relaxed_stairwell
+
+# Great room
+ambient_great_room:
+  alias: Amibent great room
+  sequence:
+    - service: automation.turn_off
+      data:
+        entity_id: group.dining_room_motion
+    - service: script.turn_on
+      entity_id:
+        - script.ambient_kitchen
+        - script.ambient_living_room
+    - service: scene.turn_on
+      entity_id: scene.ambient_stairwell
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.lounge_lounge_lights
+          - light.front_foyer_foyer_light
+          - light.dining_room_table_lights
+
+bright_great_room:
+  alias: Bright great room
+  sequence:
+    - service: scene.turn_on
+      entity_id:
+        - scene.bright_dining_room
+        - scene.bright_foyer
+        - scene.bright_living_room
+        - scene.bright_lounge
+        - scene.bright_stairwell
+    - service: script.turn_on
+      entity_id: script.bright_kitchen
+
+normal_great_room:
+  alias: Normal great room
+  sequence:
+    - service: scene.turn_on
+      entity_id:
+        - scene.normal_dining_room
+        - scene.normal_foyer
+        - scene.normal_lounge
+        - scene.normal_stairwell
+    - service: script.turn_on
+      entity_id:
+        - script.normal_kitchen
+        - script.relaxed_living_room
+
+orange_great_room:
+  alias: Orange great room
+  sequence:
+    - service: scene.turn_on
+      entity_id:
+        - scene.orange_kitchen_accents
+        - scene.orange_turntable
+        - scene.orange_office
+
+relaxed_great_room:
+  alias: Relaxed great room
+  sequence:
+    - service: scene.turn_on
+      entity_id:
+        - scene.relaxed_dining_room
+        - scene.relaxed_foyer
+        - scene.relaxed_lounge
+        - scene.relaxed_stairwell
+    - service: script.turn_on
+      entity_id:
+        - script.relaxed_kitchen
+        - script.relaxed_living_room
+
+# Upstairs
+bright_upstairs:
+  alias: Bright upstairs
+  sequence:
+    - service: script.turn_on
+      entity_id:
+        - script.bright_great_room
+    - service: scene.turn_on
+      entity_id:
+        - scene.bright_bedroom
+        - scene.bright_office
+
+normal_upstairs:
+  alias: Normal upstairs
+  sequence:
+    - service: script.turn_on
+      entity_id:
+        - script.normal_great_room
+    - service: scene.turn_on
+      entity_id:
+        - scene.bright_office
+
+relaxed_upstairs:
+  alias: Relaxed upstairs
+  sequence:
+    - service: script.turn_on
+      entity_id: script.relaxed_great_room
+    - service: scene.turn_on
+      entity_id:
+        - scene.relaxed_bedroom
+        - scene.relaxed_office
+
+prepare_bedtime_lights:
+  sequence:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: home
+    - condition: or
+      conditions:
+      - condition: time
+        after: '20:59:00'
+      - condition: sun
+        before: sunrise
+  - service: scene.turn_on
+    entity_id: scene.relaxed_bedroom
+  - service: notify.derek
+    data:
+      title: Lights
+      message: Bedtime lights activated
+
+bedtime:
+  sequence:
+  - service: scene.turn_on
+    entity_id: scene.relaxed_bedroom
+  - delay: 00:01:00  # minute
+  - service: homeassistant.turn_off
+    entity_id: group.non_bedroom_lights
+
+# motion
+
+dining_room_motion_clear:
+  sequence:
+    - delay:
+        minutes: 10
+    - service: light.turn_off
+      entity_id: light.dining_room_table_lights
+
+office_motion_clear:
+  sequence:
+    - delay:
+        minutes: 10
+    - service: script.turn_on
+      data_template:
+        entity_id: >-
+          {% if is_state('sun.sun', 'above_horizon') %}
+            script.turn_off_office
+          {% else %}
+            script.turn_off_office_evening
+          {% endif %}
+
+rec_room_motion_clear:
+  sequence:
+    - delay:
+        minutes: 10
+    - service: light.turn_off
+      entity_id: light.rec_room  # Hue group
+
+# party
+
+every_party:
+  sequence:
+    - service: automation.turn_off
+      data:
+        entity_id: group.all_motion
+    - service: light.turn_on  # Super dim lights
+      data:
+        entity_id:
+          - light.basement_hallway_lights
+        brightness: 3
+    - service: light.turn_on  # Dim lights
+      data:
+        entity_id:
+          - light.exterior_deck_lights
+          - light.living_room_ceiling_lamp
+          - light.guest_night_stand  # Guest nightstand
+          - light.guest_futon
+          - light.guest_desk
+          - light.big_office_lamp
+        brightness: 25  # 10%
+        kelvin: 1000
+    - service: light.turn_on  # Slightly less dim lights
+      data:
+        entity_id:
+          - light.living_room_ceiling_lamp
+        brightness_pct: 20
+    - service: light.turn_on  # Bright lights
+      data:
+        entity_id:
+          - light.office_desk_lamp
+          - light.foosball_table
+        brightness: 153  # 60%
+        kelvin: 1000
+    - service: light.turn_on  # Super Bright lights
+      data:
+        entity_id:
+          - light.exterior_patio_lights
+        brightness: 255  # 100
+    - service: light.turn_off  # Turn off
+      entity_id:
+        - light.front_foyer_foyer_light
+        - light.dining_room_table_lights
+        - light.lounge_lounge_lights
+        - light.kitchen_cooking_lights
+        - light.exterior_patio_sconce
+    - service: switch.turn_off
+      entity_id: switch.couch_ge_12721_switch
+    - service: switch.turn_on
+      entity_id:
+        - switch.office_ge_12721_switch  # Miffy
+        - switch.exterior_driveway_light
+        - switch.exterior_christmas_lights
+
+# TODO: deck
+
+red_party:
+  sequence:
+    - service: script.turn_on
+      entity_id:
+        - script.every_party
+    - service: light.turn_on  # Color lights
+      data:
+        entity_id:
+          - light.kitchen  # Hue group
+          - light.office_sconce
+          - light.medium_office_lamp
+          - light.tall_office_lamp
+          - light.stairwell
+          - light.turntable
+          - light.master_bedroom  # Hue group
+          - light.ambient_rec_room_lights
+          - light.rec_room_color_ceiling_lights
+          - light.tree_accent
+        rgb_color: [255,45,0]
+        brightness_pct: 60
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.dm_skyline
+        rgb_color: [255,45,0]
+        brightness_pct: 100
+
+blue_party:
+  sequence:
+    - service: script.turn_on
+      entity_id:
+        - script.every_party
+    - service: light.turn_on  # Color lights
+      data:
+        entity_id:
+          - light.kitchen  # Hue group
+          - light.office_sconce
+          - light.medium_office_lamp
+          - light.tall_office_lamp
+          - light.stairwell
+          - light.turntable
+          - light.master_bedroom  # Hue group
+          - light.ambient_rec_room_lights
+          - light.rec_room_color_ceiling_lights
+          - light.tree_accent
+        rgb_color: [82,0,255]
+        brightness_pct: 60
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.dm_skyline
+        rgb_color: [82,0,255]
+        brightness_pct: 100
+
+pink_party:
+  sequence:
+    - service: script.turn_on
+      entity_id:
+        - script.every_party
+    - service: light.turn_on  # Color lights
+      data:
+        entity_id:
+          - light.island
+          - light.cabinet_accents
+          - light.fridge_accents
+          - light.sink_lights
+          - light.fireplace_accent
+          - light.office_sconce
+          - light.medium_office_lamp
+          - light.tall_office_lamp
+          - light.stairwell
+          - light.turntable
+          - light.master_bedroom  # Hue group
+          - light.ambient_rec_room_lights
+          - light.rec_room_color_ceiling_lights
+          - light.tree_accent
+        rgb_color: [255,42,191]
+        brightness_pct: 60
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.dm_skyline
+        rgb_color: [255,42,191]
+        brightness_pct: 100
+
+dim_party:
+  sequence:
+    - service: script.turn_on
+      entity_id:
+        - script.every_party
+    - service: light.turn_on  # Color lights become dim
+      data:
+        entity_id:
+          - light.island
+          - light.sink_lights
+          - light.office_sconce
+          - light.medium_office_lamp
+          - light.tall_office_lamp
+          - light.stairwell
+          - light.turntable
+          - light.master_bedroom  # Hue group
+          - light.ambient_rec_room_lights
+          - light.rec_room_color_ceiling_lights
+        kelvin: 1000
+        brightness_pct: 10
+    - service: light.turn_on  # Red lights
+      data:
+        entity_id:
+          - light.cabinet_accents
+          - light.fridge_accents
+          - light.fireplace_accent
+          - light.tree_accent
+        rgb_color: [255,45,0]
+        brightness_pct: 60
+
+party_over:
+  sequence:
+    - service: automation.turn_on
+      entity_id:
+        - automation.office_motion_detected
+        - automation.office_motion_detected_at_night
+        - automation.office_motion_clear
+
+# test
+
+test_pushbullet:
+  sequence:
+    service: notify.pushbullet
+    data:
+      title: Test message
+      message: This is a message
+
+test_pushbullet_image:
+  sequence:
+    service: notify.pushbullet
+    data:
+      title: Test local image
+      message: 'this is a local image'
+      data:
+        file: '/Users/broox/.homeassistant/www/test.jpg'
+
+test_pushbullet_url:
+  sequence:
+    service: notify.pushbullet
+    data:
+      title: Test remote image
+      message: 'this is a remote image'
+      data:
+        file_url: 'http://derek.broox.com/photo/brooxmobile/32740/got-this-skull-on-my-arm-.jpg'
+
