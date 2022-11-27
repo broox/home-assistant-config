@@ -58,8 +58,7 @@ ios:
 
 mobile_app:
 
-mqtt:
-  broker: mosquitto
+my:
 
 nest:
   client_id: !secret nest_client_id

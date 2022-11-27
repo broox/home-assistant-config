@@ -3,7 +3,6 @@
     - 'time'
     - 'date'
     - 'date_time'
-- platform: uptime
 - platform: template
   sensors:
     derek_phone_battery:

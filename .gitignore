@@ -1,8 +1,12 @@
-.*
 *.conf
 *.db
+*.db-shm
+*.db-wal
+*.env
 *.json
 *.log
+*.log.*
+*.pem
 *.sqlite
 *.txt
 *.pyc
