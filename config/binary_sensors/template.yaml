@@ -39,11 +39,4 @@
     house_occupied:
       device_class: occupancy
       value_template: "{{ is_state('group.family', 'home') or is_state('input_boolean.guest_mode', 'on') }}"
-    office_motion:
-      device_class: motion
-      friendly_name: 'Office motion'
-      value_template: "{{ is_state('sensor.vision_zp3111_multisensor_4in1_alarm_level', '255') }}"
-    rec_room_motion:
-      device_class: motion
-      friendly_name: 'Rec room motion'
-      value_template: "{{ is_state('sensor.vision_zp3102_pir_motion_sensor_alarm_level', '255') }}"
+

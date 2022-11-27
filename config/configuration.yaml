@@ -56,13 +56,6 @@ ios:
           - identifier: 'VIEW_SNAPSHOT'
             title: 'See snapshot'
 
-lutron_caseta_pro:
-  bridges:
-    - host: !secret lutron_host_ip
-      mac: !secret lutron_mac
-      fan: [21, 27]
-      switch: [9, 16, 24]
-
 mobile_app:
 
 mqtt:

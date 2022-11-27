@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: homeassistant/home-assistant:2021.5.4
+    image: homeassistant/home-assistant:2022.3.8
     environment:
       - TZ=America/Chicago
     volumes:
@@ -14,9 +14,30 @@ services:
       - '8124:8124'
     networks:
       - default
+      - zwave
+
+  zwavejs:
+    image: zwavejs/zwave-js-ui:latest
+    environment:
+      - SESSION_SECRET=${ZWAVE_SECRET_KEY}
+      - ZWAVEJS_EXTERNAL_CONFIG=/usr/src/app/store/.config-db
+      - TZ=America/Chicago
+    volumes:
+      - ./zwave-config:/usr/src/app/store
+    devices:
+      - '/dev/serial/by-id/usb-0658_0200-if00:/dev/zwave'
+    ports:
+      - '8091:8091'
+      - '3000:3000'
+    restart: always
+    tty: true
+    stop_signal: SIGINT
+    networks:
+      - zwave
 
 networks:
   default:
     external:
       name: dead-end-ranch
+  zwave:
 
